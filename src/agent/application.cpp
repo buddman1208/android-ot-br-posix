@@ -38,6 +38,7 @@
 #endif
 
 #include "agent/application.hpp"
+#include "android/binder_server.hpp"
 #include "common/code_utils.hpp"
 #include "common/mainloop_manager.hpp"
 #include "utils/infra_link_selector.hpp"
@@ -106,6 +107,8 @@ void Application::Init(void)
 #if OTBR_ENABLE_VENDOR_SERVER
     mVendorServer.Init();
 #endif
+
+    Android::BinderServer::GetInstance().InitOrDie(&mNcp);
 }
 
 void Application::Deinit(void)
