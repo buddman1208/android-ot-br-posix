@@ -58,6 +58,8 @@
 #include "common/types.hpp"
 #include "ncp/ncp_openthread.hpp"
 
+#error "Generate the build error"
+
 static const char kSyslogIdent[]          = "otbr-agent";
 static const char kDefaultInterfaceName[] = "wpan0";
 
