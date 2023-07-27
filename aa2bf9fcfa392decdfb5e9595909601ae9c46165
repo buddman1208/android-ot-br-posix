@@ -16,6 +16,24 @@
       "message": "Ping.",
       "revId": "aa2bf9fcfa392decdfb5e9595909601ae9c46165",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc4c423c_5ee29193",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1067098
+      },
+      "writtenOn": "2023-07-27T03:53:46Z",
+      "side": 1,
+      "message": "Ping^2.",
+      "parentUuid": "bc9c7d14_01954da0",
+      "revId": "aa2bf9fcfa392decdfb5e9595909601ae9c46165",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
