@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d14527e1_17bc6ec2",
+        "filename": "src/agent/application.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1837411
+      },
+      "writtenOn": "2023-08-01T15:03:34Z",
+      "side": 1,
+      "message": "I think we can add the vendor service API in the github/ot-br-posix and implement the `BinderServer` in the vendor service to avoid directly modify the original source code. This could help avoid conflict when we are synchronizing the code from github/ot-br-posix.",
+      "revId": "c614882b3fa77ea10d2c95688d400fb9782dd6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0fcf3fe_4c49a7f0",
+        "filename": "src/android/aidl/com/android/server/openthread/IEmptyResponseCallback.aidl",
+        "patchSetId": 12
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1837411
+      },
+      "writtenOn": "2023-08-01T15:03:34Z",
+      "side": 1,
+      "message": "This callback API contains two functions. It is actually not the `empty` response. I think the name `IStatusResponseCallback` is more appropriate than `IEmptyResponseCallback`.",
+      "revId": "c614882b3fa77ea10d2c95688d400fb9782dd6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ede0a34b_62b51f4a",
+        "filename": "src/android/aidl/com/android/server/openthread/IOtDaemon.aidl",
+        "patchSetId": 12
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1837411
+      },
+      "writtenOn": "2023-08-01T15:03:34Z",
+      "side": 1,
+      "message": "Could we move the line 55 between the `\\**\\`? Or are there some rules to make the line 55 to use different comments methods?",
+      "revId": "c614882b3fa77ea10d2c95688d400fb9782dd6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af0d1f6f_1230f32a",
+        "filename": "src/android/aidl/com/android/server/openthread/IOtDaemon.aidl",
+        "patchSetId": 12
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1837411
+      },
+      "writtenOn": "2023-08-01T15:03:34Z",
+      "side": 1,
+      "message": "What is the `Thread standard version`? Do you mean the [version values](https://github.com/openthread/openthread/blob/main/src/core/openthread-core-config.h#L41C1-L45C1) listed in `openthread/src/core/openthread-core-config.h`?",
+      "revId": "c614882b3fa77ea10d2c95688d400fb9782dd6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9593252d_996f98e7",
+        "filename": "src/android/binder_server.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1837411
+      },
+      "writtenOn": "2023-08-01T15:03:34Z",
+      "side": 1,
+      "message": "Should we also set the `mTunFd` to -1 when the client is die?",
+      "revId": "c614882b3fa77ea10d2c95688d400fb9782dd6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

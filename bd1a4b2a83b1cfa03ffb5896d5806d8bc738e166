@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dab0dd5_fdd45b99",
+        "filename": "src/common/code_utils.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1837411
+      },
+      "writtenOn": "2023-08-01T15:03:34Z",
+      "side": 0,
+      "message": "I think you have already updated this part of code in [PR1929](https://github.com/openthread/ot-br-posix/pull/1929). Could you cherry-pick this CL to aosp/ot-br-posix to avoid changing the code here?",
+      "revId": "bd1a4b2a83b1cfa03ffb5896d5806d8bc738e166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19580d8c_59e3bfe8",
+        "filename": "src/common/code_utils.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1837411
+      },
+      "writtenOn": "2023-08-01T15:03:34Z",
+      "side": 0,
+      "message": "I think",
+      "revId": "bd1a4b2a83b1cfa03ffb5896d5806d8bc738e166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
