@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9cde54e3_24d940a9",
+        "filename": "src/agent/application.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-08-02T09:19:16Z",
+      "side": 1,
+      "message": "Pending on https://github.com/openthread/ot-br-posix/pull/1958",
+      "parentUuid": "d14527e1_17bc6ec2",
+      "revId": "c614882b3fa77ea10d2c95688d400fb9782dd6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a0fcf3fe_4c49a7f0",
         "filename": "src/android/aidl/com/android/server/openthread/IEmptyResponseCallback.aidl",
         "patchSetId": 12
@@ -53,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c90bfe74_536a39d7",
+        "filename": "src/android/aidl/com/android/server/openthread/IEmptyResponseCallback.aidl",
+        "patchSetId": 12
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-08-02T09:19:16Z",
+      "side": 1,
+      "message": "I renamed it to `IOtStatusReceiver`",
+      "parentUuid": "4c11ea95_31cea6bc",
+      "revId": "c614882b3fa77ea10d2c95688d400fb9782dd6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ede0a34b_62b51f4a",
@@ -66,6 +102,24 @@
       "writtenOn": "2023-08-01T15:03:34Z",
       "side": 1,
       "message": "Could we move the line 55 between the `\\**\\`? Or are there some rules to make the line 55 to use different comments methods?",
+      "revId": "c614882b3fa77ea10d2c95688d400fb9782dd6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7639315_6a6605b4",
+        "filename": "src/android/aidl/com/android/server/openthread/IOtDaemon.aidl",
+        "patchSetId": 12
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-08-02T09:19:16Z",
+      "side": 1,
+      "message": "The documentation in `/** */` is for the user of the API. The documentation in `//` is for maintainer of this API",
+      "parentUuid": "ede0a34b_62b51f4a",
       "revId": "c614882b3fa77ea10d2c95688d400fb9782dd6b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -118,6 +172,24 @@
       "writtenOn": "2023-08-01T15:03:34Z",
       "side": 1,
       "message": "Should we also set the `mTunFd` to -1 when the client is die?",
+      "revId": "c614882b3fa77ea10d2c95688d400fb9782dd6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "996ebfff_87fd71da",
+        "filename": "src/android/binder_server.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-08-02T09:19:16Z",
+      "side": 1,
+      "message": "Thanks for catching this! updated!",
+      "parentUuid": "9593252d_996f98e7",
       "revId": "c614882b3fa77ea10d2c95688d400fb9782dd6b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
