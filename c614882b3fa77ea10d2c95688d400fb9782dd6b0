@@ -197,6 +197,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f6989c3c_309ea085",
+        "filename": "src/android/aidl/com/android/server/openthread/IOtDaemon.aidl",
+        "patchSetId": 12
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-08-03T02:46:07Z",
+      "side": 1,
+      "message": "FYI, the name \"standard\" comes from the existing getWifiStandard() API: https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Wifi/framework/java/android/net/wifi/WifiInfo.java?q\u003dsymbol%3A%5Cbandroid.net.wifi.WifiInfo.getWifiStandard%5Cb%20case%3Ayes",
+      "parentUuid": "ce1f6ad4_8cdd611a",
+      "revId": "c614882b3fa77ea10d2c95688d400fb9782dd6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9593252d_996f98e7",
         "filename": "src/android/binder_server.cpp",
         "patchSetId": 12
