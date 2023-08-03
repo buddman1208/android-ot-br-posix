@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a482509c_7c8c8988",
+        "filename": "src/android/binder_server.hpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1501262
+      },
+      "writtenOn": "2023-08-03T09:49:21Z",
+      "side": 1,
+      "message": "rename to OtDaemonServer?",
+      "revId": "71e80e31d197310ce6c6a1ebbb1059b60cb14d69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
