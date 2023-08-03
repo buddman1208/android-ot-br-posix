@@ -16,6 +16,24 @@
       "message": "rename to OtDaemonServer?",
       "revId": "71e80e31d197310ce6c6a1ebbb1059b60cb14d69",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b591d67a_555df54b",
+        "filename": "src/android/binder_server.hpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-08-03T10:52:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a482509c_7c8c8988",
+      "revId": "71e80e31d197310ce6c6a1ebbb1059b60cb14d69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
