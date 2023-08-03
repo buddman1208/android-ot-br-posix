@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e840d396_02b5d9d8",
+        "filename": "src/agent/application.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-08-03T05:36:54Z",
+      "side": 1,
+      "message": "https://github.com/openthread/ot-br-posix/pull/1958\n\nis cherry-picked in \n\nhttps://android-review.git.corp.google.com/c/platform/external/ot-br-posix/+/2691507",
+      "parentUuid": "9cde54e3_24d940a9",
+      "revId": "c614882b3fa77ea10d2c95688d400fb9782dd6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0fcf3fe_4c49a7f0",
