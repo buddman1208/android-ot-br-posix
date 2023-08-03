@@ -231,6 +231,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f00b55a7_d02b5ad0",
+        "filename": "src/android/aidl/com/android/server/openthread/IOtDaemon.aidl",
+        "patchSetId": 12
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-08-03T08:48:56Z",
+      "side": 1,
+      "message": "Renamed to `getThreadVersion()`",
+      "parentUuid": "f6989c3c_309ea085",
+      "revId": "c614882b3fa77ea10d2c95688d400fb9782dd6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9593252d_996f98e7",
