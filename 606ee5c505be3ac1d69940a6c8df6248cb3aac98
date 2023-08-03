@@ -16,6 +16,24 @@
       "message": "Remove line 41?",
       "revId": "606ee5c505be3ac1d69940a6c8df6248cb3aac98",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6f167b3_12d3da6b",
+        "filename": "src/agent/application.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-08-03T08:52:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8784fcad_6b7f51de",
+      "revId": "606ee5c505be3ac1d69940a6c8df6248cb3aac98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
