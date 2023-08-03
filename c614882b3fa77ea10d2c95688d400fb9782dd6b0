@@ -179,6 +179,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ce1f6ad4_8cdd611a",
+        "filename": "src/android/aidl/com/android/server/openthread/IOtDaemon.aidl",
+        "patchSetId": 12
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-08-03T02:39:41Z",
+      "side": 1,
+      "message": "I\u0027d like to keep \"standard\" to distinguish between software version vs Thread standard version. We have a `ThreadNetworkController#getStandardVersion()` Android system API which doesn\u0027t receive a objection from API councilor. So I think it\u0027s kind of okay?\n\nIf you think IOtDaemon isn\u0027t a clear name, do you want to change it to \"IOpenThreadDaemon\" to make it clear that this interface is about Thread/OpenThread? To me, \"IOtdaemon\" already looks good enough",
+      "parentUuid": "f5553191_450fdd56",
+      "revId": "c614882b3fa77ea10d2c95688d400fb9782dd6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9593252d_996f98e7",
         "filename": "src/android/binder_server.cpp",
         "patchSetId": 12
