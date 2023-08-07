@@ -195,20 +195,20 @@ otError ControllerOpenThread::SetOtbrAndOtLogLevel(otbrLogLevel aLevel)
 {
     otError error = OT_ERROR_NONE;
     otbrLogSetLevel(aLevel);
-    error = otLoggingSetLevel(ConvertToOtLogLevel(aLevel));
+    //error = otLoggingSetLevel(ConvertToOtLogLevel(aLevel));
     return error;
 }
 
 void ControllerOpenThread::Init(void)
 {
     otbrError  error = OTBR_ERROR_NONE;
-    otLogLevel level = ConvertToOtLogLevel(otbrLogGetLevel());
+    //otLogLevel level = ConvertToOtLogLevel(otbrLogGetLevel());
 
 #if OTBR_ENABLE_FEATURE_FLAGS && OTBR_ENABLE_TREL
     FeatureFlagList featureFlagList;
 #endif
 
-    VerifyOrExit(otLoggingSetLevel(level) == OT_ERROR_NONE, error = OTBR_ERROR_OPENTHREAD);
+    //VerifyOrExit(otLoggingSetLevel(level) == OT_ERROR_NONE, error = OTBR_ERROR_OPENTHREAD);
 
     mInstance = otSysInit(&mConfig);
     assert(mInstance != nullptr);

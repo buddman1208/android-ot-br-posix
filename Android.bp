@@ -91,6 +91,8 @@ cc_defaults {
     ],
 
     cflags: [
+        "-Os",
+        "-g0",
         "-Wall",
         "-Wextra",
         "-DOTBR_CONFIG_ANDROID_PROPERTY_ENABLE=1",
@@ -102,6 +104,12 @@ cc_defaults {
         "-DOTBR_ENABLE_SRP_ADVERTISING_PROXY=1",
         "-DOTBR_ENABLE_DNSSD_DISCOVERY_PROXY=1",
         "-DOTBR_PACKAGE_NAME=\"OTBR_AGENT\"",
+    ],
+
+    cppflags: [
+        "-fno-exceptions",
+        "-fno-asynchronous-unwind-tables",
+        "-fno-unwind-tables",
     ],
 
     srcs: [
@@ -141,9 +149,9 @@ cc_defaults {
     ],
 
     static_libs: [
-        "libopenthread-cli",
+        //"libopenthread-cli",
         "ot-core",
-        "openthread-tcplp",
+        // "openthread-tcplp",
         "ot-daemon-aidl-ndk",
     ],
 
