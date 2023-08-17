@@ -48,6 +48,7 @@ using BinderDeathRecipient = ::ndk::ScopedAIBinder_DeathRecipient;
 using ScopedFileDescriptor = ::ndk::ScopedFileDescriptor;
 using Status               = ::ndk::ScopedAStatus;
 using aidl::com::android::server::thread::openthread::BnOtDaemon;
+using aidl::com::android::server::thread::openthread::BorderRouterConfigurationParcel;
 using aidl::com::android::server::thread::openthread::IOtDaemonCallback;
 using aidl::com::android::server::thread::openthread::IOtStatusReceiver;
 using aidl::com::android::server::thread::openthread::Ipv6AddressInfo;
@@ -93,6 +94,8 @@ private:
     Status scheduleMigration(const std::vector<uint8_t>               &aPendingOpDatasetTlvs,
                              const std::shared_ptr<IOtStatusReceiver> &aReceiver) override;
     static void sendMgmtPendingSetCallback(otError aResult, void *aBinderServer);
+    Status      configureBorderRouter(const BorderRouterConfigurationParcel    &aBorderRouterConfiguration,
+                                      const std::shared_ptr<IOtStatusReceiver> &aReceiver) override;
 
     static void BinderDeathCallback(void *aBinderServer);
     void        StateCallback(otChangedFlags aFlags);
@@ -107,6 +110,7 @@ private:
     std::shared_ptr<IOtDaemonCallback> mCallback;
     BinderDeathRecipient               mClientDeathRecipient;
     std::vector<DetachCallback>        mOngoingLeaveCallbacks;
+    BorderRouterConfigurationParcel    mBorderRouterConfiguration;
 };
 
 } // namespace Android
