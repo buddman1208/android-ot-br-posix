@@ -88,9 +88,13 @@ static Ipv6AddressInfo ConvertToAddressInfo(const otIp6AddressInfo &aAddressInfo
 
 OtDaemonServer::OtDaemonServer(otbr::Ncp::ControllerOpenThread &aNcp)
     : mNcp(aNcp)
+    , mBorderRouterConfiguration()
 {
     mClientDeathRecipient =
         ::ndk::ScopedAIBinder_DeathRecipient(AIBinder_DeathRecipient_new(&OtDaemonServer::BinderDeathCallback));
+    mBorderRouterConfiguration.infraInterfaceName        = "";
+    mBorderRouterConfiguration.infraInterfaceIcmp6Socket = ScopedFileDescriptor();
+    mBorderRouterConfiguration.isBorderRoutingEnabled    = false;
 }
 
 void OtDaemonServer::Init(void)
@@ -444,6 +448,42 @@ void OtDaemonServer::sendMgmtPendingSetCallback(otError aResult, void *aBinderSe
     otbrLogDebug("otDatasetSendMgmtPendingSet callback: %d", aResult);
 }
 
+Status OtDaemonServer::configureBorderRouter(const BorderRouterConfigurationParcel    &aBorderRouterConfiguration,
+                                             const std::shared_ptr<IOtStatusReceiver> &aReceiver)
+{
+    int icmp6SocketFd = aBorderRouterConfiguration.infraInterfaceIcmp6Socket.dup().release();
+
+    otbrLogInfo("Configuring Border Router: %s", aBorderRouterConfiguration.toString().c_str());
+
+    if (mBorderRouterConfiguration.isBorderRoutingEnabled != aBorderRouterConfiguration.isBorderRoutingEnabled ||
+        mBorderRouterConfiguration.infraInterfaceName != aBorderRouterConfiguration.infraInterfaceName)
+    {
+        if (aBorderRouterConfiguration.isBorderRoutingEnabled)
+        {
+            (void)otBorderRoutingSetEnabled(GetOtInstance(), false /* aEnabled */);
+            otSysSetInfraNetif(aBorderRouterConfiguration.infraInterfaceName.c_str(), icmp6SocketFd);
+            (void)otBorderRoutingInit(GetOtInstance(),
+                                      if_nametoindex(aBorderRouterConfiguration.infraInterfaceName.c_str()),
+                                      false /* aInfraIfIsRunning */);
+            (void)otBorderRoutingSetEnabled(GetOtInstance(), true /* aEnabled */);
+        }
+        else
+        {
+            (void)otBorderRoutingSetEnabled(GetOtInstance(), false /* aEnabled */);
+        }
+    }
+
+    mBorderRouterConfiguration.isBorderRoutingEnabled = aBorderRouterConfiguration.isBorderRoutingEnabled;
+    mBorderRouterConfiguration.infraInterfaceName     = aBorderRouterConfiguration.infraInterfaceName;
+
+    if (aReceiver != nullptr)
+    {
+        aReceiver->onSuccess();
+    }
+
+    return Status::ok();
+}
+
 Status OtDaemonServer::getExtendedMacAddress(std::vector<uint8_t> *aExtendedMacAddress)
 {
     Status              status = Status::ok();
@@ -485,7 +525,7 @@ exit:
     return status;
 }
 
-binder_status_t OtDaemonServer::dump(int aFd, const char** aArgs, uint32_t aNumArgs)
+binder_status_t OtDaemonServer::dump(int aFd, const char **aArgs, uint32_t aNumArgs)
 {
     OT_UNUSED_VARIABLE(aArgs);
     OT_UNUSED_VARIABLE(aNumArgs);
