@@ -63,7 +63,7 @@ public:
     void operator=(const OtDaemonServer &) = delete;
 
     // Dump information for debugging.
-    binder_status_t dump(int aFd, const char** aArgs, uint32_t aNumArgs) override;
+    binder_status_t dump(int aFd, const char **aArgs, uint32_t aNumArgs) override;
 
 private:
     using DetachCallback = std::function<void()>;
@@ -93,6 +93,8 @@ private:
     Status scheduleMigration(const std::vector<uint8_t>               &aPendingOpDatasetTlvs,
                              const std::shared_ptr<IOtStatusReceiver> &aReceiver) override;
     static void sendMgmtPendingSetCallback(otError aResult, void *aBinderServer);
+    Status      initializeInfraInterface(const std::string          &aInfraInterfaceName,
+                                         const ScopedFileDescriptor &aIcmp6SocketFd) override;
 
     static void BinderDeathCallback(void *aBinderServer);
     void        StateCallback(otChangedFlags aFlags);

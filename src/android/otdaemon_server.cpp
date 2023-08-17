@@ -444,6 +444,24 @@ void OtDaemonServer::sendMgmtPendingSetCallback(otError aResult, void *aBinderSe
     otbrLogDebug("otDatasetSendMgmtPendingSet callback: %d", aResult);
 }
 
+Status OtDaemonServer::initializeInfraInterface(const std::string          &aInfraInterfaceName,
+                                                const ScopedFileDescriptor &aIcmp6SocketFd)
+{
+    otPlatformConfig platformConfig{};
+
+    platformConfig.mBackboneInterfaceName = aInfraInterfaceName.c_str();
+
+    otbrLogInfo("The AIL is %s. The ICMPv6 socket's file descriptor is %d.", aInfraInterfaceName.c_str(),
+                aIcmp6SocketFd.get());
+
+    otSysInfraNetifTearDown();
+    otSysInfraNetifDeinit();
+    otSysInfraNetifInit(&platformConfig, aIcmp6SocketFd.dup().release());
+    otSysInfraNetifSetUp(GetOtInstance());
+
+    return Status::ok();
+}
+
 Status OtDaemonServer::getExtendedMacAddress(std::vector<uint8_t> *aExtendedMacAddress)
 {
     Status              status = Status::ok();
@@ -485,7 +503,7 @@ exit:
     return status;
 }
 
-binder_status_t OtDaemonServer::dump(int aFd, const char** aArgs, uint32_t aNumArgs)
+binder_status_t OtDaemonServer::dump(int aFd, const char **aArgs, uint32_t aNumArgs)
 {
     OT_UNUSED_VARIABLE(aArgs);
     OT_UNUSED_VARIABLE(aNumArgs);
