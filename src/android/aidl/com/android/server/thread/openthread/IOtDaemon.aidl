@@ -92,5 +92,11 @@ interface IOtDaemon {
     oneway void scheduleMigration(
         in byte[] pendingOpDatasetTlvs, in IOtStatusReceiver receiver);
 
+    /**
+     * Notifies the Thread stack that the infrastructure network interface state has changed.
+     */
+    oneway void onInfraInterfaceStateChanged(in String infraIfName, in boolean isRunning,
+            in ParcelFileDescriptor socketFd);
+
     // TODO: add Border Router APIs
 }
