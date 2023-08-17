@@ -92,5 +92,15 @@ interface IOtDaemon {
     oneway void scheduleMigration(
         in byte[] pendingOpDatasetTlvs, in IOtStatusReceiver receiver);
 
+    /**
+     * Initializes the infrastructure network interface for Thread.
+     *
+     * @param infraInterfaceName the infrastructure network interface name.
+     * @param icmp6SocketFd the socket file descriptor for sending/receiving ICMPv6 messages.
+     *
+     */
+    oneway void initializeInfraInterface(in String infraInterfaceName,
+        in ParcelFileDescriptor icmp6SocketFd);
+
     // TODO: add Border Router APIs
 }
