@@ -91,6 +91,9 @@ private:
     Status scheduleMigration(const std::vector<uint8_t>               &aPendingOpDatasetTlvs,
                              const std::shared_ptr<IOtStatusReceiver> &aReceiver) override;
     static void sendMgmtPendingSetCallback(otError aResult, void *aBinderServer);
+    Status      onInfraInterfaceStateChanged(const std::string          &aInfraIfName,
+                                             bool                        aIsRunning,
+                                             const ScopedFileDescriptor &aSocketFd) override;
 
     static void BinderDeathCallback(void *aBinderServer);
     void        StateCallback(otChangedFlags aFlags);
