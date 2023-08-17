@@ -443,6 +443,24 @@ void OtDaemonServer::sendMgmtPendingSetCallback(otError aResult, void *aBinderSe
     otbrLogDebug("otDatasetSendMgmtPendingSet callback: %d", aResult);
 }
 
+Status OtDaemonServer::onInfraInterfaceStateChanged(const std::string          &aInfraIfName,
+                                                    bool                        aIsRunning,
+                                                    const ScopedFileDescriptor &aSocketFd)
+{
+    otbrLogInfo("ot-daemon's AIL (%s) is %d. Fd = %d", aInfraIfName.c_str(), aIsRunning, aSocketFd.get());
+    if (aIsRunning)
+    {
+        otPlatInfraIfSetSocket(aSocketFd.dup().release());
+    }
+    else
+    {
+        otPlatInfraIfSetSocket(-1);
+    }
+    (void)otPlatInfraIfStateChanged(GetOtInstance(), if_nametoindex(aInfraIfName.c_str()), aIsRunning);
+
+    return Status::ok();
+}
+
 Status OtDaemonServer::getExtendedMacAddress(std::vector<uint8_t> *aExtendedMacAddress)
 {
     Status              status = Status::ok();
