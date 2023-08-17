@@ -305,7 +305,8 @@ void OtDaemonServer::Process(const MainloopContext &aMainloop)
     }
 }
 
-Status OtDaemonServer::initialize(const ScopedFileDescriptor &aTunFd, const std::shared_ptr<IOtDaemonCallback> &aCallback)
+Status OtDaemonServer::initialize(const ScopedFileDescriptor               &aTunFd,
+                                  const std::shared_ptr<IOtDaemonCallback> &aCallback)
 {
     otbrLogDebug("OT daemon is initialized by the binder client (tunFd=%d)", aTunFd.get());
 
@@ -320,8 +321,8 @@ Status OtDaemonServer::initialize(const ScopedFileDescriptor &aTunFd, const std:
 }
 
 Status OtDaemonServer::attach(bool                                      aDoForm,
-                            const std::vector<uint8_t>               &aActiveOpDatasetTlvs,
-                            const std::shared_ptr<IOtStatusReceiver> &aReceiver)
+                              const std::vector<uint8_t>               &aActiveOpDatasetTlvs,
+                              const std::shared_ptr<IOtStatusReceiver> &aReceiver)
 {
     otError                  error = OT_ERROR_NONE;
     std::string              message;
@@ -400,7 +401,7 @@ bool OtDaemonServer::isAttached()
 }
 
 Status OtDaemonServer::scheduleMigration(const std::vector<uint8_t>               &aPendingOpDatasetTlvs,
-                                       const std::shared_ptr<IOtStatusReceiver> &aReceiver)
+                                         const std::shared_ptr<IOtStatusReceiver> &aReceiver)
 {
     otError              error = OT_ERROR_NONE;
     std::string          message;
@@ -438,9 +439,27 @@ void OtDaemonServer::sendMgmtPendingSetCallback(otError aResult, void *aBinderSe
     otbrLogDebug("otDatasetSendMgmtPendingSet callback: %d", aResult);
 }
 
+Status OtDaemonServer::onInfraInterfaceStateChanged(const std::string          &aInfraIfName,
+                                                    bool                        aIsRunning,
+                                                    const ScopedFileDescriptor &aSocketFd)
+{
+    otbrLogInfo("ot-daemon's AIL (%s) is %d. Fd = %d", aInfraIfName.c_str(), aIsRunning, aSocketFd.get());
+    if (aIsRunning)
+    {
+        otPlatInfraIfSetSocket(aSocketFd.dup().release());
+    }
+    else
+    {
+        otPlatInfraIfSetSocket(-1);
+    }
+    (void)otPlatInfraIfStateChanged(GetOtInstance(), if_nametoindex(aInfraIfName.c_str()), aIsRunning);
+
+    return Status::ok();
+}
+
 Status OtDaemonServer::getExtendedMacAddress(std::vector<uint8_t> *aExtendedMacAddress)
 {
-    Status status = Status::ok();
+    Status              status = Status::ok();
     const otExtAddress *extAddress;
 
     if (GetOtInstance() == nullptr)
