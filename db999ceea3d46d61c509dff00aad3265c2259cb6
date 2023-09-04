@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "013ca13f_34bd1676",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-09-04T12:11:34Z",
+      "side": 1,
+      "message": "For reviewer:\n\nTARGET_BUILD_TYPE is always set to \"release\" at here: https://cs.android.com/android/platform/superproject/main/+/main:build/make/envsetup.sh;l\u003d849?q\u003dTARGET_BUILD_TYPE\u0026ss\u003dandroid%2Fplatform%2Fsuperproject%2Fmain\n\nThe use case and definition of \"product_variables\" can be found here: https://cs.android.com/android/platform/superproject/main/+/main:build/soong/android/variable.go;l\u003d117-121?q\u003dproduct_variables",
+      "revId": "db999ceea3d46d61c509dff00aad3265c2259cb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
