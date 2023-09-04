@@ -75,19 +75,16 @@ genrule {
 
 cc_defaults {
     name: "ot-daemon-release-cc-defaults",
-    release: {
-        cflags: [
-            // Optimize for size
-            "-Os",
+    product_variables: {
+        debuggable: {
+            cflags: [
+                // Optimize for debugging
+                "-Og",
 
-            // Disable exception since OT never uses exceptions
-            "-fno-exceptions",
-            "-fno-asynchronous-unwind-tables",
-            "-fno-unwind-tables",
-
-            // Disable daemon CLI in releases
-            "-DOPENTHREAD_POSIX_CONFIG_DAEMON_CLI_ENABLE=0",
-        ]
+                // Enable daemon CLI for debugging
+                "-DOPENTHREAD_POSIX_CONFIG_DAEMON_CLI_ENABLE=1",
+            ]
+        }
     }
 }
 
@@ -109,8 +106,19 @@ cc_defaults {
     ],
 
     cflags: [
+        "-Os",
         "-Wall",
         "-Wextra",
+
+        // Disable exception since OT never uses exceptions
+        "-fno-exceptions",
+        "-fno-asynchronous-unwind-tables",
+        "-fno-unwind-tables",
+
+        // TODO: add runtime check that ot-daemon will never run below 31+
+        // Background: the HAL client implementation requires features which
+        // are available on only 31+
+        "-Wno-unguarded-availability",
         "-DOTBR_CONFIG_ANDROID_PROPERTY_ENABLE=1",
         "-DOTBR_CONFIG_ANDROID_VERSION_HEADER_ENABLE=1",
         "-DOTBR_CONFIG_FILE=\"src/android/otbr-config-android.h\"",
