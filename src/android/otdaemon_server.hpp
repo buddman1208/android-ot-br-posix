@@ -37,6 +37,7 @@
 #include <openthread/instance.h>
 #include <openthread/ip6.h>
 
+#include "agent/vendor.hpp"
 #include "common/mainloop.hpp"
 #include "ncp/ncp_openthread.hpp"
 
@@ -51,13 +52,11 @@ using aidl::com::android::server::openthread::IOtDaemonCallback;
 using aidl::com::android::server::openthread::IOtStatusReceiver;
 using aidl::com::android::server::openthread::Ipv6AddressInfo;
 
-class OtDaemonServer : public BnOtDaemon, public MainloopProcessor
+class OtDaemonServer : public BnOtDaemon, public MainloopProcessor, public vendor::VendorServer
 {
 public:
-    OtDaemonServer(void);
+    explicit OtDaemonServer(otbr::Ncp::ControllerOpenThread &aNcp);
     virtual ~OtDaemonServer(void) = default;
-
-    static OtDaemonServer &GetInstance(void);
 
     // Disallow copy and assign.
     OtDaemonServer(const OtDaemonServer &) = delete;
@@ -66,7 +65,9 @@ public:
     // TODO(wgtdkp): dump service info for debugging.
     // status_t dump(int fd, const Vector<String16> &args) override;
 
-    void InitOrDie(otbr::Ncp::ControllerOpenThread *aNcp);
+    // Implements vendor::VendorServer
+
+    void Init(void) override;
 
 private:
     using DetachCallback = std::function<void()>;
@@ -101,7 +102,7 @@ private:
     void        TransmitCallback(void);
     static void DetachGracefullyCallback(void *aBinderServer);
 
-    otbr::Ncp::ControllerOpenThread   *mNcp = nullptr;
+    otbr::Ncp::ControllerOpenThread   &mNcp;
     ScopedFileDescriptor               mTunFd;
     std::shared_ptr<IOtDaemonCallback> mCallback;
     BinderDeathRecipient               mClientDeathRecipient;
