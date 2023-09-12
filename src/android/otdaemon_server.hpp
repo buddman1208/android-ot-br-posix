@@ -50,6 +50,7 @@ using aidl::com::android::server::openthread::BnOtDaemon;
 using aidl::com::android::server::openthread::IOtDaemonCallback;
 using aidl::com::android::server::openthread::IOtStatusReceiver;
 using aidl::com::android::server::openthread::Ipv6AddressInfo;
+using aidl::com::android::server::openthread::Ipv6Address;
 
 class OtDaemonServer : public BnOtDaemon, public MainloopProcessor
 {
@@ -102,6 +103,9 @@ private:
     void        ReceiveCallback(otMessage *aMessage);
     void        TransmitCallback(void);
     static void DetachGracefullyCallback(void *aBinderServer);
+    static void HandleBackboneMulticastListenerEvent(void *aBinderServer,
+                                                     otBackboneRouterMulticastListenerEvent aEvent,
+                                                     const otIp6Address *aAddress);
 
     otbr::Ncp::ControllerOpenThread   *mNcp = nullptr;
     ScopedFileDescriptor               mTunFd;

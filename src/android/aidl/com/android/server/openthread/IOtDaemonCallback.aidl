@@ -29,6 +29,8 @@
 package com.android.server.openthread;
 
 import com.android.server.openthread.Ipv6AddressInfo;
+import com.android.server.openthread.Ipv6Address;
+
 
 /** OpenThread daemon callbacks. */
 oneway interface IOtDaemonCallback {
@@ -80,4 +82,8 @@ oneway interface IOtDaemonCallback {
      *                Otherwise, this address is being removed
      */
     void onAddressChanged(in Ipv6AddressInfo addressInfo, boolean isAdded);
+
+    void onMulticastForwardingStateChanged(boolean isEnabled);
+
+    void onMulticastForwardingAddressChanged(in Ipv6Address address, boolean isAdded);
 }

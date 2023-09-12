@@ -82,6 +82,14 @@ static Ipv6AddressInfo ConvertToAddressInfo(const otIp6AddressInfo &aAddressInfo
     return addrInfo;
 }
 
+static Ipv6Address ConvertToAddress(const otIp6Address &aAddress)
+{
+    Ipv6Address address;
+
+    address.address.assign(aAddress.mFields.m8, BYTE_ARR_END(aAddress.mFields.m8));
+    return address;
+}
+
 OtDaemonServer::OtDaemonServer(void)
 {
     mClientDeathRecipient =
@@ -104,6 +112,8 @@ void OtDaemonServer::InitOrDie(otbr::Ncp::ControllerOpenThread *aNcp)
     mNcp->AddThreadStateChangedCallback([this](otChangedFlags aFlags) { StateCallback(aFlags); });
     otIp6SetAddressCallback(mNcp->GetInstance(), OtDaemonServer::AddressCallback, this);
     otIp6SetReceiveCallback(mNcp->GetInstance(), OtDaemonServer::ReceiveCallback, this);
+    otBackboneRouterSetMulticastListenerCallback(
+            mNcp->GetInstance(), OtDaemonServer::HandleBackboneMulticastListenerEvent, this);
 }
 
 void OtDaemonServer::BinderDeathCallback(void *aBinderServer)
@@ -169,6 +179,22 @@ void OtDaemonServer::StateCallback(otChangedFlags aFlags)
         mCallback->onPendingOperationalDatasetChanged(result);
     }
 
+    if (aFlags & OT_CHANGED_THREAD_BACKBONE_ROUTER_STATE)
+    {
+        otBackboneRouterState state = otBackboneRouterGetState(GetOtInstance());
+
+        switch (state)
+        {
+            case OT_BACKBONE_ROUTER_STATE_DISABLED:
+            case OT_BACKBONE_ROUTER_STATE_SECONDARY:
+                mCallback->onMulticastForwardingStateChanged(false);
+                break;
+            case OT_BACKBONE_ROUTER_STATE_PRIMARY:
+                mCallback->onMulticastForwardingStateChanged(true);
+                break;
+        }
+    }
+
 exit:
     return;
 }
@@ -190,6 +216,34 @@ void OtDaemonServer::AddressCallback(const otIp6AddressInfo *aAddressInfo, bool 
 void OtDaemonServer::ReceiveCallback(otMessage *aMessage, void *aBinderServer)
 {
     static_cast<OtDaemonServer *>(aBinderServer)->ReceiveCallback(aMessage);
+}
+
+void OtDaemonServer::HandleBackboneMulticastListenerEvent(void *aBinderServer,
+                                                          otBackboneRouterMulticastListenerEvent aEvent,
+                                                          const otIp6Address                    *aAddress)
+{
+    OtDaemonServer *thisServer = static_cast<OtDaemonServer *>(aBinderServer);
+
+    bool isAdded;
+    switch (aEvent)
+    {
+        case OT_BACKBONE_ROUTER_MULTICAST_LISTENER_ADDED:
+            isAdded = true;
+            break;
+        case OT_BACKBONE_ROUTER_MULTICAST_LISTENER_REMOVED:
+            isAdded = false;
+            break;
+    }
+
+    //otbrLogInfo("XXXXXXXXXXXXXXX Got multicast listener  %s", isAdded ? "added" : "removed");
+    if (thisServer->mCallback != nullptr)
+    {
+        thisServer->mCallback->onMulticastForwardingAddressChanged(ConvertToAddress(*aAddress), isAdded);
+    }
+    else
+    {
+        otbrLogWarning("OT daemon callback is not set");
+    }
 }
 
 // FIXME(wgtdkp): We should reuse the same code in openthread/src/posix/platform/netif.cp
