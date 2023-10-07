@@ -28,6 +28,7 @@
 
 package com.android.server.thread.openthread;
 
+import com.android.server.thread.openthread.Ipv6Address;
 import com.android.server.thread.openthread.Ipv6AddressInfo;
 
 /** OpenThread daemon callbacks. */
@@ -80,4 +81,22 @@ oneway interface IOtDaemonCallback {
      *                Otherwise, this address is being removed
      */
     void onAddressChanged(in Ipv6AddressInfo addressInfo, boolean isAdded);
+
+    /**
+     * Called when multicast forwarding state has been changed.
+     *
+     * @param isEnabled {@code true} if multicast forwarding should be enabled;
+     *                  Otherwise, multicast forwarding should be disabled
+     */
+    void onMulticastForwardingStateChanged(boolean isEnabled);
+
+    /**
+     * Called when multicast forwarding listening address has been changed.
+     *
+     * @param address the IPv6 address which has been updated. This is a multicast address
+     *                registered by multicast listeners
+     * @param isAdded {@code true} if this multicast address is being added;
+     *                Otherwise, this multicast address is being removed
+     */
+    void onMulticastForwardingAddressChanged(in Ipv6Address address, boolean isAdded);
 }
