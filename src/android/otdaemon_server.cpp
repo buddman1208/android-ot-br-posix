@@ -105,6 +105,8 @@ void OtDaemonServer::Init(void)
     mNcp.AddThreadStateChangedCallback([this](otChangedFlags aFlags) { StateCallback(aFlags); });
     otIp6SetAddressCallback(GetOtInstance(), OtDaemonServer::AddressCallback, this);
     otIp6SetReceiveCallback(GetOtInstance(), OtDaemonServer::ReceiveCallback, this);
+    otBackboneRouterSetMulticastListenerCallback(GetOtInstance(), OtDaemonServer::HandleBackboneMulticastListenerEvent,
+                                                 this);
 }
 
 void OtDaemonServer::BinderDeathCallback(void *aBinderServer)
@@ -170,6 +172,22 @@ void OtDaemonServer::StateCallback(otChangedFlags aFlags)
             result.assign(datasetTlvs.mTlvs, datasetTlvs.mTlvs + datasetTlvs.mLength);
         }
         mCallback->onPendingOperationalDatasetChanged(result);
+    }
+
+    if (aFlags & OT_CHANGED_THREAD_BACKBONE_ROUTER_STATE)
+    {
+        otBackboneRouterState state = otBackboneRouterGetState(GetOtInstance());
+
+        switch (state)
+        {
+        case OT_BACKBONE_ROUTER_STATE_DISABLED:
+        case OT_BACKBONE_ROUTER_STATE_SECONDARY:
+            mCallback->onMulticastForwardingStateChanged(false);
+            break;
+        case OT_BACKBONE_ROUTER_STATE_PRIMARY:
+            mCallback->onMulticastForwardingStateChanged(true);
+            break;
+        }
     }
 
 exit:
@@ -277,6 +295,43 @@ exit:
         {
             otbrLogWarning("Failed to transmit tunnel packet: %s", otThreadErrorToString(error));
         }
+    }
+}
+
+void OtDaemonServer::HandleBackboneMulticastListenerEvent(void                                  *aBinderServer,
+                                                          otBackboneRouterMulticastListenerEvent aEvent,
+                                                          const otIp6Address                    *aAddress)
+{
+    OtDaemonServer *thisServer = static_cast<OtDaemonServer *>(aBinderServer);
+
+    bool                 isAdded;
+    std::vector<uint8_t> addressBytes(aAddress->mFields.m8, BYTE_ARR_END(aAddress->mFields.m8));
+    char                 addressString[OT_IP6_ADDRESS_STRING_SIZE];
+
+    otIp6AddressToString(aAddress, addressString, sizeof(addressString));
+
+    switch (aEvent)
+    {
+    case OT_BACKBONE_ROUTER_MULTICAST_LISTENER_ADDED:
+        isAdded = true;
+        break;
+    case OT_BACKBONE_ROUTER_MULTICAST_LISTENER_REMOVED:
+        isAdded = false;
+        break;
+    default:
+        otbrLogErr("Got BackboneMulticastListenerEvent with unsupported event: %d", aEvent);
+        assert(false);
+    }
+
+    otbrLogDebug("Multicast forwarding address changed, %s is %s", addressString, isAdded ? "added" : "removed");
+
+    if (thisServer->mCallback != nullptr)
+    {
+        thisServer->mCallback->onMulticastForwardingAddressChanged(addressBytes, isAdded);
+    }
+    else
+    {
+        otbrLogWarning("OT daemon callback is not set");
     }
 }
 

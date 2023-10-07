@@ -102,6 +102,9 @@ private:
     void        ReceiveCallback(otMessage *aMessage);
     void        TransmitCallback(void);
     static void DetachGracefullyCallback(void *aBinderServer);
+    static void HandleBackboneMulticastListenerEvent(void                                  *aBinderServer,
+                                                     otBackboneRouterMulticastListenerEvent aEvent,
+                                                     const otIp6Address                    *aAddress);
 
     otbr::Ncp::ControllerOpenThread   &mNcp;
     ScopedFileDescriptor               mTunFd;
