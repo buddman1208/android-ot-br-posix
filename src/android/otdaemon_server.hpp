@@ -63,7 +63,7 @@ public:
     void operator=(const OtDaemonServer &) = delete;
 
     // Dump information for debugging.
-    binder_status_t dump(int aFd, const char** aArgs, uint32_t aNumArgs) override;
+    binder_status_t dump(int aFd, const char **aArgs, uint32_t aNumArgs) override;
 
 private:
     using DetachCallback = std::function<void()>;
@@ -101,6 +101,9 @@ private:
     void        ReceiveCallback(otMessage *aMessage);
     void        TransmitCallback(void);
     static void DetachGracefullyCallback(void *aBinderServer);
+    static void HandleBackboneMulticastListenerEvent(void                                  *aBinderServer,
+                                                     otBackboneRouterMulticastListenerEvent aEvent,
+                                                     const otIp6Address                    *aAddress);
 
     otbr::Ncp::ControllerOpenThread   &mNcp;
     ScopedFileDescriptor               mTunFd;
