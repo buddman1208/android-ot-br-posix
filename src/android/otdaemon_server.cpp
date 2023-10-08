@@ -33,6 +33,7 @@
 #include <net/if.h>
 #include <string.h>
 
+#include <android-base/file.h>
 #include <android/binder_manager.h>
 #include <android/binder_process.h>
 #include <openthread/border_router.h>
@@ -484,5 +485,15 @@ exit:
     return status;
 }
 
+binder_status_t OtDaemonServer::dump(int aFd, const char** args, uint32_t num_args)
+{
+    OT_UNUSED_VARIABLE(args);
+    OT_UNUSED_VARIABLE(num_args);
+
+    // TODO: Use ::android::base::WriteStringToFd to dump infomration.
+    fsync(aFd);
+
+    return STATUS_OK;
+}
 } // namespace Android
 } // namespace otbr
