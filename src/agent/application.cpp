@@ -77,7 +77,11 @@ Application::Application(const std::string               &aInterfaceName,
     , mDBusAgent(mNcp, mBorderAgent.GetPublisher())
 #endif
 #if OTBR_ENABLE_VENDOR_SERVER
+<<<<<<< HEAD   (94da76 [Thread] Move the IOtDaemon AIDL package am: d84016882e)
     , mVendorServer(vendor::VendorServer::newInstance(mNcp))
+=======
+    , mVendorServer(vendor::VendorServer::newInstance(*this))
+>>>>>>> BRANCH (b88c35 submodule: bump third_party/openthread/repo from `a363396` t)
 #endif
 {
     OTBR_UNUSED_VARIABLE(aRestListenAddress);

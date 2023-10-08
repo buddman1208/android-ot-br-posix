@@ -34,9 +34,14 @@
 #ifndef OTBR_AGENT_VENDOR_HPP_
 #define OTBR_AGENT_VENDOR_HPP_
 
-#include "ncp/ncp_openthread.hpp"
+#include "openthread-br/config.h"
+
+#include "agent/application.hpp"
 
 namespace otbr {
+
+class Application;
+
 namespace vendor {
 
 /**
@@ -52,11 +57,19 @@ public:
      *
      * Custom vendor servers should implement this method to return an object of the derived class.
      *
+<<<<<<< HEAD   (94da76 [Thread] Move the IOtDaemon AIDL package am: d84016882e)
      * @param[in]  aNcp  The OpenThread controller object.
+=======
+     * @param[in]  aApplication  The OTBR application.
+>>>>>>> BRANCH (b88c35 submodule: bump third_party/openthread/repo from `a363396` t)
      *
      * @returns  New derived VendorServer instance.
      */
+<<<<<<< HEAD   (94da76 [Thread] Move the IOtDaemon AIDL package am: d84016882e)
     static std::shared_ptr<VendorServer> newInstance(otbr::Ncp::ControllerOpenThread &aNcp);
+=======
+    static std::shared_ptr<VendorServer> newInstance(Application &aApplication);
+>>>>>>> BRANCH (b88c35 submodule: bump third_party/openthread/repo from `a363396` t)
 
     /**
      * Initializes the vendor server.
