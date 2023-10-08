@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5a5bb86_a731303e",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-10-08T07:40:17Z",
+      "side": 1,
+      "message": "```suggestion\n    OT_UNUSED_VARIABLE(num_args);\n    \n```",
+      "revId": "1aa968c529f1fcd275ad38c9a768fd194371ecdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a495005_b5dad4ff",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-10-08T07:40:17Z",
+      "side": 1,
+      "message": "```suggestion\n\n    return STATUS_OK;\n```",
+      "revId": "1aa968c529f1fcd275ad38c9a768fd194371ecdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6ac8abd_ef86dcdd",
+        "filename": "src/android/otdaemon_server.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-10-08T07:40:17Z",
+      "side": 1,
+      "message": "I think we should follow the naming style of OT for the arguments, e.g. `aFd`.",
+      "revId": "1aa968c529f1fcd275ad38c9a768fd194371ecdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
