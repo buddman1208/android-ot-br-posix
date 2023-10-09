@@ -16,6 +16,23 @@
       "message": "Siguen suplantando mi identidad....\nEl dispositivo es mio tengo un teléfono celular y esta vinculado para robo de un información personal pueden ingresar a mi email y redes sociales.",
       "revId": "907e336fb83bbf80d9dd2853f219c2e5bdd937bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f231a5b4_9529e1e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-10-09T08:28:16Z",
+      "side": 1,
+      "message": "I\u0027ve verified the whole topic of CLs locally that border routing feature stays working after patching all CLs.",
+      "revId": "907e336fb83bbf80d9dd2853f219c2e5bdd937bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
