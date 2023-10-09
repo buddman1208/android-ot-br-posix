@@ -122,6 +122,24 @@
       "parentUuid": "f84f2d7e_ada208d8",
       "revId": "1aa968c529f1fcd275ad38c9a768fd194371ecdc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cda1c0ee_4e46b98d",
+        "filename": "src/android/otdaemon_server.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-10-09T09:02:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b581019_ec699b8e",
+      "revId": "1aa968c529f1fcd275ad38c9a768fd194371ecdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
