@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1953407_f0d5d78b",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-10-09T08:53:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5a5bb86_a731303e",
+      "revId": "1aa968c529f1fcd275ad38c9a768fd194371ecdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a495005_b5dad4ff",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5242d9a3_32b9f4df",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-10-09T08:53:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a495005_b5dad4ff",
+      "revId": "1aa968c529f1fcd275ad38c9a768fd194371ecdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6ac8abd_ef86dcdd",
@@ -48,6 +84,24 @@
       "writtenOn": "2023-10-08T07:40:17Z",
       "side": 1,
       "message": "I think we should follow the naming style of OT for the arguments, e.g. `aFd`.",
+      "revId": "1aa968c529f1fcd275ad38c9a768fd194371ecdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f84f2d7e_ada208d8",
+        "filename": "src/android/otdaemon_server.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-10-09T08:53:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6ac8abd_ef86dcdd",
       "revId": "1aa968c529f1fcd275ad38c9a768fd194371ecdc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
