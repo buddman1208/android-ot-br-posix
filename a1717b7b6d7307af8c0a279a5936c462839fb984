@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85b79637_b6feff5e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-10-11T13:29:36Z",
+      "side": 1,
+      "message": "\"Test: \" is missing.\n\nHave you verified locally that this can actually dump out the expected information? What\u0027s the command you used?",
+      "revId": "a1717b7b6d7307af8c0a279a5936c462839fb984",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c406bd3_090a5abc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-10-11T13:29:36Z",
+      "side": 1,
+      "message": "Please add the size diff of `ot-daemon` with this CL",
+      "revId": "a1717b7b6d7307af8c0a279a5936c462839fb984",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89aa0f29_327aacca",
+        "filename": "src/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-10-11T13:29:36Z",
+      "side": 1,
+      "message": "Please move the target to ot-br-posix/Android.bp",
+      "revId": "a1717b7b6d7307af8c0a279a5936c462839fb984",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50ca9c32_de316334",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-10-11T13:29:36Z",
+      "side": 1,
+      "message": "nit: this doesn\u0027t seem useful. `static_cast\u003cunsigned long\u003e` is more readable",
+      "range": {
+        "startLine": 498,
+        "startChar": 21,
+        "endLine": 498,
+        "endChar": 28
+      },
+      "revId": "a1717b7b6d7307af8c0a279a5936c462839fb984",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
