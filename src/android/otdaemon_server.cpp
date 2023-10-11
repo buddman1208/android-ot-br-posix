@@ -33,7 +33,6 @@
 #include <net/if.h>
 #include <string.h>
 
-#include <android-base/file.h>
 #include <android/binder_manager.h>
 #include <android/binder_process.h>
 #include <openthread/border_router.h>
@@ -42,7 +41,7 @@
 #include <openthread/platform/infra_if.h>
 
 #include "agent/vendor.hpp"
-#include "common/code_utils.hpp"
+#include "android/otdaemon_dumper.hpp"
 
 #define BYTE_ARR_END(arr) ((arr) + sizeof(arr))
 
@@ -52,7 +51,7 @@ namespace vendor {
 
 std::shared_ptr<VendorServer> VendorServer::newInstance(Application &aApplication)
 {
-    return ndk::SharedRefBase::make<Android::OtDaemonServer>(aApplication.GetNcp());
+    return ndk::SharedRefBase::make<Android::OtDaemonServer>(aApplication);
 }
 
 } // namespace vendor
@@ -86,8 +85,8 @@ static Ipv6AddressInfo ConvertToAddressInfo(const otIp6AddressInfo &aAddressInfo
     return addrInfo;
 }
 
-OtDaemonServer::OtDaemonServer(otbr::Ncp::ControllerOpenThread &aNcp)
-    : mNcp(aNcp)
+OtDaemonServer::OtDaemonServer(Application &aApplication)
+    : mNcp(aApplication.GetNcp())
 {
     mClientDeathRecipient =
         ::ndk::ScopedAIBinder_DeathRecipient(AIBinder_DeathRecipient_new(&OtDaemonServer::BinderDeathCallback));
@@ -487,13 +486,8 @@ exit:
 
 binder_status_t OtDaemonServer::dump(int aFd, const char **aArgs, uint32_t aNumArgs)
 {
-    OT_UNUSED_VARIABLE(aArgs);
-    OT_UNUSED_VARIABLE(aNumArgs);
-
-    // TODO: Use ::android::base::WriteStringToFd to dump infomration.
-    fsync(aFd);
-
-    return STATUS_OK;
+    OtDaemonDumper dumper(GetOtInstance(), aFd, aArgs, aNumArgs);
+    return dumper.Dump();
 }
 } // namespace Android
 } // namespace otbr

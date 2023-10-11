@@ -37,6 +37,7 @@
 #include <openthread/instance.h>
 #include <openthread/ip6.h>
 
+#include "agent/application.hpp"
 #include "agent/vendor.hpp"
 #include "common/mainloop.hpp"
 #include "ncp/ncp_openthread.hpp"
@@ -55,7 +56,7 @@ using aidl::com::android::server::thread::openthread::Ipv6AddressInfo;
 class OtDaemonServer : public BnOtDaemon, public MainloopProcessor, public vendor::VendorServer
 {
 public:
-    explicit OtDaemonServer(otbr::Ncp::ControllerOpenThread &aNcp);
+    explicit OtDaemonServer(Application &aApplication);
     virtual ~OtDaemonServer(void) = default;
 
     // Disallow copy and assign.
