@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2de017d_ff3d2e78",
+        "filename": "src/android/otdaemon_fuzzer.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-10-16T08:48:52Z",
+      "side": 1,
+      "message": "```suggestion\n    otbr::Application application(\"\", {}, {}, /* aEnableAutoAttach */ false, \"\", 0);\n```",
+      "revId": "20539abd4c69f95c293ea37d12565a4c77f6a6f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7902b5a3_d332839f",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-10-16T08:48:52Z",
+      "side": 1,
+      "message": "```suggestion\n *\n```",
+      "revId": "20539abd4c69f95c293ea37d12565a4c77f6a6f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe7f6de3_f4b19c1f",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-10-16T08:48:52Z",
+      "side": 1,
+      "message": "```suggestion\n    // Dump leader data part.\n```",
+      "revId": "20539abd4c69f95c293ea37d12565a4c77f6a6f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
