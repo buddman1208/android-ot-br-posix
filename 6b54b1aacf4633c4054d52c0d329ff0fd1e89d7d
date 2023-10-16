@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18ff217f_37ba3abc",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/Ipv6Address.aidl",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-10-16T07:16:46Z",
+      "side": 1,
+      "message": "I think it may not be necessary to add an independent new type for addresses. Should we use `Ipv6AddressInfo` or wrap `Ipv6Address` into `Ipv6AddressInfo`?",
+      "revId": "6b54b1aacf4633c4054d52c0d329ff0fd1e89d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50203f08_ecfc6a02",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-10-16T07:16:46Z",
+      "side": 1,
+      "message": "please use `script/make-pretty`",
+      "range": {
+        "startLine": 311,
+        "startChar": 2,
+        "endLine": 316,
+        "endChar": 0
+      },
+      "revId": "6b54b1aacf4633c4054d52c0d329ff0fd1e89d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99ef862c_37cc0943",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-10-16T07:16:46Z",
+      "side": 1,
+      "message": "Is `addrStr` printable? I think it\u0027s in bytes instead of hex string.",
+      "revId": "6b54b1aacf4633c4054d52c0d329ff0fd1e89d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
