@@ -88,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d3f2d21_689611f0",
+        "filename": "src/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-10-16T13:14:34Z",
+      "side": 1,
+      "message": "What\u0027s the specific issue?",
+      "parentUuid": "96adfc38_ab573c2f",
+      "revId": "a1717b7b6d7307af8c0a279a5936c462839fb984",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50ca9c32_de316334",
