@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "79596f2f_8e331d01",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-10-16T07:20:08Z",
+      "side": 1,
+      "message": "The \"Test: \" tag is missing. Please describe how you tested this CL",
+      "revId": "6b54b1aacf4633c4054d52c0d329ff0fd1e89d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "18ff217f_37ba3abc",
         "filename": "src/android/aidl/com/android/server/thread/openthread/Ipv6Address.aidl",
         "patchSetId": 2
@@ -14,6 +31,29 @@
       "writtenOn": "2023-10-16T07:16:46Z",
       "side": 1,
       "message": "I think it may not be necessary to add an independent new type for addresses. Should we use `Ipv6AddressInfo` or wrap `Ipv6Address` into `Ipv6AddressInfo`?",
+      "revId": "6b54b1aacf4633c4054d52c0d329ff0fd1e89d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f96765ea_597cf242",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/Ipv6Address.aidl",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-10-16T07:20:08Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem very useful if it contains only the raw address bytes.\nIf you don\u0027t see potential grows of the member fields, we can simply use byte[] directly.",
+      "range": {
+        "startLine": 35,
+        "startChar": 11,
+        "endLine": 35,
+        "endChar": 22
+      },
       "revId": "6b54b1aacf4633c4054d52c0d329ff0fd1e89d7d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
