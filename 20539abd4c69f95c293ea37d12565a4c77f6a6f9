@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c551b96e_9a13136c",
+        "filename": "src/android/otdaemon_fuzzer.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-10-16T09:09:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2de017d_ff3d2e78",
+      "revId": "20539abd4c69f95c293ea37d12565a4c77f6a6f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7902b5a3_d332839f",
