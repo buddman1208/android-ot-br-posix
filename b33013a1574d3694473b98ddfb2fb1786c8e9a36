@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c4f62a5_eefb40ae",
+        "filename": "src/android/otdaemon_fuzzer.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-10-16T08:43:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e49f90a6_444657ee",
+      "revId": "b33013a1574d3694473b98ddfb2fb1786c8e9a36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b04f1eef_5568c294",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-10-16T02:39:33Z",
       "side": 1,
       "message": "Use the same \u0027include\u0027 style for the same group of the headers.",
+      "revId": "b33013a1574d3694473b98ddfb2fb1786c8e9a36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09fcbafe_5a1d5bda",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-10-16T08:43:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b04f1eef_5568c294",
       "revId": "b33013a1574d3694473b98ddfb2fb1786c8e9a36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "acbd7471_53f7d835",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-10-16T08:43:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed90cea0_da52ae3e",
+      "revId": "b33013a1574d3694473b98ddfb2fb1786c8e9a36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61c6e890_b2bfa9f3",
@@ -69,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e2270cb_3f9bae23",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-10-16T08:43:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61c6e890_b2bfa9f3",
+      "revId": "b33013a1574d3694473b98ddfb2fb1786c8e9a36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "efb89186_df8e7d63",
@@ -82,6 +154,24 @@
       "writtenOn": "2023-10-16T02:39:33Z",
       "side": 1,
       "message": "```suggestion\n    android::base::WriteStringToFd(\n```\nvery nit: be consistent when referring to namespaces.",
+      "revId": "b33013a1574d3694473b98ddfb2fb1786c8e9a36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab2d63ab_3587607b",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-10-16T08:43:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "efb89186_df8e7d63",
       "revId": "b33013a1574d3694473b98ddfb2fb1786c8e9a36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -111,6 +201,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e3674b01_f5fd6d78",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-10-16T08:43:00Z",
+      "side": 1,
+      "message": "There are huge amount of file changes if I ran this command. How about make it a separate CL if needed.",
+      "parentUuid": "59495d77_3234dcc0",
+      "range": {
+        "startLine": 506,
+        "startChar": 3,
+        "endLine": 507,
+        "endChar": 47
+      },
+      "revId": "b33013a1574d3694473b98ddfb2fb1786c8e9a36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f8101e99_052cc930",
         "filename": "src/android/otdaemon_server.cpp",
         "patchSetId": 6
@@ -122,6 +236,24 @@
       "writtenOn": "2023-10-16T02:39:33Z",
       "side": 1,
       "message": "Why do we need a \u0027\\n\u0027?",
+      "revId": "b33013a1574d3694473b98ddfb2fb1786c8e9a36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ed770a5_8980b314",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-10-16T08:43:00Z",
+      "side": 1,
+      "message": "Done. Removed.",
+      "parentUuid": "f8101e99_052cc930",
       "revId": "b33013a1574d3694473b98ddfb2fb1786c8e9a36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -139,6 +271,24 @@
       "writtenOn": "2023-10-16T02:39:33Z",
       "side": 1,
       "message": "```suggestion\n    // Dump leader data part.\n```",
+      "revId": "b33013a1574d3694473b98ddfb2fb1786c8e9a36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43940945_c7f5894c",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-10-16T08:43:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1078bcc3_9ceb473e",
       "revId": "b33013a1574d3694473b98ddfb2fb1786c8e9a36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
