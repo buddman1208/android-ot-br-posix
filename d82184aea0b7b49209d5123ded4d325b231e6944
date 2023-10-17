@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e08fa1de_1967f37d",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IOtDaemon.aidl",
+        "patchSetId": 12
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2023-10-17T06:22:38Z",
+      "side": 1,
+      "message": "I wonder where will BR/nat64/dhcp6... be enabled/disabled? Feels like it can come from different components, ot-ctl may be able to control, and demoapp? feature flags? would a component that wants to enable nat64 always know about the infraIf socket?",
+      "parentUuid": "4b1b0d9d_f1af6cfb",
+      "range": {
+        "startLine": 102,
+        "startChar": 16,
+        "endLine": 102,
+        "endChar": 40
+      },
+      "revId": "d82184aea0b7b49209d5123ded4d325b231e6944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "36f7fd3a_b8340143",
         "filename": "src/android/otdaemon_server.cpp",
         "patchSetId": 12
