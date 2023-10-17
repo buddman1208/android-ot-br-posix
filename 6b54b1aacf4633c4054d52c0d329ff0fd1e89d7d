@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "740f8846_9a48788e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2023-10-17T06:38:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79596f2f_8e331d01",
+      "revId": "6b54b1aacf4633c4054d52c0d329ff0fd1e89d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "18ff217f_37ba3abc",
@@ -58,6 +76,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8882a8da_8e732957",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/Ipv6Address.aidl",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2023-10-17T06:38:38Z",
+      "side": 1,
+      "message": "Removed the file and using byte[] directly.",
+      "parentUuid": "18ff217f_37ba3abc",
+      "revId": "6b54b1aacf4633c4054d52c0d329ff0fd1e89d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f564d0c_0a7694fb",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/Ipv6Address.aidl",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2023-10-17T06:38:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f96765ea_597cf242",
+      "range": {
+        "startLine": 35,
+        "startChar": 11,
+        "endLine": 35,
+        "endChar": 22
+      },
+      "revId": "6b54b1aacf4633c4054d52c0d329ff0fd1e89d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50203f08_ecfc6a02",
@@ -81,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc62825c_6609473e",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2023-10-17T06:38:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50203f08_ecfc6a02",
+      "range": {
+        "startLine": 311,
+        "startChar": 2,
+        "endLine": 316,
+        "endChar": 0
+      },
+      "revId": "6b54b1aacf4633c4054d52c0d329ff0fd1e89d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99ef862c_37cc0943",
@@ -94,6 +178,24 @@
       "writtenOn": "2023-10-16T07:16:46Z",
       "side": 1,
       "message": "Is `addrStr` printable? I think it\u0027s in bytes instead of hex string.",
+      "revId": "6b54b1aacf4633c4054d52c0d329ff0fd1e89d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5462f38b_2361dbc6",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2023-10-17T06:38:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99ef862c_37cc0943",
       "revId": "6b54b1aacf4633c4054d52c0d329ff0fd1e89d7d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
