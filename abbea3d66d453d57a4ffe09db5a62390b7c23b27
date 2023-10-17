@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "878023bd_07b54a5f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2058114
+      },
+      "writtenOn": "2023-10-17T02:42:49Z",
+      "side": 1,
+      "message": "2792272: Add proto configuration for Android, and add initial dump implementation for ot-daemon. | https://android-review.googlesource.com/c/platform/external/ot-br-posix/+/2792272",
+      "revId": "abbea3d66d453d57a4ffe09db5a62390b7c23b27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
