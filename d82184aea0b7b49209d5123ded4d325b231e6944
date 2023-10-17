@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b1b0d9d_f1af6cfb",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IOtDaemon.aidl",
+        "patchSetId": 12
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-10-17T06:05:26Z",
+      "side": 1,
+      "message": "considering how we disables border router feature? We should not use separate AIDL APIs as they are async and going to complicate java code. Instead, we should consider using a single AIDL API to configure the border router features, including whether enable it, whether enable NAT64 and what\u0027s the AIL if border router feature is enabled, etc\n\nSo I suggest we define a configureBorderRouter() API as below:\n\n```\noneway void configureBorderRouter(in BorderRouterConfigurationParcel brConfig, IOtStatusReceiver receiver);\n\nParcelable BorderRouterConfigurationParcel {\n    boolean mBorderRouterEnabled;\n    String  mInfraIfName;\n    ParcelFileDescriptor mInfraIfIcmp6Socket;\n    // boolean mNat64;\n    // boolean mDhcpv6;\n}\n```",
+      "range": {
+        "startLine": 102,
+        "startChar": 16,
+        "endLine": 102,
+        "endChar": 40
+      },
+      "revId": "d82184aea0b7b49209d5123ded4d325b231e6944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
