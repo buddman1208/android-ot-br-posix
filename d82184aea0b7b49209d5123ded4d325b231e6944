@@ -22,6 +22,23 @@
       },
       "revId": "d82184aea0b7b49209d5123ded4d325b231e6944",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36f7fd3a_b8340143",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2023-10-17T06:11:12Z",
+      "side": 1,
+      "message": "nit: add something like `Initialize infra interface:` in the log for easier reading",
+      "revId": "d82184aea0b7b49209d5123ded4d325b231e6944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
