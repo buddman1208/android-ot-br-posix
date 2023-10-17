@@ -22,6 +22,46 @@
       },
       "revId": "7a576e142a5745c82c4d0374ac2eb4b6bfe5680a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98a4d1cf_b0a1feab",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-10-17T06:54:44Z",
+      "side": 1,
+      "message": "```suggestion\n\n    bool                 isAdded;\n    std::vector\u003cuint8_t\u003e addressBytes(aAddress-\u003emFields.m8, BYTE_ARR_END(aAddress-\u003emFields.m8));\n    char                 addressString[OT_IP6_ADDRESS_STRING_SIZE];\n\n    otIp6AddressToString(aAddress, addressString, sizeof(addressString));\n```\nnit",
+      "range": {
+        "startLine": 304,
+        "startChar": 0,
+        "endLine": 308,
+        "endChar": 73
+      },
+      "revId": "7a576e142a5745c82c4d0374ac2eb4b6bfe5680a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f0c6e58_d55ca122",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-10-17T06:54:44Z",
+      "side": 1,
+      "message": "Not sure if we should add an assert for the default case.\n \n@wgtdkp@google.com any suggestions?",
+      "revId": "7a576e142a5745c82c4d0374ac2eb4b6bfe5680a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
