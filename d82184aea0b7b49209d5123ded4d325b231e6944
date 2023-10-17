@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1c9d3284_204f475e",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IOtDaemon.aidl",
+        "patchSetId": 12
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-10-17T06:26:21Z",
+      "side": 1,
+      "message": "1. `ot-ctl`, it\u0027s for debugging /testing only, never used in production\n2. feature flag: it\u0027s required that a border router MUST provide the option for the user to disable NAT64 / DHCPv6, it means an Android API is needed, we can\u0027t control it directly via feature flag in the background\n3. demoapp: demoapp is through the Android API which is implemented by the ThreadNetworkService which is then backed by this OtDaemon AIDL API",
+      "parentUuid": "e08fa1de_1967f37d",
+      "range": {
+        "startLine": 102,
+        "startChar": 16,
+        "endLine": 102,
+        "endChar": 40
+      },
+      "revId": "d82184aea0b7b49209d5123ded4d325b231e6944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "36f7fd3a_b8340143",
         "filename": "src/android/otdaemon_server.cpp",
         "patchSetId": 12
