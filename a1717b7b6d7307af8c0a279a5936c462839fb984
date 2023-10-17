@@ -89,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f5acded_64d0b5c0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-10-17T11:57:25Z",
+      "side": 1,
+      "message": "Thanks! This looks much better!",
+      "parentUuid": "2d63a97a_00384519",
+      "revId": "a1717b7b6d7307af8c0a279a5936c462839fb984",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89aa0f29_327aacca",
