@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a99beb0_01f4dcd3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-10-17T02:04:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c406bd3_090a5abc",
+      "revId": "a1717b7b6d7307af8c0a279a5936c462839fb984",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89aa0f29_327aacca",
@@ -120,6 +138,24 @@
       "side": 1,
       "message": "unresolve this comment",
       "parentUuid": "8d3f2d21_689611f0",
+      "revId": "a1717b7b6d7307af8c0a279a5936c462839fb984",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08bbdb72_d1b47e9d",
+        "filename": "src/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-10-17T02:04:12Z",
+      "side": 1,
+      "message": "For include \"proto/xxx.pb.h\" file, its prefix requires that the Android.bp is put in specific folder instead of root folder.",
+      "parentUuid": "6b0bd6d7_0891a875",
       "revId": "a1717b7b6d7307af8c0a279a5936c462839fb984",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
