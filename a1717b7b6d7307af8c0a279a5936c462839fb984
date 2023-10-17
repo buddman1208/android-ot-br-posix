@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2d63a97a_00384519",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-10-17T07:36:39Z",
+      "side": 1,
+      "message": "After changing proto-lite dependency from shared_lib to static_lib:\nBefore:\naosp_cf_x86_64_phone-trunk_staging-userdebug on aosp-main:\nReference\tPresubmit\tDelta\tDelta (%)\tFile\n10.81 MiB\t11.03 MiB\t+228.00 KiB\t+2.06%\t/system/apex/com.android.tethering.capex\n3.98 MiB\t3.98 MiB\t+4.00 KiB\t+0.10%\t/system/apex/com.android.os.statsd.apex\n\nAfter:\naosp_cf_x86_64_phone-trunk_staging-userdebug on aosp-main: Top 1 of 1 file size changes:\nReference\tPresubmit\tDelta\tDelta (%)\tFile\n10.81 MiB\t10.88 MiB\t+72.00 KiB\t+0.65%\t/system/apex/com.android.tethering.capex",
+      "parentUuid": "8a99beb0_01f4dcd3",
+      "revId": "a1717b7b6d7307af8c0a279a5936c462839fb984",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "89aa0f29_327aacca",
         "filename": "src/Android.bp",
         "patchSetId": 4
