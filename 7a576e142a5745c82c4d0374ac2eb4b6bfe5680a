@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "599dcb03_78ca45da",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IOtDaemonCallback.aidl",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-10-17T06:45:20Z",
+      "side": 1,
+      "message": "nit:\n\n```suggestion\n    void onMulticastForwardingAddressChanged(in byte[] ipv6Address, boolean isAdded);\n```\n\nor document that the byte array will always be 16 bytes",
+      "range": {
+        "startLine": 100,
+        "startChar": 55,
+        "endLine": 100,
+        "endChar": 62
+      },
+      "revId": "7a576e142a5745c82c4d0374ac2eb4b6bfe5680a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
