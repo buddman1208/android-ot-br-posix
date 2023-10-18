@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2499b75_1f035bff",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IOtDaemonCallback.aidl",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2023-10-18T00:55:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "599dcb03_78ca45da",
+      "range": {
+        "startLine": 100,
+        "startChar": 55,
+        "endLine": 100,
+        "endChar": 62
+      },
+      "revId": "7a576e142a5745c82c4d0374ac2eb4b6bfe5680a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98a4d1cf_b0a1feab",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-17T06:54:44Z",
       "side": 1,
       "message": "```suggestion\n\n    bool                 isAdded;\n    std::vector\u003cuint8_t\u003e addressBytes(aAddress-\u003emFields.m8, BYTE_ARR_END(aAddress-\u003emFields.m8));\n    char                 addressString[OT_IP6_ADDRESS_STRING_SIZE];\n\n    otIp6AddressToString(aAddress, addressString, sizeof(addressString));\n```\nnit",
+      "range": {
+        "startLine": 304,
+        "startChar": 0,
+        "endLine": 308,
+        "endChar": 73
+      },
+      "revId": "7a576e142a5745c82c4d0374ac2eb4b6bfe5680a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad08a1b8_57c0ea26",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2023-10-18T00:55:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98a4d1cf_b0a1feab",
       "range": {
         "startLine": 304,
         "startChar": 0,
@@ -78,6 +126,24 @@
       "side": 1,
       "message": "SGTM",
       "parentUuid": "8f0c6e58_d55ca122",
+      "revId": "7a576e142a5745c82c4d0374ac2eb4b6bfe5680a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da44d8c9_55df2969",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2023-10-18T00:55:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9cf88be0_242b0b30",
       "revId": "7a576e142a5745c82c4d0374ac2eb4b6bfe5680a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
