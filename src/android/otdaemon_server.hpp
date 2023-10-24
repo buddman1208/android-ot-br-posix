@@ -39,6 +39,7 @@
 
 #include "agent/vendor.hpp"
 #include "common/mainloop.hpp"
+#include "common/time.hpp"
 #include "ncp/ncp_openthread.hpp"
 
 namespace otbr {
@@ -63,7 +64,7 @@ public:
     void operator=(const OtDaemonServer &) = delete;
 
     // Dump information for debugging.
-    binder_status_t dump(int aFd, const char** aArgs, uint32_t aNumArgs) override;
+    binder_status_t dump(int aFd, const char **aArgs, uint32_t aNumArgs) override;
 
 private:
     using DetachCallback = std::function<void()>;
@@ -101,12 +102,17 @@ private:
     void        ReceiveCallback(otMessage *aMessage);
     void        TransmitCallback(void);
     static void DetachGracefullyCallback(void *aBinderServer);
+    Status      pushTelemetry();
 
     otbr::Ncp::ControllerOpenThread   &mNcp;
     ScopedFileDescriptor               mTunFd;
     std::shared_ptr<IOtDaemonCallback> mCallback;
     BinderDeathRecipient               mClientDeathRecipient;
     std::vector<DetachCallback>        mOngoingDetachCallbacks;
+    static constexpr Milliseconds      kTelemetryCheckInterval      = Milliseconds(1000L * 30);           // 30 seconds
+    static constexpr Milliseconds      kTelemetryDataUploadInterval = Milliseconds(1000L * 60 * 60 * 12); // 12 hours
+    Timepoint                          lastTelemetryDataUpload      = Clock::now() - kTelemetryDataUploadInterval;
+    TaskRunner                         mTaskRunner;
 };
 
 } // namespace Android

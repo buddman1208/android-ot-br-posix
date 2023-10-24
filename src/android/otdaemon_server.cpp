@@ -41,8 +41,11 @@
 #include <openthread/openthread-system.h>
 #include <openthread/platform/infra_if.h>
 
+#include "statslog_threadnetwork.h"
 #include "agent/vendor.hpp"
 #include "common/code_utils.hpp"
+#include "proto/thread_telemetry.pb.h"
+#include "proto/threadnetwork_extension_atoms.pb.h"
 
 #define BYTE_ARR_END(arr) ((arr) + sizeof(arr))
 
@@ -61,6 +64,8 @@ std::shared_ptr<VendorServer> VendorServer::newInstance(Application &aApplicatio
 
 namespace otbr {
 namespace Android {
+using android::os::statsd::threadnetwork::ThreadnetworkTelemetryDataReported;
+using threadnetwork::TelemetryData;
 
 static const char       OTBR_SERVICE_NAME[] = "ot_daemon";
 static constexpr size_t kMaxIp6Size         = 1280;
@@ -103,6 +108,9 @@ void OtDaemonServer::Init(void)
     mNcp.AddThreadStateChangedCallback([this](otChangedFlags aFlags) { StateCallback(aFlags); });
     otIp6SetAddressCallback(GetOtInstance(), OtDaemonServer::AddressCallback, this);
     otIp6SetReceiveCallback(GetOtInstance(), OtDaemonServer::ReceiveCallback, this);
+
+    otbrLogInfo("tonyzhou@ initialize post task.");
+    mTaskRunner.Post(kTelemetryCheckInterval, [this]() { pushTelemetry(); });
 }
 
 void OtDaemonServer::BinderDeathCallback(void *aBinderServer)
@@ -485,7 +493,7 @@ exit:
     return status;
 }
 
-binder_status_t OtDaemonServer::dump(int aFd, const char** aArgs, uint32_t aNumArgs)
+binder_status_t OtDaemonServer::dump(int aFd, const char **aArgs, uint32_t aNumArgs)
 {
     OT_UNUSED_VARIABLE(aArgs);
     OT_UNUSED_VARIABLE(aNumArgs);
@@ -494,6 +502,78 @@ binder_status_t OtDaemonServer::dump(int aFd, const char** aArgs, uint32_t aNumA
     fsync(aFd);
 
     return STATUS_OK;
+}
+
+inline void convertTelemetryToAtom(const TelemetryData                &telemetryData,
+                                   ThreadnetworkTelemetryDataReported &telemetryDataReported)
+{
+    telemetryDataReported.mutable_wpan_topo_full()->set_rloc16(telemetryData.wpan_topo_full().rloc16());
+    telemetryDataReported.mutable_wpan_topo_full()->set_router_id(telemetryData.wpan_topo_full().router_id());
+    telemetryDataReported.mutable_wpan_topo_full()->set_leader_router_id(
+        telemetryData.wpan_topo_full().leader_router_id());
+    // telemetryDataReported.mutable_wpan_topo_full()->set_leader_rloc16(telemetryData.wpan_topo_full().leader_rloc16());
+    telemetryDataReported.mutable_wpan_topo_full()->set_leader_weight(telemetryData.wpan_topo_full().leader_weight());
+    telemetryDataReported.mutable_wpan_topo_full()->set_leader_local_weight(
+        telemetryData.wpan_topo_full().leader_local_weight());
+
+    // TODO: correct the following telemetries.
+    telemetryDataReported.mutable_wpan_topo_full()->set_leader_local_weight(1);
+
+    telemetryDataReported.mutable_wpan_stats()->set_phy_rx(1);
+    telemetryDataReported.mutable_wpan_stats()->set_phy_tx(2);
+
+    telemetryDataReported.mutable_wpan_border_router()->mutable_border_routing_counters()->set_ra_rx(3);
+
+    telemetryDataReported.mutable_wpan_rcp()->mutable_rcp_stability_statistics()->set_rcp_timeout_count(4);
+
+    telemetryDataReported.mutable_coex_metrics()->set_count_tx_request(5);
+}
+
+Status OtDaemonServer::pushTelemetry()
+{
+    Status status = Status::ok();
+    auto   now    = Clock::now();
+
+    if (now - lastTelemetryDataUpload < kTelemetryDataUploadInterval)
+    {
+        Milliseconds postDelay =
+            kTelemetryDataUploadInterval - std::chrono::duration_cast<Milliseconds>(now - lastTelemetryDataUpload);
+
+        mTaskRunner.Post(postDelay, [this]() { pushTelemetry(); });
+        return status;
+    }
+
+    otbrLogInfo("tonyzhou@ pushTelemetry start.");
+    auto                               threadHelper = mNcp.GetThreadHelper();
+    TelemetryData                      telemetryData;
+    ThreadnetworkTelemetryDataReported telemetryDataReported;
+    otError                            error = OT_ERROR_NONE;
+
+    VerifyOrExit((error = threadHelper->RetrieveTelemetryData(nullptr, telemetryData)) == OT_ERROR_NONE);
+    convertTelemetryToAtom(telemetryData, telemetryDataReported);
+
+    {
+        const std::string        &wpanStats        = telemetryDataReported.wpan_stats().SerializeAsString();
+        const std::string        &wpanTopoFull     = telemetryDataReported.wpan_topo_full().SerializeAsString();
+        const std::string        &wpanBorderRouter = telemetryDataReported.wpan_border_router().SerializeAsString();
+        const std::string        &wpanRcp          = telemetryDataReported.wpan_rcp().SerializeAsString();
+        const std::string        &coexMetrics      = telemetryDataReported.coex_metrics().SerializeAsString();
+        threadnetwork::BytesField wpanStatsBytesField{wpanStats.c_str(), wpanStats.size()};
+        threadnetwork::BytesField wpanTopoFullBytesField{wpanTopoFull.c_str(), wpanTopoFull.size()};
+        threadnetwork::BytesField wpanBorderRouterBytesField{wpanBorderRouter.c_str(), wpanBorderRouter.size()};
+        threadnetwork::BytesField wpanRcpBytesField{wpanRcp.c_str(), wpanRcp.size()};
+        threadnetwork::BytesField coexMetricsBytesField{coexMetrics.c_str(), coexMetrics.size()};
+        threadnetwork::stats_write(threadnetwork::THREADNETWORK_TELEMETRY_DATA_REPORTED, wpanStatsBytesField,
+                                   wpanTopoFullBytesField, wpanBorderRouterBytesField, wpanRcpBytesField,
+                                   coexMetricsBytesField);
+        lastTelemetryDataUpload = now;
+        mTaskRunner.Post(kTelemetryDataUploadInterval, [this]() { pushTelemetry(); });
+        otbrLogInfo("tonyzhou@ pushTelemetry end.");
+    }
+
+exit:
+    otbrLogInfo("tonyzhou@ pushTelemetry errorCode: %d", error);
+    return status;
 }
 } // namespace Android
 } // namespace otbr
