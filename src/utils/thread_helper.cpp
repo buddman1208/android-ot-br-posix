@@ -976,7 +976,15 @@ otError ThreadHelper::RetrieveTelemetryData(Mdns::Publisher *aPublisher, threadn
 
         {
             otRouterInfo info;
+        {
+            otRouterInfo info;
 
+            // Store router info only when router is in correct status.
+            if (otThreadGetRouterInfo(mInstance, rloc16, &info) == OT_ERROR_NONE)
+            {
+                wpanTopoFull->set_router_id(info.mRouterId);
+            }
+        }
             if (otThreadGetRouterInfo(mInstance, rloc16, &info) == OT_ERROR_NONE)
             {
                 wpanTopoFull->set_router_id(info.mRouterId);
@@ -1010,7 +1018,17 @@ otError ThreadHelper::RetrieveTelemetryData(Mdns::Publisher *aPublisher, threadn
 
         {
             struct otLeaderData leaderData;
+        {
+            struct otLeaderData leaderData;
 
+            if (otThreadGetLeaderData(mInstance, &leaderData) == OT_ERROR_NONE)
+            {
+                wpanTopoFull->set_leader_router_id(leaderData.mLeaderRouterId);
+                wpanTopoFull->set_leader_weight(leaderData.mWeighting);
+                wpanTopoFull->set_network_data_version(leaderData.mDataVersion);
+                wpanTopoFull->set_stable_network_data_version(leaderData.mStableDataVersion);
+            }
+        }
             if (otThreadGetLeaderData(mInstance, &leaderData) == OT_ERROR_NONE)
             {
                 wpanTopoFull->set_leader_router_id(leaderData.mLeaderRouterId);
@@ -1038,6 +1056,12 @@ otError ThreadHelper::RetrieveTelemetryData(Mdns::Publisher *aPublisher, threadn
             uint8_t              len = sizeof(data);
             std::vector<uint8_t> networkData;
 
+            if (otNetDataGet(mInstance, /*stable=*/false, data, &len))
+            {
+                networkData = std::vector<uint8_t>(&data[0], &data[len]);
+                wpanTopoFull->set_network_data(std::string(networkData.begin(), networkData.end()));
+            }
+        }
             if (otNetDataGet(mInstance, /*stable=*/false, data, &len) == OT_ERROR_NONE)
             {
                 networkData = std::vector<uint8_t>(&data[0], &data[len]);
