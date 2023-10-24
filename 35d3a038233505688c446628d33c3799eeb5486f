@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7dccb0c_ec8f93d7",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-10-24T06:56:20Z",
+      "side": 1,
+      "message": "Use AServiceManager_forceLazyServicesPersist before this line to stop ot-daemon being killed.\n\nThis is just for testing, don\u0027t submit it",
+      "revId": "35d3a038233505688c446628d33c3799eeb5486f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
