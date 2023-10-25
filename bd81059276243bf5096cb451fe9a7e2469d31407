@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9e0f59e_c2a6673a",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/BorderRouterConfigurationParcel.aidl",
+        "patchSetId": 13
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-10-25T13:36:18Z",
+      "side": 1,
+      "message": "nit: remove trailing space",
+      "range": {
+        "startLine": 33,
+        "startChar": 2,
+        "endLine": 33,
+        "endChar": 3
+      },
+      "revId": "bd81059276243bf5096cb451fe9a7e2469d31407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01f7682e_b4d5271d",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/BorderRouterConfigurationParcel.aidl",
+        "patchSetId": 13
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-10-25T13:36:18Z",
+      "side": 1,
+      "message": "line exceeds column 100",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 147
+      },
+      "revId": "bd81059276243bf5096cb451fe9a7e2469d31407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb208f4f_38e81c86",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-10-25T13:36:18Z",
+      "side": 1,
+      "message": "Add:\n```\nVerifyOrExit(GetOtInstance() !\u003d nullptr);\n```\n\nOtherwise, you are going to fail the fuzzer test (because a nullptr is used there for NcpOpenthread instance",
+      "revId": "bd81059276243bf5096cb451fe9a7e2469d31407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bac0fb2c_5bc1f083",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-10-25T13:36:18Z",
+      "side": 1,
+      "message": "Can we use\n```\nmBorderRouterConfiguration !\u003d aBorderRouterConfiguration\n```\n\nhere?\n\nI suppose both socket FDs are reset to `-1` so there should just equal to each other...",
+      "range": {
+        "startLine": 458,
+        "startChar": 8,
+        "endLine": 459,
+        "endChar": 102
+      },
+      "revId": "bd81059276243bf5096cb451fe9a7e2469d31407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb53835a_44d1039c",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-10-25T13:36:18Z",
+      "side": 1,
+      "message": "Should we wait for the routing manager to send out goodbye messages before switching to another infra interface? Have you verified that goodbye messages can be sent on the older infra link before swtching?",
+      "range": {
+        "startLine": 463,
+        "startChar": 18,
+        "endLine": 463,
+        "endChar": 83
+      },
+      "revId": "bd81059276243bf5096cb451fe9a7e2469d31407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b8e096a_5bc38846",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-10-25T13:36:18Z",
+      "side": 1,
+      "message": "nit: better to capture the error and return with `aReceiver`",
+      "range": {
+        "startLine": 463,
+        "startChar": 12,
+        "endLine": 463,
+        "endChar": 18
+      },
+      "revId": "bd81059276243bf5096cb451fe9a7e2469d31407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f59946f0_2418364a",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-10-25T13:36:18Z",
+      "side": 1,
+      "message": "It\u0027s a bit strange that we save a copy of the `aBorderRouterConfiguration` except for the ICMP socket fd.\n\nCan we use `mBorderRouterConfiguration \u003d aBorderRouterConfiguration`?",
+      "range": {
+        "startLine": 476,
+        "startChar": 2,
+        "endLine": 477,
+        "endChar": 102
+      },
+      "revId": "bd81059276243bf5096cb451fe9a7e2469d31407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
