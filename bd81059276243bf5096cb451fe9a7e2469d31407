@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a74f157_c118f295",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/BorderRouterConfigurationParcel.aidl",
+        "patchSetId": 13
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-10-30T03:12:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9e0f59e_c2a6673a",
+      "range": {
+        "startLine": 33,
+        "startChar": 2,
+        "endLine": 33,
+        "endChar": 3
+      },
+      "revId": "bd81059276243bf5096cb451fe9a7e2469d31407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01f7682e_b4d5271d",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69988963_9e497bca",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/BorderRouterConfigurationParcel.aidl",
+        "patchSetId": 13
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-10-30T03:12:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01f7682e_b4d5271d",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 147
+      },
+      "revId": "bd81059276243bf5096cb451fe9a7e2469d31407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb208f4f_38e81c86",
@@ -60,6 +108,24 @@
       "writtenOn": "2023-10-25T13:36:18Z",
       "side": 1,
       "message": "Add:\n```\nVerifyOrExit(GetOtInstance() !\u003d nullptr);\n```\n\nOtherwise, you are going to fail the fuzzer test (because a nullptr is used there for NcpOpenthread instance",
+      "revId": "bd81059276243bf5096cb451fe9a7e2469d31407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81fb17df_753bb054",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-10-30T03:12:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb208f4f_38e81c86",
       "revId": "bd81059276243bf5096cb451fe9a7e2469d31407",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -133,6 +199,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a731601_7ab8a0d1",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-10-30T03:12:37Z",
+      "side": 1,
+      "message": "From the code `RoutingManager::Stop()` it will send out the goodbye RA immediately. However, I don\u0027t have a test setup that can verify switching to another infra link. I\u0027ll test this when we have such a setup.",
+      "parentUuid": "fb53835a_44d1039c",
+      "range": {
+        "startLine": 463,
+        "startChar": 18,
+        "endLine": 463,
+        "endChar": 83
+      },
+      "revId": "bd81059276243bf5096cb451fe9a7e2469d31407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ddd4ae1_3759c153",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-10-30T03:12:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b8e096a_5bc38846",
+      "range": {
+        "startLine": 463,
+        "startChar": 12,
+        "endLine": 463,
+        "endChar": 18
+      },
+      "revId": "bd81059276243bf5096cb451fe9a7e2469d31407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f59946f0_2418364a",
@@ -146,6 +260,30 @@
       "writtenOn": "2023-10-25T13:36:18Z",
       "side": 1,
       "message": "It\u0027s a bit strange that we save a copy of the `aBorderRouterConfiguration` except for the ICMP socket fd.\n\nCan we use `mBorderRouterConfiguration \u003d aBorderRouterConfiguration`?",
+      "range": {
+        "startLine": 476,
+        "startChar": 2,
+        "endLine": 477,
+        "endChar": 102
+      },
+      "revId": "bd81059276243bf5096cb451fe9a7e2469d31407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e27f86bf_a6b3dd49",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-10-30T03:12:37Z",
+      "side": 1,
+      "message": "The problem is that we cannot copy `BorderRouterConfigurationParcel` because the FD field is not copyable.",
+      "parentUuid": "f59946f0_2418364a",
       "range": {
         "startLine": 476,
         "startChar": 2,
