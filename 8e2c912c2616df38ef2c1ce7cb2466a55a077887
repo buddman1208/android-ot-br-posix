@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ff7416b_2cd51ed5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-10-31T02:29:28Z",
+      "side": 1,
+      "message": "Is this a cherry-pick from github? Better to preserve the original commit message.",
+      "revId": "8e2c912c2616df38ef2c1ce7cb2466a55a077887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
