@@ -111,6 +111,7 @@ private:
     std::vector<DetachCallback>        mOngoingDetachCallbacks;
     static constexpr Milliseconds      kTelemetryCheckInterval      = Milliseconds(1000L * 30);           // 30 seconds
     static constexpr Milliseconds      kTelemetryDataUploadInterval = Milliseconds(1000L * 60 * 60 * 12); // 12 hours
+    // TODO: store lastTelemetryDataUpload in persistent store.
     Timepoint                          lastTelemetryDataUpload      = Clock::now() - kTelemetryDataUploadInterval;
     TaskRunner                         mTaskRunner;
 };
