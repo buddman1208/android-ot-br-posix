@@ -39,6 +39,7 @@
 
 #include "agent/vendor.hpp"
 #include "common/mainloop.hpp"
+#include "common/time.hpp"
 #include "ncp/ncp_openthread.hpp"
 
 namespace otbr {
@@ -103,6 +104,7 @@ private:
     static void ReceiveCallback(otMessage *aMessage, void *aBinderServer);
     void        ReceiveCallback(otMessage *aMessage);
     void        TransmitCallback(void);
+    Status      pushTelemetry();
 
     otbr::Ncp::ControllerOpenThread   &mNcp;
     TaskRunner                         mTaskRunner;
@@ -113,6 +115,10 @@ private:
     std::shared_ptr<IOtStatusReceiver> mJoinReceiver;
     std::shared_ptr<IOtStatusReceiver> mMigrationReceiver;
     std::vector<LeaveCallback>         mLeaveCallbacks;
+    static constexpr Milliseconds      kTelemetryCheckInterval      = Milliseconds(1000L * 30);           // 30 seconds
+    static constexpr Milliseconds      kTelemetryDataUploadInterval = Milliseconds(1000L * 60 * 60 * 12); // 12 hours
+    // TODO: store lastTelemetryDataUpload in persistent store.
+    Timepoint lastTelemetryDataUpload = Clock::now() - kTelemetryDataUploadInterval;
 };
 
 } // namespace Android
