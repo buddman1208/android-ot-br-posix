@@ -38,6 +38,7 @@ aidl_interface {
     srcs: [
         "com/android/**/*.aidl",
     ],
+    flags: ["-Wno-redundant-name"],
     backend: {
         java: {
             enabled: true,
