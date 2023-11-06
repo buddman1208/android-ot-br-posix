@@ -28,20 +28,13 @@
 
 package com.android.server.thread.openthread;
 
-import com.android.server.thread.openthread.Ipv6AddressInfo;
-import com.android.server.thread.openthread.OtDaemonState;
-
-/** OpenThread daemon callbacks. */
-oneway interface IOtDaemonCallback {
-    void onStateChanged(in OtDaemonState newState, long listenerId);
-
-    /**
-     * Called when Thread interface address has been changed.
-     *
-     * @param addressInfo the IPv6 address which has been updated. This can be both unicast and
-     *                    multicast addresses
-     * @param isAdded {@code true} if this address is being added to the Thread interface;
-     *                Otherwise, this address is being removed
-     */
-    void onAddressChanged(in Ipv6AddressInfo addressInfo, boolean isAdded);
+/**
+ * Contains all OpenThread daemon states which the system_server and/or client apps care about.
+ */
+parcelable OtDaemonState {
+    boolean isInterfaceUp;
+    int deviceRole;
+    long partitionId;
+    byte[] activeDatasetTlvs;
+    byte[] pendingDatasetTlvs;
 }
