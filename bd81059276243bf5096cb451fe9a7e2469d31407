@@ -292,6 +292,30 @@
       },
       "revId": "bd81059276243bf5096cb451fe9a7e2469d31407",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a421f7a_705741b5",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-11-07T14:56:34Z",
+      "side": 1,
+      "message": "Can we move then?\n`mBorderRouterConfiguration \u003d std::move(aBorderRouterConfiguration)`",
+      "parentUuid": "e27f86bf_a6b3dd49",
+      "range": {
+        "startLine": 476,
+        "startChar": 2,
+        "endLine": 477,
+        "endChar": 102
+      },
+      "revId": "bd81059276243bf5096cb451fe9a7e2469d31407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
