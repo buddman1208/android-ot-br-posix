@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bac321ad_d658923b",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/BorderRouterConfigurationParcel.aidl",
+        "patchSetId": 14
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-11-07T15:23:06Z",
+      "side": 1,
+      "message": "nits:\n```suggestion\n    boolean isBorderRoutingEnabled; // Whether the border routing feature is enabled.\n    String  infraInterfaceName; // The name of infra network interface.\n    \n    // An ICMPv6 socket on infra network interface.\n    // This is required by the border routing feature.\n    ParcelFileDescriptor infraInterfaceIcmp6Socket; \n```",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 63
+      },
+      "revId": "b82a725840922e51fb4947c5bf9cb1117319e368",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d9f7e16_cdbb4a30",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IOtDaemon.aidl",
+        "patchSetId": 14
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-11-07T15:23:06Z",
+      "side": 1,
+      "message": "line exceeds 100 chars",
+      "range": {
+        "startLine": 103,
+        "startChar": 4,
+        "endLine": 103,
+        "endChar": 114
+      },
+      "revId": "b82a725840922e51fb4947c5bf9cb1117319e368",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
