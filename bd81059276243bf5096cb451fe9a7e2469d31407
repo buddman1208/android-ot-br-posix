@@ -316,6 +316,30 @@
       },
       "revId": "bd81059276243bf5096cb451fe9a7e2469d31407",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d930407_583601c3",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-11-07T15:07:34Z",
+      "side": 1,
+      "message": "We cannot move when we specify `in` for `BorderRouterConfigurationParcel` because it will always generate a method using **const** reference for its parameter. This prevents us from using the argument for move constructor/assignment.",
+      "parentUuid": "3a421f7a_705741b5",
+      "range": {
+        "startLine": 476,
+        "startChar": 2,
+        "endLine": 477,
+        "endChar": 102
+      },
+      "revId": "bd81059276243bf5096cb451fe9a7e2469d31407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
