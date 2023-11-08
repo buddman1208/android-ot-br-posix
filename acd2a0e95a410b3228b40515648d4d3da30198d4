@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6aed7986_cb35f45b",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IOtDaemon.aidl",
+        "patchSetId": 8
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-11-08T09:33:14Z",
+      "side": 1,
+      "message": "fixed in the diffbase",
+      "parentUuid": "8bf2978a_e82c482d",
+      "revId": "acd2a0e95a410b3228b40515648d4d3da30198d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2b8fade_3f1d09f6",
@@ -52,6 +70,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd2a7eff_04e592b3",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IOtDaemonCallback.aidl",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-11-08T09:33:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ba162cd_8912163d",
+      "revId": "acd2a0e95a410b3228b40515648d4d3da30198d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e15f86bc_30dc6da4",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IOtDaemonCallback.aidl",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-11-08T09:33:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2b8fade_3f1d09f6",
+      "revId": "acd2a0e95a410b3228b40515648d4d3da30198d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "32f91591_d9e4afce",
@@ -65,6 +119,24 @@
       "writtenOn": "2023-11-08T05:45:30Z",
       "side": 1,
       "message": "Could you add a comment clarifying which enums it\u0027s using? Are they `OT_DEVICE_ROLE_*`?",
+      "revId": "acd2a0e95a410b3228b40515648d4d3da30198d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "237cea86_53476244",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/OtDaemonState.aidl",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-11-08T09:33:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32f91591_d9e4afce",
       "revId": "acd2a0e95a410b3228b40515648d4d3da30198d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -92,6 +164,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8212247b_c8c41b3a",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-11-08T09:33:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ea6d02c_19c76bc4",
+      "range": {
+        "startLine": 282,
+        "startChar": 1,
+        "endLine": 286,
+        "endChar": 5
+      },
+      "revId": "acd2a0e95a410b3228b40515648d4d3da30198d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f8bd58c_4bef13ea",
@@ -109,6 +205,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a15a0f7_067f5b25",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-11-08T09:33:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f8bd58c_4bef13ea",
+      "revId": "acd2a0e95a410b3228b40515648d4d3da30198d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7cf26666_5ee2419e",
@@ -122,6 +236,24 @@
       "writtenOn": "2023-11-08T05:45:30Z",
       "side": 1,
       "message": "I\u0027d suggest to avoid using `\u003d` to capture all variables in scope which is error prone and causes overhead.",
+      "revId": "acd2a0e95a410b3228b40515648d4d3da30198d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e436ef27_69d63309",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-11-08T09:33:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7cf26666_5ee2419e",
       "revId": "acd2a0e95a410b3228b40515648d4d3da30198d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
