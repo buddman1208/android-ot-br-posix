@@ -153,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e897a9d0_a100b76f",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-11-08T02:50:21Z",
+      "side": 1,
+      "message": "The `!\u003d` operator works. Thanks!",
+      "parentUuid": "bac0fb2c_5bc1f083",
+      "range": {
+        "startLine": 458,
+        "startChar": 8,
+        "endLine": 459,
+        "endChar": 102
+      },
+      "revId": "bd81059276243bf5096cb451fe9a7e2469d31407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb53835a_44d1039c",
