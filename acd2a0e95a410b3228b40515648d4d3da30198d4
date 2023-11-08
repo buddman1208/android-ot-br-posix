@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2b8fade_3f1d09f6",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IOtDaemonCallback.aidl",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-11-08T05:45:30Z",
+      "side": 1,
+      "message": "Please document this method.",
+      "revId": "acd2a0e95a410b3228b40515648d4d3da30198d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32f91591_d9e4afce",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/OtDaemonState.aidl",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-11-08T05:45:30Z",
+      "side": 1,
+      "message": "Could you add a comment clarifying which enums it\u0027s using? Are they `OT_DEVICE_ROLE_*`?",
+      "revId": "acd2a0e95a410b3228b40515648d4d3da30198d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ea6d02c_19c76bc4",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-11-08T05:45:30Z",
+      "side": 1,
+      "message": "nit: use `VerifyOrExit` so it can be one line.",
+      "range": {
+        "startLine": 282,
+        "startChar": 1,
+        "endLine": 286,
+        "endChar": 5
+      },
+      "revId": "acd2a0e95a410b3228b40515648d4d3da30198d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f8bd58c_4bef13ea",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-11-08T05:45:30Z",
+      "side": 1,
+      "message": "nit: add comment like `/* aFlags */` to indicate the argument is a bit mask.",
+      "revId": "acd2a0e95a410b3228b40515648d4d3da30198d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cf26666_5ee2419e",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-11-08T05:45:30Z",
+      "side": 1,
+      "message": "I\u0027d suggest to avoid using `\u003d` to capture all variables in scope which is error prone and causes overhead.",
+      "revId": "acd2a0e95a410b3228b40515648d4d3da30198d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
