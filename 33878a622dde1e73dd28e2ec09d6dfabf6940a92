@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2dc5ff0_6d70fff9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-11-08T15:55:08Z",
+      "side": 1,
+      "message": "ignoring the unrelevant already flaky \"mainline_network_stack_gce_boot_test\" test which passed in the rerun https://android-build.corp.google.com/abtd/run/L67200030000175105/",
+      "revId": "33878a622dde1e73dd28e2ec09d6dfabf6940a92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
