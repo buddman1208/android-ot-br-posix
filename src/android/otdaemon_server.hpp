@@ -90,6 +90,8 @@ private:
     Status leave(const std::shared_ptr<IOtStatusReceiver> &aReceiver) override;
     Status scheduleMigration(const std::vector<uint8_t>               &aPendingOpDatasetTlvs,
                              const std::shared_ptr<IOtStatusReceiver> &aReceiver) override;
+    Status setCountryCode(const std::array<uint8_t, 2>             &aCountryCode,
+                          const std::shared_ptr<IOtStatusReceiver> &aReceiver);
 
     bool        RefreshOtDaemonState(otChangedFlags aFlags);
     void        LeaveGracefully(const LeaveCallback &aReceiver);
