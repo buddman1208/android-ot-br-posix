@@ -57,6 +57,7 @@ oneway interface IOtDaemon {
         OT_ERROR_BUSY = 5,
         OT_ERROR_PARSE = 6,
         OT_ERROR_ABORT = 11,
+        OT_ERROR_NOT_IMPLEMENTED = 12,
         OT_ERROR_INVALID_STATE = 13,
         OT_ERROR_DETACHED = 16,
         OT_ERROR_RESPONSE_TIMEOUT = 28,
@@ -109,6 +110,14 @@ oneway interface IOtDaemon {
      */
     void scheduleMigration(
         in byte[] pendingOpDatasetTlvs, in IOtStatusReceiver receiver);
+
+    /**
+     * Sets the country code.
+     *
+     * @param countryCode 2 byte country code (as defined in ISO 3166) to set.
+     * @param receiver the receiver to receive result of this operation
+     */
+    oneway void setCountryCode(in byte[2] countryCode, in IOtStatusReceiver receiver);
 
     /**
      * Configures the Border Router features.

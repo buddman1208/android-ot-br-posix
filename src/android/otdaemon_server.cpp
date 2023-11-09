@@ -38,6 +38,7 @@
 #include <android/binder_process.h>
 #include <openthread/border_router.h>
 #include <openthread/ip6.h>
+#include <openthread/link.h>
 #include <openthread/openthread-system.h>
 #include <openthread/platform/infra_if.h>
 
@@ -573,6 +574,24 @@ void OtDaemonServer::SendMgmtPendingSetCallback(otError aResult, void *aBinderSe
         PropagateResult(aResult, "Failed to register Pending Dataset to leader", thisServer->mMigrationReceiver);
         thisServer->mMigrationReceiver = nullptr;
     }
+}
+
+Status OtDaemonServer::setCountryCode(const std::array<uint8_t, 2>             &aCountryCode,
+                                      const std::shared_ptr<IOtStatusReceiver> &aReceiver)
+{
+    otError     error = OT_ERROR_NONE;
+    std::string message;
+    uint16_t    countryCode;
+
+    otbrLogInfo("Set country code: %c%c", aCountryCode[0], aCountryCode[1]);
+
+    VerifyOrExit(GetOtInstance() != nullptr, error = OT_ERROR_INVALID_STATE, message = "OT is not initialized");
+    countryCode = (static_cast<uint16_t>(aCountryCode[0]) << 8) | aCountryCode[1];
+    SuccessOrExit(error = otLinkSetRegion(GetOtInstance(), countryCode), message = "Failed to set the country code");
+
+exit:
+    PropagateResult(error, message, aReceiver);
+    return Status::ok();
 }
 
 Status OtDaemonServer::configureBorderRouter(const BorderRouterConfigurationParcel    &aBorderRouterConfiguration,
