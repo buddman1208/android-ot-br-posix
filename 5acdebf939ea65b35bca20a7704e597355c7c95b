@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "626b622e_bd16422f",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-11-10T02:40:43Z",
+      "side": 1,
+      "message": "There is no CLI support in production - it\u0027s available on only eng or userdebug builds. See https://cs.android.com/android/platform/superproject/main/+/main:external/ot-br-posix/Android.bp;l\u003d94",
+      "revId": "5acdebf939ea65b35bca20a7704e597355c7c95b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
