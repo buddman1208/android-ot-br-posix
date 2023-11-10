@@ -16,6 +16,24 @@
       "message": "There is no CLI support in production - it\u0027s available on only eng or userdebug builds. See https://cs.android.com/android/platform/superproject/main/+/main:external/ot-br-posix/Android.bp;l\u003d94",
       "revId": "5acdebf939ea65b35bca20a7704e597355c7c95b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d7c31ff_83b350d9",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-11-10T03:02:20Z",
+      "side": 1,
+      "message": "OPENTHREAD_POSIX_CONFIG_DAEMON_CLI_ENABLE flag is to init CLI in daemon.cpp. Here we also init CLI in dump directly so it will not impact our initialization. After I change OPENTHREAD_POSIX_CONFIG_DAEMON_CLI_ENABLE\u003d0, the dump still works as is (although CLI is not initialized for user).",
+      "parentUuid": "626b622e_bd16422f",
+      "revId": "5acdebf939ea65b35bca20a7704e597355c7c95b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
