@@ -40,6 +40,7 @@
 #include "agent/vendor.hpp"
 #include "common/mainloop.hpp"
 #include "ncp/ncp_openthread.hpp"
+#include "common/code_utils.hpp"
 
 namespace otbr {
 namespace Android {
