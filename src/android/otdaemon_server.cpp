@@ -34,15 +34,16 @@
 #include <string.h>
 
 #include <android-base/file.h>
+#include <android-base/stringprintf.h>
 #include <android/binder_manager.h>
 #include <android/binder_process.h>
 #include <openthread/border_router.h>
+#include <openthread/cli.h>
 #include <openthread/ip6.h>
 #include <openthread/openthread-system.h>
 #include <openthread/platform/infra_if.h>
 
 #include "agent/vendor.hpp"
-#include "common/code_utils.hpp"
 
 #define BYTE_ARR_END(arr) ((arr) + sizeof(arr))
 
@@ -565,14 +566,48 @@ exit:
     return Status::ok();
 }
 
+static int outputCallback(void *aContext, const char *aFormat, va_list aArguments)
+{
+    std::string output;
+
+    android::base::StringAppendV(&output, aFormat, aArguments);
+
+    int length = output.length();
+
+    VerifyOrExit(length > 0);
+    VerifyOrExit(android::base::WriteStringToFd(output, *(static_cast<int *>(aContext))), length = 0);
+
+exit:
+    return length;
+}
+
+inline void dumpCliCommand(std::string command, int aFd)
+{
+    android::base::WriteStringToFd(android::base::StringPrintf("%s\n", command.c_str()), aFd);
+    otCliInputLine(command.data());
+}
+
 binder_status_t OtDaemonServer::dump(int aFd, const char **aArgs, uint32_t aNumArgs)
 {
-    OT_UNUSED_VARIABLE(aArgs);
-    OT_UNUSED_VARIABLE(aNumArgs);
+    OTBR_UNUSED_VARIABLE(aArgs);
+    OTBR_UNUSED_VARIABLE(aNumArgs);
+    // Caveat: after this CLI Init, redirect it back to console for ot-cli tool is not supported.
+    otCliInit(GetOtInstance(), outputCallback, &aFd);
 
-    // TODO: Use ::android::base::WriteStringToFd to dump infomration.
+    dumpCliCommand("state", aFd);
+    dumpCliCommand("srp server state", aFd);
+    dumpCliCommand("srp server service", aFd);
+    dumpCliCommand("srp server host", aFd);
+    dumpCliCommand("dataset active", aFd);
+    dumpCliCommand("leaderdata", aFd);
+    dumpCliCommand("eidcache", aFd);
+    dumpCliCommand("counters mac", aFd);
+    dumpCliCommand("counters mle", aFd);
+    dumpCliCommand("counters ip", aFd);
+    dumpCliCommand("router table", aFd);
+    dumpCliCommand("neighbor table", aFd);
+
     fsync(aFd);
-
     return STATUS_OK;
 }
 } // namespace Android
