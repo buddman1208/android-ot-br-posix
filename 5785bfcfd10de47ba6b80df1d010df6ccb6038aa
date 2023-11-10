@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b60d8d48_45af7fce",
+        "filename": "TEST_MAPPING",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2023-11-10T00:42:13Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by TestMappingSloChecker: Test module \"CtsThreadNetworkTestCases\" is being added to presubmit. It needs to meet SLO in postsubmit on all configured targets.\n\nAnalyzer Description: Validates test modules added to presubmit in TEST_MAPPING.\nOwner: android-testing-at-scale@google.com\n\nTest module \"CtsThreadNetworkTestCases\" is being added to presubmit. It needs to meet SLO in postsubmit on all configured targets.\n\nBranch: main, Target: aosp_cf_x86_64_phone-trunk_staging-userdebug\nERROR: No data found for this config.\nDoes not meet SLO. Please consult go/test-mapping-slo-guide\n\nFAIL: This test module does not meet SLO and is not ready to be in presubmit.",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "5785bfcfd10de47ba6b80df1d010df6ccb6038aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
