@@ -34,6 +34,24 @@
       "parentUuid": "626b622e_bd16422f",
       "revId": "5acdebf939ea65b35bca20a7704e597355c7c95b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f54ecab0_20ca6d02",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-11-10T03:14:50Z",
+      "side": 1,
+      "message": "Pleas don\u0027t do that, the CLI is disabled for size, see go/thread-mainline-size for what we tried to reduce the size to make it possible to land this into the Tethering module. Size is also the concern I raised for the proto lib change https://android-review.git.corp.google.com/c/platform/external/ot-br-posix/+/2781276",
+      "parentUuid": "2d7c31ff_83b350d9",
+      "revId": "5acdebf939ea65b35bca20a7704e597355c7c95b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
