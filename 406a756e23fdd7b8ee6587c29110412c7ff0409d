@@ -58,6 +58,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9196087a_f1683467",
+        "filename": "Android.bp",
+        "patchSetId": 17
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-11-14T08:57:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef6f7188_b74250f1",
+      "range": {
+        "startLine": 154,
+        "startChar": 5,
+        "endLine": 160,
+        "endChar": 31
+      },
+      "revId": "406a756e23fdd7b8ee6587c29110412c7ff0409d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2ca53be_69aca233",
@@ -92,6 +116,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8b248a6_48070fbd",
+        "filename": "src/android/otdaemon_server.hpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-11-14T08:57:17Z",
+      "side": 1,
+      "message": "There are two ways to deliver telemetry: push and pull. Here we use push mode so I use word push.",
+      "parentUuid": "bae3e8ab_02283bc4",
+      "revId": "406a756e23fdd7b8ee6587c29110412c7ff0409d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82efe640_4772a1e4",
+        "filename": "src/android/otdaemon_server.hpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-11-14T08:57:17Z",
+      "side": 1,
+      "message": "There are 2 code styles in this file. Some are lower case (like \u0027join\u0027), and some are upper case, so I choose lower here and lead to this. Have we decided the upper case style? I changed to upper case for this method currently.",
+      "parentUuid": "d2ca53be_69aca233",
+      "revId": "406a756e23fdd7b8ee6587c29110412c7ff0409d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c7d983de_cb2379a9",
@@ -105,6 +165,30 @@
       "writtenOn": "2023-11-14T08:38:43Z",
       "side": 1,
       "message": "seems redundant",
+      "range": {
+        "startLine": 176,
+        "startChar": 3,
+        "endLine": 178,
+        "endChar": 43
+      },
+      "revId": "406a756e23fdd7b8ee6587c29110412c7ff0409d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45250d6f_29e9a659",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-11-14T08:57:17Z",
+      "side": 1,
+      "message": "Done. Removed.",
+      "parentUuid": "c7d983de_cb2379a9",
       "range": {
         "startLine": 176,
         "startChar": 3,
