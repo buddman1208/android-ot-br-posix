@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef6f7188_b74250f1",
+        "filename": "Android.bp",
+        "patchSetId": 17
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-11-14T08:38:43Z",
+      "side": 1,
+      "message": "```suggestion\n        \"src/common/code_utils.cpp\",\n        \"src/common/dns_utils.cpp\",\n        \"src/common/logging.cpp\",\n        \"src/common/mainloop.cpp\",\n        \"src/common/mainloop_manager.cpp\",\n        \"src/common/task_runner.cpp\",\n        \"src/common/types.cpp\",\n```",
+      "range": {
+        "startLine": 154,
+        "startChar": 5,
+        "endLine": 160,
+        "endChar": 31
+      },
+      "revId": "406a756e23fdd7b8ee6587c29110412c7ff0409d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2ca53be_69aca233",
+        "filename": "src/android/otdaemon_server.hpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-11-14T08:38:43Z",
+      "side": 1,
+      "message": "Here and other places, shall we use upper case for the initial letter?",
+      "revId": "406a756e23fdd7b8ee6587c29110412c7ff0409d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bae3e8ab_02283bc4",
+        "filename": "src/android/otdaemon_server.hpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-11-14T08:38:43Z",
+      "side": 1,
+      "message": "Why using the verb \u0027push\u0027?",
+      "revId": "406a756e23fdd7b8ee6587c29110412c7ff0409d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7d983de_cb2379a9",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-11-14T08:38:43Z",
+      "side": 1,
+      "message": "seems redundant",
+      "range": {
+        "startLine": 176,
+        "startChar": 3,
+        "endLine": 178,
+        "endChar": 43
+      },
+      "revId": "406a756e23fdd7b8ee6587c29110412c7ff0409d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
