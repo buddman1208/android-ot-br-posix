@@ -52,6 +52,24 @@
       "parentUuid": "2d7c31ff_83b350d9",
       "revId": "5acdebf939ea65b35bca20a7704e597355c7c95b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0181294_2e4a6c05",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-11-14T07:01:18Z",
+      "side": 1,
+      "message": "For better maintaining of the code, and reduce code duplication, I think reuse CLI logic is a proper solution. Please check.",
+      "parentUuid": "f54ecab0_20ca6d02",
+      "revId": "5acdebf939ea65b35bca20a7704e597355c7c95b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
