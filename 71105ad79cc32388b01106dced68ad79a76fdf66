@@ -22,6 +22,30 @@
       },
       "revId": "71105ad79cc32388b01106dced68ad79a76fdf66",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e651a4b7_820efd32",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-11-14T07:07:11Z",
+      "side": 1,
+      "message": "Can you give instruction how to check user build size? I didn\u0027t find it in the presubmit run.",
+      "parentUuid": "0b274919_c3c9d5e1",
+      "range": {
+        "startLine": 14,
+        "startChar": 21,
+        "endLine": 14,
+        "endChar": 30
+      },
+      "revId": "71105ad79cc32388b01106dced68ad79a76fdf66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
