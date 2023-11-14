@@ -70,6 +70,30 @@
       },
       "revId": "71105ad79cc32388b01106dced68ad79a76fdf66",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ca2b7de_d535c9dd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-11-14T07:29:49Z",
+      "side": 1,
+      "message": "Do you have instruction how to do this locally?",
+      "parentUuid": "ce03e0bc_dca476c0",
+      "range": {
+        "startLine": 14,
+        "startChar": 21,
+        "endLine": 14,
+        "endChar": 30
+      },
+      "revId": "71105ad79cc32388b01106dced68ad79a76fdf66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
