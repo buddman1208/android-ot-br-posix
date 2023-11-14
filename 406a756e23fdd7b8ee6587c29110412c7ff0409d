@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "142fb985_03cefb4e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-11-14T08:49:46Z",
+      "side": 1,
+      "message": "@reminv@google.com you may be concerned on the size increase",
+      "revId": "406a756e23fdd7b8ee6587c29110412c7ff0409d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ef6f7188_b74250f1",
         "filename": "Android.bp",
         "patchSetId": 17
