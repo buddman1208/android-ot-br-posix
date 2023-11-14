@@ -46,6 +46,30 @@
       },
       "revId": "71105ad79cc32388b01106dced68ad79a76fdf66",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce03e0bc_dca476c0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-11-14T07:22:23Z",
+      "side": 1,
+      "message": "Try at your local codebase maybe",
+      "parentUuid": "e651a4b7_820efd32",
+      "range": {
+        "startLine": 14,
+        "startChar": 21,
+        "endLine": 14,
+        "endChar": 30
+      },
+      "revId": "71105ad79cc32388b01106dced68ad79a76fdf66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
