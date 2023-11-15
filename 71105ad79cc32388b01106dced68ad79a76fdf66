@@ -94,6 +94,30 @@
       },
       "revId": "71105ad79cc32388b01106dced68ad79a76fdf66",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b060476b_18a3c089",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-11-15T02:06:49Z",
+      "side": 1,
+      "message": "Updated the user build size diff locally.",
+      "parentUuid": "6ca2b7de_d535c9dd",
+      "range": {
+        "startLine": 14,
+        "startChar": 21,
+        "endLine": 14,
+        "endChar": 30
+      },
+      "revId": "71105ad79cc32388b01106dced68ad79a76fdf66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
