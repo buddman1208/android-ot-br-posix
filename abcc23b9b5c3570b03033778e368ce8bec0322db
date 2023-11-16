@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45a09c00_f926a1f8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-11-16T06:59:06Z",
+      "side": 1,
+      "message": "@reminv@google.com FYI, this CL does increase the binary by 70KB. Do you have concerns on this?",
+      "range": {
+        "startLine": 15,
+        "startChar": 7,
+        "endLine": 15,
+        "endChar": 12
+      },
+      "revId": "abcc23b9b5c3570b03033778e368ce8bec0322db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
