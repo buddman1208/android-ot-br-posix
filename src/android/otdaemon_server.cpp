@@ -42,7 +42,9 @@
 #include <openthread/platform/infra_if.h>
 
 #include "agent/vendor.hpp"
+#include "android/otdaemon_telemetry.hpp"
 #include "common/code_utils.hpp"
+// #include "proto/thread_telemetry.pb.h"
 
 #define BYTE_ARR_END(arr) ((arr) + sizeof(arr))
 
@@ -61,6 +63,8 @@ std::shared_ptr<VendorServer> VendorServer::newInstance(Application &aApplicatio
 
 namespace otbr {
 namespace Android {
+// using android::os::statsd::threadnetwork::ThreadnetworkTelemetryDataReported;
+// using threadnetwork::TelemetryData;
 
 static const char       OTBR_SERVICE_NAME[] = "ot_daemon";
 static constexpr size_t kMaxIp6Size         = 1280;
@@ -115,8 +119,10 @@ void OtDaemonServer::Init(void)
     mNcp.AddThreadStateChangedCallback([this](otChangedFlags aFlags) { StateCallback(aFlags); });
     otIp6SetAddressCallback(GetOtInstance(), OtDaemonServer::AddressCallback, this);
     otIp6SetReceiveCallback(GetOtInstance(), OtDaemonServer::ReceiveCallback, this);
+
     otBackboneRouterSetMulticastListenerCallback(GetOtInstance(), OtDaemonServer::HandleBackboneMulticastListenerEvent,
                                                  this);
+    mTaskRunner.Post(kTelemetryCheckInterval, [this]() { PushTelemetry(); });
 }
 
 void OtDaemonServer::BinderDeathCallback(void *aBinderServer)
@@ -630,6 +636,28 @@ binder_status_t OtDaemonServer::dump(int aFd, const char **aArgs, uint32_t aNumA
     fsync(aFd);
 
     return STATUS_OK;
+}
+
+Status OtDaemonServer::PushTelemetry()
+{
+    Status status = Status::ok();
+    auto   now    = Clock::now();
+
+    if (now - lastTelemetryDataUpload < kTelemetryDataUploadInterval)
+    {
+        Milliseconds postDelay =
+            kTelemetryDataUploadInterval - std::chrono::duration_cast<Milliseconds>(now - lastTelemetryDataUpload);
+
+        mTaskRunner.Post(postDelay, [this]() { PushTelemetry(); });
+        return status;
+    }
+
+    ConvertAndPushAtoms(GetOtInstance()/*, telemetryData*/);
+
+    lastTelemetryDataUpload = now;
+    mTaskRunner.Post(kTelemetryDataUploadInterval, [this]() { PushTelemetry(); });
+
+    return status;
 }
 } // namespace Android
 } // namespace otbr
