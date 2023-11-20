@@ -217,3 +217,11 @@ cc_fuzz {
         ],
     },
 }
+
+test_spec {
+    name: "ot-br-posix-test-spec-5094685775134720",
+    teamId: 5094685775134720,
+    tests: [
+        "ot_daemon_service_fuzzer"
+    ],
+}
