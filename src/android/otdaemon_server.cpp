@@ -42,7 +42,9 @@
 #include <openthread/platform/infra_if.h>
 
 #include "agent/vendor.hpp"
+#include "android/otdaemon_telemetry.hpp"
 #include "common/code_utils.hpp"
+// #include "proto/thread_telemetry.pb.h"
 
 #define BYTE_ARR_END(arr) ((arr) + sizeof(arr))
 
@@ -61,6 +63,8 @@ std::shared_ptr<VendorServer> VendorServer::newInstance(Application &aApplicatio
 
 namespace otbr {
 namespace Android {
+// using android::os::statsd::threadnetwork::ThreadnetworkTelemetryDataReported;
+// using threadnetwork::TelemetryData;
 
 static const char       OTBR_SERVICE_NAME[] = "ot_daemon";
 static constexpr size_t kMaxIp6Size         = 1280;
@@ -115,6 +119,7 @@ void OtDaemonServer::Init(void)
     mNcp.AddThreadStateChangedCallback([this](otChangedFlags aFlags) { StateCallback(aFlags); });
     otIp6SetAddressCallback(GetOtInstance(), OtDaemonServer::AddressCallback, this);
     otIp6SetReceiveCallback(GetOtInstance(), OtDaemonServer::ReceiveCallback, this);
+
     otBackboneRouterSetMulticastListenerCallback(GetOtInstance(), OtDaemonServer::HandleBackboneMulticastListenerEvent,
                                                  this);
 }
@@ -630,6 +635,31 @@ binder_status_t OtDaemonServer::dump(int aFd, const char **aArgs, uint32_t aNumA
     fsync(aFd);
 
     return STATUS_OK;
+}
+
+Status OtDaemonServer::requestTelemetry()
+{
+    Status status = Status::ok();
+
+    ThreadnetworkTelemetryDataReported telemetryDataReported;
+    std::vector<ThreadnetworkTopoEntryRepeatedTopoEntry> topoEntries;
+    RetrieveAndConvertTelemetries(GetOtInstance(), telemetryDataReported, topoEntries);
+    uint8_t* ptr = reinterpret_cast<uint8_t*>(&telemetryDataReported);
+    std::vector<uint8_t> telemetryDataReportedBuffer;
+    telemetryDataReportedBuffer.resize(sizeof(telemetryDataReported));
+    std::copy(ptr, ptr + sizeof(telemetryDataReported), telemetryDataReportedBuffer.data());
+
+    std::vector<ListElement> topoEntriesBuffers;
+    for (ThreadnetworkTopoEntryRepeatedTopoEntry topEntry : topoEntries) {
+        ListElement elem;
+        uint8_t* ptr = reinterpret_cast<uint8_t*>(&topEntry);
+        elem.bytes.resize(sizeof(topEntry));
+        std::copy(ptr, ptr + sizeof(topEntry), elem.bytes.data());
+        topoEntriesBuffers.push_back(elem);
+    }
+    mCallback->onTelemetryRetrieved(telemetryDataReportedBuffer, topoEntriesBuffers);
+
+    return status;
 }
 } // namespace Android
 } // namespace otbr

@@ -121,4 +121,6 @@ oneway interface IOtDaemon {
         in BorderRouterConfigurationParcel brConfig, in IOtStatusReceiver receiver);
 
     // TODO: add Border Router APIs
+
+    void requestTelemetry();
 }

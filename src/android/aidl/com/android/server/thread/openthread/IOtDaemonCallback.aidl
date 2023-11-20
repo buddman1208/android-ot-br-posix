@@ -30,6 +30,7 @@ package com.android.server.thread.openthread;
 
 import com.android.server.thread.openthread.Ipv6AddressInfo;
 import com.android.server.thread.openthread.OtDaemonState;
+import com.android.server.thread.openthread.ListElement;
 
 /** OpenThread daemon callbacks. */
 oneway interface IOtDaemonCallback {
@@ -62,4 +63,6 @@ oneway interface IOtDaemonCallback {
      *                Otherwise, this multicast address is being removed
      */
     void onMulticastForwardingAddressChanged(in byte[] ipv6Address, boolean isAdded);
+
+    void onTelemetryRetrieved(in byte[] telemetryDataReportedBytes, in List<ListElement> topoEntries);
 }
