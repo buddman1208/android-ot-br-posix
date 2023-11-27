@@ -42,6 +42,7 @@
 #include <openthread/platform/infra_if.h>
 
 #include "agent/vendor.hpp"
+#include "android/otdaemon_telemetry.hpp"
 #include "common/code_utils.hpp"
 
 #define BYTE_ARR_END(arr) ((arr) + sizeof(arr))
@@ -117,6 +118,7 @@ void OtDaemonServer::Init(void)
     otIp6SetReceiveCallback(GetOtInstance(), OtDaemonServer::ReceiveCallback, this);
     otBackboneRouterSetMulticastListenerCallback(GetOtInstance(), OtDaemonServer::HandleBackboneMulticastListenerEvent,
                                                  this);
+    mTaskRunner.Post(kTelemetryCheckInterval, [this]() { PushTelemetryIfConditionMatch(); });
 }
 
 void OtDaemonServer::BinderDeathCallback(void *aBinderServer)
@@ -630,6 +632,18 @@ binder_status_t OtDaemonServer::dump(int aFd, const char **aArgs, uint32_t aNumA
     fsync(aFd);
 
     return STATUS_OK;
+}
+
+Status OtDaemonServer::PushTelemetryIfConditionMatch()
+{
+    Status status = Status::ok();
+
+    // TODO: Push telemetry per kTelemetryUploadIntervalThreshold instead of on startup.
+    // TODO: Save unpushed telemetries in local cache to avoid data loss.
+    RetrieveAndPushAtoms(GetOtInstance());
+    mTaskRunner.Post(kTelemetryUploadIntervalThreshold, [this]() { PushTelemetryIfConditionMatch(); });
+
+    return status;
 }
 } // namespace Android
 } // namespace otbr
