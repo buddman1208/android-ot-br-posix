@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78327af1_9c51c202",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IOtDaemon.aidl",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-11-29T03:15:08Z",
+      "side": 1,
+      "message": "```suggestion\n     * Sets the country code.\n```\nnit",
+      "revId": "bce6837499685d5e2447ce085bf2dd0b6d5d09cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ec945f5_9539afe4",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-11-29T03:15:08Z",
+      "side": 1,
+      "message": "I think this check will always succeed.",
+      "revId": "bce6837499685d5e2447ce085bf2dd0b6d5d09cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
