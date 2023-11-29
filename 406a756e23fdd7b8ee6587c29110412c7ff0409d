@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6987270d_ab8d0e50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-11-29T02:26:08Z",
+      "side": 1,
+      "message": "A test for Java layer integration is made in https://android-review.git.corp.google.com/q/topic:%22java-telemetry-test%22.\n\nI prefer to use current approach for its much smaller dev/maintain effort. I reduced the size diff for current approach to 72KB now.",
+      "parentUuid": "276ba483_cb4a3670",
+      "revId": "406a756e23fdd7b8ee6587c29110412c7ff0409d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef6f7188_b74250f1",
@@ -148,6 +166,24 @@
       "side": 1,
       "message": "There are 2 code styles in this file. Some are lower case (like \u0027join\u0027), and some are upper case, so I choose lower here and lead to this. Have we decided the upper case style? I changed to upper case for this method currently.",
       "parentUuid": "d2ca53be_69aca233",
+      "revId": "406a756e23fdd7b8ee6587c29110412c7ff0409d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4eca5ca5_4a63ba3e",
+        "filename": "src/android/otdaemon_server.hpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-11-29T02:26:08Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "82efe640_4772a1e4",
       "revId": "406a756e23fdd7b8ee6587c29110412c7ff0409d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
