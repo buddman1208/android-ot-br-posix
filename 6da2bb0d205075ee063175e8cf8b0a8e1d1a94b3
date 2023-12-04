@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "deab09bb_b5b30059",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IOtDaemon.aidl",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1501262
+      },
+      "writtenOn": "2023-12-04T03:04:45Z",
+      "side": 1,
+      "message": "use string or int instead of byte[2] for simplicity?",
+      "revId": "6da2bb0d205075ee063175e8cf8b0a8e1d1a94b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
