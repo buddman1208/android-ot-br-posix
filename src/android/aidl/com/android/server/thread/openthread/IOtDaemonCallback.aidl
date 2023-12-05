@@ -62,4 +62,7 @@ oneway interface IOtDaemonCallback {
      *                Otherwise, this multicast address is being removed
      */
     void onMulticastForwardingAddressChanged(in byte[] ipv6Address, boolean isAdded);
+
+    void onTelemetryRetrieved(in byte[] telemetryDataReportedBytes,
+            in byte[] topoEntryRepeatedBytes, in byte[] deviceInfoReportedBytes);
 }

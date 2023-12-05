@@ -39,6 +39,7 @@
 
 #include "agent/vendor.hpp"
 #include "common/mainloop.hpp"
+#include "common/time.hpp"
 #include "ncp/ncp_openthread.hpp"
 
 namespace otbr {
@@ -120,6 +121,8 @@ private:
     std::shared_ptr<IOtStatusReceiver> mMigrationReceiver;
     std::vector<LeaveCallback>         mLeaveCallbacks;
     BorderRouterConfigurationParcel    mBorderRouterConfiguration;
+
+    Status requestTelemetry();
 };
 
 } // namespace Android

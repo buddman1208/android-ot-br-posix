@@ -42,7 +42,9 @@
 #include <openthread/platform/infra_if.h>
 
 #include "agent/vendor.hpp"
+#include "android/otdaemon_telemetry.hpp"
 #include "common/code_utils.hpp"
+#include "threadnetwork_atoms.pb.h"
 
 #define BYTE_ARR_END(arr) ((arr) + sizeof(arr))
 
@@ -61,6 +63,9 @@ std::shared_ptr<VendorServer> VendorServer::newInstance(Application &aApplicatio
 
 namespace otbr {
 namespace Android {
+using android::os::statsd::threadnetwork::ThreadnetworkDeviceInfoReported;
+using android::os::statsd::threadnetwork::ThreadnetworkTelemetryDataReported;
+using android::os::statsd::threadnetwork::ThreadnetworkTopoEntryRepeated;
 
 static const char       OTBR_SERVICE_NAME[] = "ot_daemon";
 static constexpr size_t kMaxIp6Size         = 1280;
@@ -631,5 +636,27 @@ binder_status_t OtDaemonServer::dump(int aFd, const char **aArgs, uint32_t aNumA
 
     return STATUS_OK;
 }
+
+Status OtDaemonServer::requestTelemetry()
+{
+    Status status = Status::ok();
+
+    ThreadnetworkTelemetryDataReported telemetryDataReported;
+    ThreadnetworkTopoEntryRepeated topoEntryRepeated;
+    ThreadnetworkDeviceInfoReported deviceInfoReported;
+    RetrieveAndPushAtoms(GetOtInstance(), telemetryDataReported, topoEntryRepeated, deviceInfoReported);
+
+    std::string telemetryDataReportedStr = telemetryDataReported.SerializeAsString();
+    std::vector<uint8_t> telemetryDataReportedBuffer(telemetryDataReportedStr.begin(), telemetryDataReportedStr.end());
+    std::string topoEntryRepeatedStr = topoEntryRepeated.SerializeAsString();
+    std::vector<uint8_t> topoEntryRepeatedBuffer(topoEntryRepeatedStr.begin(), topoEntryRepeatedStr.end());
+    std::string deviceInfoReportedStr = deviceInfoReported.SerializeAsString();
+    std::vector<uint8_t> deviceInfoReportedBuffer(deviceInfoReportedStr.begin(), deviceInfoReportedStr.end());
+
+    mCallback->onTelemetryRetrieved(telemetryDataReportedBuffer, topoEntryRepeatedBuffer, deviceInfoReportedBuffer);
+
+    return status;
+}
+
 } // namespace Android
 } // namespace otbr

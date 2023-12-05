@@ -145,10 +145,12 @@ cc_defaults {
     srcs: [
         "src/agent/application.cpp",
         "src/android/otdaemon_server.cpp",
+        "src/android/otdaemon_telemetry.cpp",
         "src/border_agent/border_agent.cpp",
         "src/ncp/ncp_openthread.cpp",
         "src/sdp_proxy/advertising_proxy.cpp",
         "src/sdp_proxy/discovery_proxy.cpp",
+        "src/common/code_utils.cpp",
         "src/common/dns_utils.cpp",
         "src/common/logging.cpp",
         "src/common/mainloop.cpp",
@@ -174,6 +176,7 @@ cc_defaults {
         "libutils",
         "libcutils",
         "libbinder_ndk",
+        "liblog",
         "android.hardware.threadnetwork-V1-ndk",
     ],
 
@@ -181,6 +184,8 @@ cc_defaults {
         "libopenthread-cli",
         "ot-core",
         "ot-daemon-aidl-ndk",
+        "ot-daemon-atom-cc-proto-lite",
+        "libprotobuf-cpp-lite",
     ],
 
     host_ldlibs: ["-lutil"],
