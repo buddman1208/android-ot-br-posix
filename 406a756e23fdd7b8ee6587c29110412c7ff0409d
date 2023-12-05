@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f75c4fdd_066ec307",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-12-05T05:35:30Z",
+      "side": 1,
+      "message": "Hi Remi, as discussed offline, we will choose this C++ approach. I moved you to CC to avoid spams, and feel free to add any questions you have. Thanks!",
+      "parentUuid": "142fb985_03cefb4e",
+      "revId": "406a756e23fdd7b8ee6587c29110412c7ff0409d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef6f7188_b74250f1",
