@@ -1,0 +1,209 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99db12cb_a31e9468",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-12-06T03:20:02Z",
+      "side": 1,
+      "message": "Since it doesn\u0027t always telemetry in this method, shall we call it `MaybePushTelemetry`?",
+      "revId": "a1b0bf6a0e261969a4292d1c94663925645a7f7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5fbbede_6971fa59",
+        "filename": "src/android/otdaemon_server.hpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-12-06T03:20:02Z",
+      "side": 1,
+      "message": "Could you explain the reason of choosing this value for initialization?",
+      "revId": "a1b0bf6a0e261969a4292d1c94663925645a7f7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "186d6aad_a2d6c842",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-12-06T03:20:02Z",
+      "side": 1,
+      "message": "nit: To make it neater, group the ones guarded by `#if`.",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 6
+      },
+      "revId": "a1b0bf6a0e261969a4292d1c94663925645a7f7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d1c2b68_07c0b9ba",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-12-06T03:20:02Z",
+      "side": 1,
+      "message": "What\u0027s the convention of naming them as `*Reported` and `*Repeated`?",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 73
+      },
+      "revId": "a1b0bf6a0e261969a4292d1c94663925645a7f7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e931931e_643e5ea2",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-12-06T03:20:02Z",
+      "side": 1,
+      "message": "@wgtdkp@google.com I wonder if we still want to keep the \u0027return in one place\u0027 style in `otdaemon_server`?",
+      "range": {
+        "startLine": 59,
+        "startChar": 6,
+        "endLine": 60,
+        "endChar": 14
+      },
+      "revId": "a1b0bf6a0e261969a4292d1c94663925645a7f7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87052acb_b96c35a7",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-12-06T03:20:02Z",
+      "side": 1,
+      "message": "```suggestion\nThreadnetworkTelemetryDataReported::SrpServerState SrpServerStateFromOtSrpServerState(otSrpServerState aSrpServerState)\n```",
+      "revId": "a1b0bf6a0e261969a4292d1c94663925645a7f7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21b25641_ae9707db",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-12-06T03:20:02Z",
+      "side": 1,
+      "message": "```suggestion\n    otSrpServerAddressMode aSrpServerAddressMode)\n```\n\nalso in other methods",
+      "revId": "a1b0bf6a0e261969a4292d1c94663925645a7f7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "619280d3_a129a3ee",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 733,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-12-06T03:20:02Z",
+      "side": 1,
+      "message": "This won\u0027t be reached IIUC.",
+      "revId": "a1b0bf6a0e261969a4292d1c94663925645a7f7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c512b266_497a2ab1",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 742,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-12-06T03:20:02Z",
+      "side": 1,
+      "message": "This won\u0027t be reached.",
+      "revId": "a1b0bf6a0e261969a4292d1c94663925645a7f7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4449a19c_dd9f03d0",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-12-06T03:20:02Z",
+      "side": 1,
+      "message": "This won\u0027t be reached.",
+      "revId": "a1b0bf6a0e261969a4292d1c94663925645a7f7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1cac7fe_a310d339",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-12-06T03:20:02Z",
+      "side": 1,
+      "message": "```suggestion\n        otbrLogWarning(\"Some telemetries are not populated\");\n```",
+      "revId": "a1b0bf6a0e261969a4292d1c94663925645a7f7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
