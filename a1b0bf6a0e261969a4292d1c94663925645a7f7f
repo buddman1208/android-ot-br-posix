@@ -104,6 +104,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54d5b27d_6b68505b",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2023-12-07T02:42:19Z",
+      "side": 1,
+      "message": "Yes, I think so. The current code here looks good to me",
+      "parentUuid": "e931931e_643e5ea2",
+      "range": {
+        "startLine": 59,
+        "startChar": 6,
+        "endLine": 60,
+        "endChar": 14
+      },
+      "revId": "a1b0bf6a0e261969a4292d1c94663925645a7f7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87052acb_b96c35a7",
