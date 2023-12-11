@@ -1,0 +1,216 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "351e65d4_f05c871a",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-12-11T09:17:26Z",
+      "side": 1,
+      "message": "Please follow single-return style.",
+      "range": {
+        "startLine": 98,
+        "startChar": 1,
+        "endLine": 105,
+        "endChar": 80
+      },
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47376dae_f1b3bdd3",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-12-11T09:17:26Z",
+      "side": 1,
+      "message": "Please follow single-return style.",
+      "range": {
+        "startLine": 114,
+        "startChar": 2,
+        "endLine": 121,
+        "endChar": 0
+      },
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e45bbf6_8f0109db",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-12-11T09:17:26Z",
+      "side": 1,
+      "message": "Please follow single-return style.",
+      "range": {
+        "startLine": 129,
+        "startChar": 2,
+        "endLine": 138,
+        "endChar": 75
+      },
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43fdc534_74607fe7",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-12-11T09:17:26Z",
+      "side": 1,
+      "message": "Here and below they don\u0027t strictly follow the convention to put all variable declarations at the beginning of a block. Probably you can wrap them with blocks so you don\u0027t have to reorder the variable declarations.",
+      "range": {
+        "startLine": 267,
+        "startChar": 0,
+        "endLine": 270,
+        "endChar": 0
+      },
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c399cc7_b3f3fc51",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-12-11T09:17:26Z",
+      "side": 1,
+      "message": "I\u0027m thinking if it would be neater to write these values into a vector\u003cuint8\u003e and convert the vector into a uint32_t. I agree there may not be a very elegant way to deal with it.",
+      "range": {
+        "startLine": 353,
+        "startChar": 10,
+        "endLine": 356,
+        "endChar": 89
+      },
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fba2a871_78151ecb",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-12-11T09:17:26Z",
+      "side": 1,
+      "message": "Could you share some context about why we are using a constant?",
+      "range": {
+        "startLine": 369,
+        "startChar": 32,
+        "endLine": 369,
+        "endChar": 58
+      },
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5bd3280_9a983c4b",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-12-11T09:17:26Z",
+      "side": 1,
+      "message": "Can we place it to be together with other `comboTelemetry2` logic?",
+      "range": {
+        "startLine": 397,
+        "startChar": 10,
+        "endLine": 399,
+        "endChar": 0
+      },
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41384552_6efa16c1",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-12-11T09:17:26Z",
+      "side": 1,
+      "message": "Can we place it to be together with other `topoEntryFlags` logic?",
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1052a74_e66c93ac",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-12-11T09:17:26Z",
+      "side": 1,
+      "message": "The following part looks like a lot of copied logic. Can we make them util methods in `ot-br-posix` so that we can reuse it? Repeating logic manually is error-prone and hard to maintain.",
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4bec3a5_2e9e289a",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-12-11T09:17:26Z",
+      "side": 1,
+      "message": "Watch out the `sizeof` usage. 😊",
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
