@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e351ce5_c6b942ae",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-12-12T05:28:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "351e65d4_f05c871a",
+      "range": {
+        "startLine": 98,
+        "startChar": 1,
+        "endLine": 105,
+        "endChar": 80
+      },
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47376dae_f1b3bdd3",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-12-11T09:17:26Z",
       "side": 1,
       "message": "Please follow single-return style.",
+      "range": {
+        "startLine": 114,
+        "startChar": 2,
+        "endLine": 121,
+        "endChar": 0
+      },
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1ebdbe0_f48997f4",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-12-12T05:28:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47376dae_f1b3bdd3",
       "range": {
         "startLine": 114,
         "startChar": 2,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2231d546_41de4c03",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-12-12T05:28:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e45bbf6_8f0109db",
+      "range": {
+        "startLine": 129,
+        "startChar": 2,
+        "endLine": 138,
+        "endChar": 75
+      },
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43fdc534_74607fe7",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-12-11T09:17:26Z",
       "side": 1,
       "message": "Here and below they don\u0027t strictly follow the convention to put all variable declarations at the beginning of a block. Probably you can wrap them with blocks so you don\u0027t have to reorder the variable declarations.",
+      "range": {
+        "startLine": 267,
+        "startChar": 0,
+        "endLine": 270,
+        "endChar": 0
+      },
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "694cf4d2_bc10aec1",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-12-12T05:28:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43fdc534_74607fe7",
       "range": {
         "startLine": 267,
         "startChar": 0,
@@ -118,6 +214,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cdc92088_af767d7c",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-12-12T05:28:20Z",
+      "side": 1,
+      "message": "Since there are some bit level handling logics, like topoEntryFlags, I feel that using this bit operation is easier.",
+      "parentUuid": "9c399cc7_b3f3fc51",
+      "range": {
+        "startLine": 353,
+        "startChar": 10,
+        "endLine": 356,
+        "endChar": 89
+      },
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fba2a871_78151ecb",
         "filename": "src/android/otdaemon_telemetry.cpp",
         "patchSetId": 33
@@ -129,6 +249,30 @@
       "writtenOn": "2023-12-11T09:17:26Z",
       "side": 1,
       "message": "Could you share some context about why we are using a constant?",
+      "range": {
+        "startLine": 369,
+        "startChar": 32,
+        "endLine": 369,
+        "endChar": 58
+      },
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c72c008f_461f37ee",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-12-12T05:28:20Z",
+      "side": 1,
+      "message": "Currently true is used in the otbr repo, so I used here. The reason I think is that, all data_requests are secured.",
+      "parentUuid": "fba2a871_78151ecb",
       "range": {
         "startLine": 369,
         "startChar": 32,
@@ -164,6 +308,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2cf5ab26_f4a2d256",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-12-12T05:28:20Z",
+      "side": 1,
+      "message": "No, there are some continue branch above, and here is populated only in some situations, and cannot be moved up for direct populate.",
+      "parentUuid": "e5bd3280_9a983c4b",
+      "range": {
+        "startLine": 397,
+        "startChar": 10,
+        "endLine": 399,
+        "endChar": 0
+      },
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "41384552_6efa16c1",
         "filename": "src/android/otdaemon_telemetry.cpp",
         "patchSetId": 33
@@ -181,6 +349,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "118c85b9_0562f5a0",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-12-12T05:28:20Z",
+      "side": 1,
+      "message": "No, there are some continue branch above, and here is populated only in some situations, and cannot be moved up for direct populate.",
+      "parentUuid": "41384552_6efa16c1",
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e1052a74_e66c93ac",
         "filename": "src/android/otdaemon_telemetry.cpp",
         "patchSetId": 33
@@ -192,6 +378,24 @@
       "writtenOn": "2023-12-11T09:17:26Z",
       "side": 1,
       "message": "The following part looks like a lot of copied logic. Can we make them util methods in `ot-br-posix` so that we can reuse it? Repeating logic manually is error-prone and hard to maintain.",
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f3f508f_fb6841b9",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-12-12T05:28:20Z",
+      "side": 1,
+      "message": "I cannot reuse this, since the output proto is different.",
+      "parentUuid": "e1052a74_e66c93ac",
       "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
