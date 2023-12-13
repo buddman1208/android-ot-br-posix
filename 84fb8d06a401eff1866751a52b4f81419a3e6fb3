@@ -490,6 +490,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7abc2574_16dd577b",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2023-12-13T07:10:08Z",
+      "side": 1,
+      "message": "According to offline discussion, I\u0027m fine with keeping the code repetition in this CL and we can discover about refactoring later to reduce redundant logic.",
+      "parentUuid": "9f3f508f_fb6841b9",
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4bec3a5_2e9e289a",
