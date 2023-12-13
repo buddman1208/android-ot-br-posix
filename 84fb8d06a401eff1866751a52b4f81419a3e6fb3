@@ -236,6 +236,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f344ab50_b88e54d8",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-12-13T02:48:56Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cdc92088_af767d7c",
+      "range": {
+        "startLine": 353,
+        "startChar": 10,
+        "endLine": 356,
+        "endChar": 89
+      },
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fba2a871_78151ecb",
@@ -273,6 +297,30 @@
       "side": 1,
       "message": "Currently true is used in the otbr repo, so I used here. The reason I think is that, all data_requests are secured.",
       "parentUuid": "fba2a871_78151ecb",
+      "range": {
+        "startLine": 369,
+        "startChar": 32,
+        "endLine": 369,
+        "endChar": 58
+      },
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bc5fa18_d7841dc9",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-12-13T02:48:56Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c72c008f_461f37ee",
       "range": {
         "startLine": 369,
         "startChar": 32,
@@ -330,6 +378,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "526e6d23_69f5d87b",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-12-13T02:48:56Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2cf5ab26_f4a2d256",
+      "range": {
+        "startLine": 397,
+        "startChar": 10,
+        "endLine": 399,
+        "endChar": 0
+      },
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "41384552_6efa16c1",
@@ -361,6 +433,24 @@
       "side": 1,
       "message": "No, there are some continue branch above, and here is populated only in some situations, and cannot be moved up for direct populate.",
       "parentUuid": "41384552_6efa16c1",
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af73eabc_af54d6ff",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-12-13T02:48:56Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "118c85b9_0562f5a0",
       "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -413,6 +503,24 @@
       "writtenOn": "2023-12-11T09:17:26Z",
       "side": 1,
       "message": "Watch out the `sizeof` usage. 😊",
+      "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f621c9b_1b8f2d67",
+        "filename": "src/android/otdaemon_telemetry.cpp",
+        "patchSetId": 33
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-12-13T02:48:56Z",
+      "side": 1,
+      "message": "Done, removed NAT64 telemetry section.",
+      "parentUuid": "a4bec3a5_2e9e289a",
       "revId": "84fb8d06a401eff1866751a52b4f81419a3e6fb3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
