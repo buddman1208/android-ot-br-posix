@@ -41,6 +41,7 @@ import android.os.test.TestLooper;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.SmallTest;
 
+import com.android.server.thread.openthread.INsdPublisher;
 import com.android.server.thread.openthread.IOtDaemonCallback;
 import com.android.server.thread.openthread.IOtStatusReceiver;
 import com.android.server.thread.openthread.OtDaemonState;
@@ -81,6 +82,7 @@ public final class FakeOtDaemonTest {
     private FakeOtDaemon mFakeOtDaemon;
     private TestLooper mTestLooper;
     @Mock private ParcelFileDescriptor mMockTunFd;
+    @Mock private INsdPublisher mNsdPublisher;
 
     @Before
     public void setUp() {
@@ -92,14 +94,14 @@ public final class FakeOtDaemonTest {
 
     @Test
     public void initialize_succeed_tunFdIsSet() throws Exception {
-        mFakeOtDaemon.initialize(mMockTunFd);
+        mFakeOtDaemon.initialize(mMockTunFd, mNsdPublisher);
 
         assertThat(mFakeOtDaemon.getTunFd()).isEqualTo(mMockTunFd);
     }
 
     @Test
     public void registerStateCallback_noStateChange_callbackIsInvoked() throws Exception {
-        mFakeOtDaemon.initialize(mMockTunFd);
+        mFakeOtDaemon.initialize(mMockTunFd, mNsdPublisher);
         final AtomicReference<OtDaemonState> stateRef = new AtomicReference<>();
         final AtomicLong listenerIdRef = new AtomicLong();
 

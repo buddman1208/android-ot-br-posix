@@ -37,6 +37,7 @@ import android.os.ParcelFileDescriptor;
 import android.os.RemoteException;
 
 import com.android.server.thread.openthread.BorderRouterConfigurationParcel;
+import com.android.server.thread.openthread.INsdPublisher;
 import com.android.server.thread.openthread.IOtDaemon;
 import com.android.server.thread.openthread.IOtDaemonCallback;
 import com.android.server.thread.openthread.IOtStatusReceiver;
@@ -64,6 +65,8 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
     @Nullable private DeathRecipient mDeathRecipient;
 
     @Nullable private ParcelFileDescriptor mTunFd;
+
+    @NonNull private INsdPublisher mNsdPublisher;
 
     @Nullable private IOtDaemonCallback mCallback;
 
@@ -106,8 +109,10 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
     }
 
     @Override
-    public void initialize(ParcelFileDescriptor tunFd) throws RemoteException {
+    public void initialize(ParcelFileDescriptor tunFd, INsdPublisher nsdPublisher)
+            throws RemoteException {
         mTunFd = tunFd;
+        mNsdPublisher = nsdPublisher;
     }
 
     /**
