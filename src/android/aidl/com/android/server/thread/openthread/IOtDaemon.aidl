@@ -34,6 +34,7 @@ import com.android.server.thread.openthread.BorderRouterConfigurationParcel;
 import com.android.server.thread.openthread.Ipv6AddressInfo;
 import com.android.server.thread.openthread.IOtStatusReceiver;
 import com.android.server.thread.openthread.IOtDaemonCallback;
+import com.android.server.thread.openthread.IMdnsPublisher;
 
 /**
  * The OpenThread daemon service which provides access to the core Thread stack for
@@ -128,5 +129,6 @@ oneway interface IOtDaemon {
     oneway void configureBorderRouter(
         in BorderRouterConfigurationParcel brConfig, in IOtStatusReceiver receiver);
 
-    // TODO: add Border Router APIs
+    /** Sets the mDNS Publisher.*/
+    void setMdnsPublisher(in IMdnsPublisher mdnsPublisher);
 }

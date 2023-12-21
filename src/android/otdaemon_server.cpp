@@ -54,7 +54,7 @@ namespace vendor {
 
 std::shared_ptr<VendorServer> VendorServer::newInstance(Application &aApplication)
 {
-    return ndk::SharedRefBase::make<Android::OtDaemonServer>(aApplication.GetNcp());
+    return ndk::SharedRefBase::make<Android::OtDaemonServer>(aApplication);
 }
 
 } // namespace vendor
@@ -96,8 +96,9 @@ static Ipv6AddressInfo ConvertToAddressInfo(const otIp6AddressInfo &aAddressInfo
     return addrInfo;
 }
 
-OtDaemonServer::OtDaemonServer(otbr::Ncp::ControllerOpenThread &aNcp)
-    : mNcp(aNcp)
+OtDaemonServer::OtDaemonServer(Application &aApplication)
+    : mNcp(aApplication.GetNcp())
+    , mMdnsPublisher(static_cast<MdnsPublisher &>(aApplication.GetBorderAgent().GetPublisher()))
     , mBorderRouterConfiguration()
 {
     mClientDeathRecipient =
@@ -340,6 +341,13 @@ Status OtDaemonServer::registerStateCallback(const std::shared_ptr<IOtDaemonCall
     mCallback->onStateChanged(mState, listenerId);
 
 exit:
+    return Status::ok();
+}
+
+Status OtDaemonServer::setMdnsPublisher(const std::shared_ptr<IMdnsPublisher> &aMdnsPublisher)
+{
+    mMdnsPublisher.SetIMdnsPublisher(aMdnsPublisher);
+
     return Status::ok();
 }
 
