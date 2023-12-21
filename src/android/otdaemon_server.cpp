@@ -54,7 +54,7 @@ namespace vendor {
 
 std::shared_ptr<VendorServer> VendorServer::newInstance(Application &aApplication)
 {
-    return ndk::SharedRefBase::make<Android::OtDaemonServer>(aApplication.GetNcp());
+    return ndk::SharedRefBase::make<Android::OtDaemonServer>(aApplication);
 }
 
 } // namespace vendor
@@ -96,8 +96,9 @@ static Ipv6AddressInfo ConvertToAddressInfo(const otIp6AddressInfo &aAddressInfo
     return addrInfo;
 }
 
-OtDaemonServer::OtDaemonServer(otbr::Ncp::ControllerOpenThread &aNcp)
-    : mNcp(aNcp)
+OtDaemonServer::OtDaemonServer(Application &aApplication)
+    : mNcp(aApplication.GetNcp())
+    , mMdnsPublisher(static_cast<MdnsPublisher &>(aApplication.GetBorderAgent().GetPublisher()))
     , mBorderRouterConfiguration()
 {
     mClientDeathRecipient =
@@ -316,10 +317,12 @@ void OtDaemonServer::Process(const MainloopContext &aMainloop)
     }
 }
 
-Status OtDaemonServer::initialize(const ScopedFileDescriptor &aTunFd)
+Status OtDaemonServer::initialize(const ScopedFileDescriptor           &aTunFd,
+                                  const std::shared_ptr<INsdPublisher> &aNsdPublisher)
 {
     otbrLogDebug("OT daemon is initialized by the binder client (tunFd=%d)", aTunFd.get());
     mTunFd = aTunFd.dup();
+    mMdnsPublisher.SetINsdPublisher(aNsdPublisher);
 
     return Status::ok();
 }
