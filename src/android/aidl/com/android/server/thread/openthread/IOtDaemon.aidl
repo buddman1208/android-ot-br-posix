@@ -82,6 +82,8 @@ oneway interface IOtDaemon {
      */
     void registerStateCallback(in IOtDaemonCallback callback, long listenerId);
 
+    void setMdnsPublisher(in IOtDaemonCallback callback);
+
     /**
      * Joins this device to the network specified by {@code activeOpDatasetTlvs}.
      *
@@ -121,4 +123,5 @@ oneway interface IOtDaemon {
         in BorderRouterConfigurationParcel brConfig, in IOtStatusReceiver receiver);
 
     // TODO: add Border Router APIs
+    oneway void onMdnsRegistrationCompleted(in int listenerId, in int otbrError);
 }

@@ -137,7 +137,7 @@ cc_defaults {
         "-DOTBR_ENABLE_VENDOR_SERVER=1", // for OtDaemonServer
         "-DOTBR_ENABLE_BORDER_ROUTING=1",
         "-DOTBR_ENABLE_BORDER_AGENT=1",
-        "-DOTBR_ENABLE_MDNS_MDNSSD=1",
+        "-DOTBR_ENABLE_MDNS_MDNSSD=0",
         "-DOTBR_ENABLE_DNSSD_PLAT=1",
         "-DOTBR_ENABLE_SRP_ADVERTISING_PROXY=0",
         "-DOTBR_ENABLE_DNSSD_DISCOVERY_PROXY=0",
@@ -146,6 +146,7 @@ cc_defaults {
 
     srcs: [
         "src/agent/application.cpp",
+        "src/android/mdns_publisher.cpp",
         "src/android/otdaemon_server.cpp",
         "src/android/otdaemon_telemetry.cpp",
         "src/border_agent/border_agent.cpp",
@@ -161,7 +162,7 @@ cc_defaults {
         "src/common/types.cpp",
         "src/mdns/dnssd_plat.cpp",
         "src/mdns/mdns.cpp",
-        "src/mdns/mdns_mdnssd.cpp",
+        //"src/mdns/mdns_mdnssd.cpp",
         "src/utils/crc16.cpp",
         "src/utils/dns_utils.cpp",
         "src/utils/hex.cpp",
@@ -179,7 +180,6 @@ cc_defaults {
         "libutils",
         "libcutils",
         "libbinder_ndk",
-        "libmdnssd",
         "android.hardware.threadnetwork-V1-ndk",
         "liblog",
         "libstatssocket",

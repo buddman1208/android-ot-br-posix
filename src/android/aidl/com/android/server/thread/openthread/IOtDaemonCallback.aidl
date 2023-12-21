@@ -28,6 +28,8 @@
 
 package com.android.server.thread.openthread;
 
+import com.android.server.thread.openthread.DnsTxtAttribute;
+import com.android.server.thread.openthread.IOtStatusReceiver;
 import com.android.server.thread.openthread.Ipv6AddressInfo;
 import com.android.server.thread.openthread.OtDaemonState;
 
@@ -62,4 +64,15 @@ oneway interface IOtDaemonCallback {
      *                Otherwise, this multicast address is being removed
      */
     void onMulticastForwardingAddressChanged(in byte[] ipv6Address, boolean isAdded);
+
+    void publishService(in String hostName,
+                        in String name,
+                        in String type,
+                        in List<String> subTypeList,
+                        in int port,
+                        in List<DnsTxtAttribute> txt,
+                        in int publishListenerId,
+                        in int unpublishListenerId);
+
+    void unpublishService(in int listenerId);
 }

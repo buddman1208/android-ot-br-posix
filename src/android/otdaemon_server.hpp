@@ -38,6 +38,7 @@
 #include <openthread/ip6.h>
 
 #include "agent/vendor.hpp"
+#include "android/mdns_publisher.hpp"
 #include "common/time.hpp"
 #include "common/mainloop.hpp"
 #include "ncp/ncp_openthread.hpp"
@@ -58,7 +59,7 @@ using aidl::com::android::server::thread::openthread::OtDaemonState;
 class OtDaemonServer : public BnOtDaemon, public MainloopProcessor, public vendor::VendorServer
 {
 public:
-    explicit OtDaemonServer(otbr::Ncp::ControllerOpenThread &aNcp);
+    explicit OtDaemonServer(Application &aApplication);
     virtual ~OtDaemonServer(void) = default;
 
     // Disallow copy and assign.
@@ -86,6 +87,7 @@ private:
 
     Status initialize(const ScopedFileDescriptor &aTunFd) override;
     Status registerStateCallback(const std::shared_ptr<IOtDaemonCallback> &aCallback, int64_t listenerId) override;
+    Status setMdnsPublisher(const std::shared_ptr<IOtDaemonCallback> &aCallback) override;
     bool   isAttached(void);
     Status join(const std::vector<uint8_t>               &aActiveOpDatasetTlvs,
                 const std::shared_ptr<IOtStatusReceiver> &aReceiver) override;
@@ -94,6 +96,7 @@ private:
                              const std::shared_ptr<IOtStatusReceiver> &aReceiver) override;
     Status configureBorderRouter(const BorderRouterConfigurationParcel    &aBorderRouterConfiguration,
                                  const std::shared_ptr<IOtStatusReceiver> &aReceiver) override;
+    Status onMdnsRegistrationCompleted(int aListenerId, int aError) override;
 
     bool        RefreshOtDaemonState(otChangedFlags aFlags);
     void        LeaveGracefully(const LeaveCallback &aReceiver);
@@ -113,6 +116,7 @@ private:
     void        PushTelemetryIfConditionMatch();
 
     otbr::Ncp::ControllerOpenThread   &mNcp;
+    MdnsPublisher                     &mMdnsPublisher;
     TaskRunner                         mTaskRunner;
     ScopedFileDescriptor               mTunFd;
     OtDaemonState                      mState;

@@ -36,7 +36,9 @@
 
 #include "openthread-br/config.h"
 
-#if !(OTBR_ENABLE_MDNS_AVAHI || OTBR_ENABLE_MDNS_MDNSSD || OTBR_ENABLE_MDNS_MOJO)
+#define OTBR_ENABLE_MDNS_OTHER 1
+
+#if !(OTBR_ENABLE_MDNS_AVAHI || OTBR_ENABLE_MDNS_MDNSSD || OTBR_ENABLE_MDNS_MOJO || OTBR_ENABLE_MDNS_OTHER)
 #error "Border Agent feature requires at least one `OTBR_MDNS` implementation"
 #endif
 
