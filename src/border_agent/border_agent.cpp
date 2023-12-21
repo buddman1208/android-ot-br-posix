@@ -481,6 +481,7 @@ void BorderAgent::UnpublishMeshCopService(void)
 void BorderAgent::UpdateMeshCopService(void)
 {
     VerifyOrExit(mPublisher->IsStarted(), mPublisher->Start());
+    UnpublishMeshCopService();
     PublishMeshCopService();
 exit:
     return;
