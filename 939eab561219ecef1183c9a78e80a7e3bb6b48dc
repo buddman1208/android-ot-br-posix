@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d61cb94_059150d7",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 38
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-12-22T03:25:38Z",
+      "side": 1,
+      "message": "Acknowledged. I need to learn and think further before this change, on refining when to initiate the telemetry upload.",
+      "parentUuid": "567329a2_d0e9fbdf",
+      "range": {
+        "startLine": 121,
+        "startChar": 4,
+        "endLine": 121,
+        "endChar": 93
+      },
+      "revId": "939eab561219ecef1183c9a78e80a7e3bb6b48dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9236ef6f_fd2647af",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c93ca388_cfe467d1",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 38
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-12-22T03:25:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9236ef6f_fd2647af",
+      "range": {
+        "startLine": 637,
+        "startChar": 0,
+        "endLine": 637,
+        "endChar": 54
+      },
+      "revId": "939eab561219ecef1183c9a78e80a7e3bb6b48dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e1e859a_56b9dab0",
@@ -77,6 +125,30 @@
       "writtenOn": "2023-12-22T03:10:14Z",
       "side": 1,
       "message": "The fuzz test currently uses a `null` OT instance, here you need to check `VerifyOrExit(GetOtInstance() !\u003d null);`.",
+      "range": {
+        "startLine": 643,
+        "startChar": 4,
+        "endLine": 643,
+        "endChar": 42
+      },
+      "revId": "939eab561219ecef1183c9a78e80a7e3bb6b48dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb2ba3b5_d96cc220",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 38
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2023-12-22T03:25:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e1e859a_56b9dab0",
       "range": {
         "startLine": 643,
         "startChar": 4,
