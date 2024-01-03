@@ -92,14 +92,14 @@ public final class FakeOtDaemonTest {
 
     @Test
     public void initialize_succeed_tunFdIsSet() throws Exception {
-        mFakeOtDaemon.initialize(mMockTunFd);
+        mFakeOtDaemon.initialize(mMockTunFd, true);
 
         assertThat(mFakeOtDaemon.getTunFd()).isEqualTo(mMockTunFd);
     }
 
     @Test
     public void registerStateCallback_noStateChange_callbackIsInvoked() throws Exception {
-        mFakeOtDaemon.initialize(mMockTunFd);
+        mFakeOtDaemon.initialize(mMockTunFd, true);
         final AtomicReference<OtDaemonState> stateRef = new AtomicReference<>();
         final AtomicLong listenerIdRef = new AtomicLong();
 
@@ -175,5 +175,21 @@ public final class FakeOtDaemonTest {
         assertThat(state.deviceRole).isEqualTo(FakeOtDaemon.OT_DEVICE_ROLE_LEADER);
         assertThat(state.activeDatasetTlvs).isEqualTo(DEFAULT_ACTIVE_DATASET_TLVS);
         assertThat(state.multicastForwardingEnabled).isTrue();
+    }
+
+    @Test
+    public void setThreadEnabled_succeed() throws Exception {
+        final AtomicBoolean succeedRef = new AtomicBoolean(false);
+        mFakeOtDaemon.setThreadEnabled(
+                false,
+                new IOtStatusReceiver.Default() {
+                    @Override
+                    public void onSuccess() {
+                        succeedRef.set(true);
+                    }
+                });
+        mTestLooper.dispatchAll();
+
+        assertThat(succeedRef.get()).isTrue();
     }
 }
