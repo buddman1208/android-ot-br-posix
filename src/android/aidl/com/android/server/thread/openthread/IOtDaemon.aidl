@@ -65,13 +65,18 @@ oneway interface IOtDaemon {
     }
 
     /**
-     * Initializes this service with Thread tunnel interface FD and stack callback.
+     * Initializes this service with Thread tunnel interface FD.
      *
      * @param tunFd the Thread tunnel interface FD which can be used to transmit/receive
      *              packets to/from Thread PAN
-     * @param callback the cllback for receiving all Thread stack events
      */
     void initialize(in ParcelFileDescriptor tunFd);
+
+    /**
+     * Terminates this service. If this device has joined Thread network, it will first detach
+     * from the network without erasing the active dataset.
+     */
+    void terminate();
 
     /**
      * Registers a callback to receive OpenThread daemon state changes.
