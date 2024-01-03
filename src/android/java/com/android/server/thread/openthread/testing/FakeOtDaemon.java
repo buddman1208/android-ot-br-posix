@@ -60,6 +60,7 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
 
     private final Handler mHandler;
     private final OtDaemonState mState;
+    private boolean mThreadEnabled = true;
 
     @Nullable private DeathRecipient mDeathRecipient;
 
@@ -106,8 +107,21 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
     }
 
     @Override
-    public void initialize(ParcelFileDescriptor tunFd) throws RemoteException {
+    public void initialize(ParcelFileDescriptor tunFd, boolean enabled) throws RemoteException {
         mTunFd = tunFd;
+        mThreadEnabled = enabled;
+    }
+
+    @Override
+    public void setThreadEnabled(boolean enabled, IOtStatusReceiver receiver) {
+        mHandler.post(() -> {
+            mThreadEnabled = enabled;
+            try {
+                receiver.onSuccess();
+            } catch (RemoteException e) {
+                throw new AssertionError(e);
+            }
+        });
     }
 
     /**
