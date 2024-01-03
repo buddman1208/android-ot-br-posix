@@ -110,6 +110,11 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
         mTunFd = tunFd;
     }
 
+    @Override
+    public void setThreadEnabled(boolean enabled) {
+        return;
+    }
+
     /**
      * Returns the Thread TUN interface FD sent to OT daemon or {@code null} if {@link initialize}
      * is never called.

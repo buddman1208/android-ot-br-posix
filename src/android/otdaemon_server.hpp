@@ -34,12 +34,13 @@
 #include <vector>
 
 #include <aidl/com/android/server/thread/openthread/BnOtDaemon.h>
+#include <aidl/com/android/server/thread/openthread/IOtDaemon.h>
 #include <openthread/instance.h>
 #include <openthread/ip6.h>
 
 #include "agent/vendor.hpp"
-#include "common/time.hpp"
 #include "common/mainloop.hpp"
+#include "common/time.hpp"
 #include "ncp/ncp_openthread.hpp"
 
 namespace otbr {
@@ -50,6 +51,7 @@ using ScopedFileDescriptor = ::ndk::ScopedFileDescriptor;
 using Status               = ::ndk::ScopedAStatus;
 using aidl::com::android::server::thread::openthread::BnOtDaemon;
 using aidl::com::android::server::thread::openthread::BorderRouterConfigurationParcel;
+using aidl::com::android::server::thread::openthread::IOtDaemon;
 using aidl::com::android::server::thread::openthread::IOtDaemonCallback;
 using aidl::com::android::server::thread::openthread::IOtStatusReceiver;
 using aidl::com::android::server::thread::openthread::Ipv6AddressInfo;
@@ -73,6 +75,9 @@ private:
 
     otInstance *GetOtInstance(void);
 
+    bool mThreadEnabled = false;
+    bool mIsLeaving     = false;
+
     // Implements vendor::VendorServer
 
     void Init(void) override;
@@ -84,7 +89,8 @@ private:
 
     // Implements IOtDaemon.aidl
 
-    Status initialize(const ScopedFileDescriptor &aTunFd) override;
+    Status initialize(const ScopedFileDescriptor &aTunFd, const bool enabled) override;
+    Status setThreadEnabled(const bool enabled, const std::shared_ptr<IOtStatusReceiver> &aReceiver) override;
     Status registerStateCallback(const std::shared_ptr<IOtDaemonCallback> &aCallback, int64_t listenerId) override;
     bool   isAttached(void);
     Status join(const std::vector<uint8_t>               &aActiveOpDatasetTlvs,

@@ -32,8 +32,10 @@ import static com.google.common.io.BaseEncoding.base16;
 import static com.google.common.truth.Truth.assertThat;
 
 import static org.junit.Assert.assertThrows;
+import static org.mockito.Mockito.verify;
 
 import android.os.Handler;
+import android.os.IBinder.DeathRecipient;
 import android.os.ParcelFileDescriptor;
 import android.os.RemoteException;
 import android.os.test.TestLooper;
@@ -81,6 +83,7 @@ public final class FakeOtDaemonTest {
     private FakeOtDaemon mFakeOtDaemon;
     private TestLooper mTestLooper;
     @Mock private ParcelFileDescriptor mMockTunFd;
+    @Mock private DeathRecipient mDeathRecipient;
 
     @Before
     public void setUp() {
@@ -175,5 +178,14 @@ public final class FakeOtDaemonTest {
         assertThat(state.deviceRole).isEqualTo(FakeOtDaemon.OT_DEVICE_ROLE_LEADER);
         assertThat(state.activeDatasetTlvs).isEqualTo(DEFAULT_ACTIVE_DATASET_TLVS);
         assertThat(state.multicastForwardingEnabled).isTrue();
+    }
+
+    @Test
+    public void terminate_callsDeathRecipient() {
+        mFakeOtDaemon.linkToDeath(mDeathRecipient, 0);
+
+        mFakeOtDaemon.terminate();
+
+        verify(mDeathRecipient).binderDied();
     }
 }
