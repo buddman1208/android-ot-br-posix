@@ -1,0 +1,141 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5ffa05c_e14b5287",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-01-03T07:41:10Z",
+      "side": 1,
+      "message": "LGTM overall with some minor questions",
+      "revId": "61a0cf4a472ba42644448b8f74768dfdd2e7ea0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92bfab7f_3fb4bc52",
+        "filename": "src/android/java/com/android/server/thread/openthread/testing/FakeOtDaemon.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-01-03T07:41:10Z",
+      "side": 1,
+      "message": "```suggestion\n    /**\n     * Returns the Thread TUN interface FD sent to OT daemon or {@code null} if {@link\n     * initialize} is never called.\n     */\n```\n\nI think the term \u0027tunnel\u0027 is less frequently used than \u0027TUN\u0027 when referring to a TUN interface.",
+      "range": {
+        "startLine": 113,
+        "startChar": 4,
+        "endLine": 116,
+        "endChar": 7
+      },
+      "revId": "61a0cf4a472ba42644448b8f74768dfdd2e7ea0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "329f2e46_77008bc4",
+        "filename": "src/android/java/com/android/server/thread/openthread/testing/FakeOtDaemon.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-01-03T07:41:10Z",
+      "side": 1,
+      "message": "Shall we also add test case a that `OtDaemon` spends too long joining a network and it sends the \u0027detached\u0027 state callbacks?\n\nThis may not be a real scenario for Thread Border Router though.",
+      "revId": "61a0cf4a472ba42644448b8f74768dfdd2e7ea0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42cd02c9_77d5b5b7",
+        "filename": "src/android/java/com/android/server/thread/openthread/testing/FakeOtDaemon.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-01-03T07:41:10Z",
+      "side": 1,
+      "message": "```suggestion\n    /** Sets the {@link RemoteException} which will be thrown from {@link #join}. */\n```",
+      "revId": "61a0cf4a472ba42644448b8f74768dfdd2e7ea0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "846398af_abaa6890",
+        "filename": "tests/android/java/com/android/server/thread/openthread/testing/FakeOtDaemonTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-01-03T07:41:10Z",
+      "side": 1,
+      "message": "Make it a constant or add comment explaining what this value means.",
+      "range": {
+        "startLine": 114,
+        "startChar": 16,
+        "endLine": 114,
+        "endChar": 17
+      },
+      "revId": "61a0cf4a472ba42644448b8f74768dfdd2e7ea0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "828132e3_38e48abf",
+        "filename": "tests/android/java/com/android/server/thread/openthread/testing/FakeOtDaemonTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-01-03T07:41:10Z",
+      "side": 1,
+      "message": "add a comment to explain it\u0027s a listener ID.",
+      "range": {
+        "startLine": 154,
+        "startChar": 16,
+        "endLine": 154,
+        "endChar": 18
+      },
+      "revId": "61a0cf4a472ba42644448b8f74768dfdd2e7ea0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e78ef15_03f4ee8d",
+        "filename": "tests/android/java/com/android/server/thread/openthread/testing/FakeOtDaemonTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-01-03T07:41:10Z",
+      "side": 1,
+      "message": "Probably we should also verify the \u0027detached\u0027 states are sent back.",
+      "revId": "61a0cf4a472ba42644448b8f74768dfdd2e7ea0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
