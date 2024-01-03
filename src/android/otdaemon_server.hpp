@@ -34,12 +34,13 @@
 #include <vector>
 
 #include <aidl/com/android/server/thread/openthread/BnOtDaemon.h>
+#include <aidl/com/android/server/thread/openthread/IOtDaemon.h>
 #include <openthread/instance.h>
 #include <openthread/ip6.h>
 
 #include "agent/vendor.hpp"
-#include "common/time.hpp"
 #include "common/mainloop.hpp"
+#include "common/time.hpp"
 #include "ncp/ncp_openthread.hpp"
 
 namespace otbr {
@@ -50,6 +51,7 @@ using ScopedFileDescriptor = ::ndk::ScopedFileDescriptor;
 using Status               = ::ndk::ScopedAStatus;
 using aidl::com::android::server::thread::openthread::BnOtDaemon;
 using aidl::com::android::server::thread::openthread::BorderRouterConfigurationParcel;
+using aidl::com::android::server::thread::openthread::IOtDaemon;
 using aidl::com::android::server::thread::openthread::IOtDaemonCallback;
 using aidl::com::android::server::thread::openthread::IOtStatusReceiver;
 using aidl::com::android::server::thread::openthread::Ipv6AddressInfo;
@@ -84,7 +86,8 @@ private:
 
     // Implements IOtDaemon.aidl
 
-    Status initialize(const ScopedFileDescriptor &aTunFd) override;
+    Status initialize(const ScopedFileDescriptor &aTunFd, const bool enabled) override;
+    Status setThreadEnabled(const bool enabled, const std::shared_ptr<IOtStatusReceiver> &aReceiver) override;
     Status registerStateCallback(const std::shared_ptr<IOtDaemonCallback> &aCallback, int64_t listenerId) override;
     bool   isAttached(void);
     Status join(const std::vector<uint8_t>               &aActiveOpDatasetTlvs,
@@ -112,7 +115,10 @@ private:
                                                      otBackboneRouterMulticastListenerEvent aEvent,
                                                      const otIp6Address                    *aAddress);
     void        PushTelemetryIfConditionMatch();
+    void        updateThreadEnabledState(const int aEnabled, const std::shared_ptr<IOtStatusReceiver> &aReceiver);
+    void        enableThread(const std::shared_ptr<IOtStatusReceiver> &aReceiver);
 
+    int                                mThreadEnabled = kThreadDisabled;
     otbr::Ncp::ControllerOpenThread   &mNcp;
     TaskRunner                         mTaskRunner;
     ScopedFileDescriptor               mTunFd;
@@ -123,8 +129,12 @@ private:
     std::shared_ptr<IOtStatusReceiver> mMigrationReceiver;
     std::vector<LeaveCallback>         mLeaveCallbacks;
     BorderRouterConfigurationParcel    mBorderRouterConfiguration;
-    static constexpr Seconds           kTelemetryCheckInterval           = Seconds(30);           // 30 seconds
-    static constexpr Seconds           kTelemetryUploadIntervalThreshold = Seconds(60 * 60 * 12); // 12 hours
+
+    static constexpr Seconds kTelemetryCheckInterval           = Seconds(30);           // 30 seconds
+    static constexpr Seconds kTelemetryUploadIntervalThreshold = Seconds(60 * 60 * 12); // 12 hours
+    static constexpr int     kThreadDisabled                   = 0; // ThreadNetworkController.STATED_DISABLED
+    static constexpr int     kThreadEnabled                    = 1; // ThreadNetworkController.STATED_ENABLED
+    static constexpr int     kThreadDisabling                  = 2; // ThreadNetworkController.STATED_DISABLING
 };
 
 } // namespace Android
