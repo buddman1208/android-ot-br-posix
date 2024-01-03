@@ -324,6 +324,16 @@ Status OtDaemonServer::initialize(const ScopedFileDescriptor &aTunFd)
     return Status::ok();
 }
 
+Status OtDaemonServer::terminate()
+{
+    if (GetOtInstance() != nullptr)
+    {
+        LeaveGracefully([=]() { exit(EXIT_SUCCESS); });
+    }
+
+    return Status::ok();
+}
+
 Status OtDaemonServer::registerStateCallback(const std::shared_ptr<IOtDaemonCallback> &aCallback, int64_t listenerId)
 {
     VerifyOrExit(GetOtInstance() != nullptr, otbrLogWarning("OT is not initialized"));
@@ -470,6 +480,7 @@ Status OtDaemonServer::leave(const std::shared_ptr<IOtStatusReceiver> &aReceiver
     }
     else
     {
+        mIsleaving = true;
         LeaveGracefully([=]() { aReceiver->onSuccess(); });
     }
 
@@ -492,21 +503,27 @@ void OtDaemonServer::DetachGracefullyCallback(void *aBinderServer)
 
 void OtDaemonServer::DetachGracefullyCallback(void)
 {
+    std::string event = mIsleaving ? "leave()" : "terminate()";
+
     // Ignore errors as those operations should always succeed
     (void)otThreadSetEnabled(GetOtInstance(), false);
     (void)otIp6SetEnabled(GetOtInstance(), false);
-    (void)otInstanceErasePersistentInfo(GetOtInstance());
-    otbrLogInfo("leave() success...");
+    if (mIsleaving)
+    {
+        (void)otInstanceErasePersistentInfo(GetOtInstance());
+        mIsleaving = false;
+    }
+    otbrLogInfo("%s success...", event.c_str());
 
     if (mJoinReceiver != nullptr)
     {
-        mJoinReceiver->onError(OT_ERROR_ABORT, "Aborted by leave() operation");
+        mJoinReceiver->onError(OT_ERROR_ABORT, "Aborted by " + event + " operation");
         mJoinReceiver = nullptr;
     }
 
     if (mMigrationReceiver != nullptr)
     {
-        mMigrationReceiver->onError(OT_ERROR_ABORT, "Aborted by leave() operation");
+        mMigrationReceiver->onError(OT_ERROR_ABORT, "Aborted by " + event + " operation");
         mMigrationReceiver = nullptr;
     }
 

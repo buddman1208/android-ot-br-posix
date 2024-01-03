@@ -38,8 +38,8 @@
 #include <openthread/ip6.h>
 
 #include "agent/vendor.hpp"
-#include "common/time.hpp"
 #include "common/mainloop.hpp"
+#include "common/time.hpp"
 #include "ncp/ncp_openthread.hpp"
 
 namespace otbr {
@@ -73,6 +73,8 @@ private:
 
     otInstance *GetOtInstance(void);
 
+    bool mIsleaving = false;
+
     // Implements vendor::VendorServer
 
     void Init(void) override;
@@ -85,6 +87,7 @@ private:
     // Implements IOtDaemon.aidl
 
     Status initialize(const ScopedFileDescriptor &aTunFd) override;
+    Status terminate() override;
     Status registerStateCallback(const std::shared_ptr<IOtDaemonCallback> &aCallback, int64_t listenerId) override;
     bool   isAttached(void);
     Status join(const std::vector<uint8_t>               &aActiveOpDatasetTlvs,

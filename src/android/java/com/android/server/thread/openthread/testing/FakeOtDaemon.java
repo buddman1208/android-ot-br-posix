@@ -110,6 +110,18 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
         mTunFd = tunFd;
     }
 
+    @Override
+    public void terminate() {
+        mState.isInterfaceUp = false;
+        mState.deviceRole = OT_DEVICE_ROLE_DISABLED;
+        mState.activeDatasetTlvs = new byte[0];
+        mState.pendingDatasetTlvs = new byte[0];
+        mState.multicastForwardingEnabled = false;
+        if (mDeathRecipient != null) {
+            mDeathRecipient.binderDied();
+        }
+    }
+
     /**
      * Returns the Thread TUN interface FD sent to OT daemon or {@code null} if {@link initialize}
      * is never called.
