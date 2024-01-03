@@ -38,8 +38,8 @@
 #include <openthread/ip6.h>
 
 #include "agent/vendor.hpp"
-#include "common/time.hpp"
 #include "common/mainloop.hpp"
+#include "common/time.hpp"
 #include "ncp/ncp_openthread.hpp"
 
 namespace otbr {
@@ -85,6 +85,7 @@ private:
     // Implements IOtDaemon.aidl
 
     Status initialize(const ScopedFileDescriptor &aTunFd) override;
+    Status terminate() override;
     Status registerStateCallback(const std::shared_ptr<IOtDaemonCallback> &aCallback, int64_t listenerId) override;
     bool   isAttached(void);
     Status join(const std::vector<uint8_t>               &aActiveOpDatasetTlvs,
@@ -98,8 +99,10 @@ private:
 
     bool        RefreshOtDaemonState(otChangedFlags aFlags);
     void        LeaveGracefully(const LeaveCallback &aReceiver);
+    void        DetachGracefully(const LeaveCallback &aReceiver);
+    static void LeaveGracefullyCallback(void *aBinderServer);
     static void DetachGracefullyCallback(void *aBinderServer);
-    void        DetachGracefullyCallback(void);
+    void        DetachGracefullyCallback(bool aLeaveNetwork);
     static void SendMgmtPendingSetCallback(otError aResult, void *aBinderServer);
 
     static void BinderDeathCallback(void *aBinderServer);

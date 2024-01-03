@@ -324,6 +324,16 @@ Status OtDaemonServer::initialize(const ScopedFileDescriptor &aTunFd)
     return Status::ok();
 }
 
+Status OtDaemonServer::terminate()
+{
+    if (GetOtInstance() != nullptr)
+    {
+        DetachGracefully([=]() { exit(EXIT_SUCCESS); });
+    }
+
+    return Status::ok();
+}
+
 Status OtDaemonServer::registerStateCallback(const std::shared_ptr<IOtDaemonCallback> &aCallback, int64_t listenerId)
 {
     VerifyOrExit(GetOtInstance() != nullptr, otbrLogWarning("OT is not initialized"));
@@ -481,32 +491,51 @@ void OtDaemonServer::LeaveGracefully(const LeaveCallback &aReceiver)
     mLeaveCallbacks.push_back(aReceiver);
 
     // Ignores the OT_ERROR_BUSY error if a detach has already been requested
+    (void)otThreadDetachGracefully(GetOtInstance(), LeaveGracefullyCallback, this);
+}
+
+void OtDaemonServer::DetachGracefully(const LeaveCallback &aReceiver)
+{
+    mLeaveCallbacks.push_back(aReceiver);
+
+    // Ignores the OT_ERROR_BUSY error if a detach has already been requested
     (void)otThreadDetachGracefully(GetOtInstance(), DetachGracefullyCallback, this);
+}
+
+void OtDaemonServer::LeaveGracefullyCallback(void *aBinderServer)
+{
+    OtDaemonServer *thisServer = static_cast<OtDaemonServer *>(aBinderServer);
+    thisServer->DetachGracefullyCallback(true);
 }
 
 void OtDaemonServer::DetachGracefullyCallback(void *aBinderServer)
 {
     OtDaemonServer *thisServer = static_cast<OtDaemonServer *>(aBinderServer);
-    thisServer->DetachGracefullyCallback();
+    thisServer->DetachGracefullyCallback(false);
 }
 
-void OtDaemonServer::DetachGracefullyCallback(void)
+void OtDaemonServer::DetachGracefullyCallback(bool aLeaveNetwork)
 {
+    std::string event = aLeaveNetwork ? "leave()" : "terminate()";
+
     // Ignore errors as those operations should always succeed
     (void)otThreadSetEnabled(GetOtInstance(), false);
     (void)otIp6SetEnabled(GetOtInstance(), false);
-    (void)otInstanceErasePersistentInfo(GetOtInstance());
-    otbrLogInfo("leave() success...");
+    if (aLeaveNetwork)
+    {
+        (void)otInstanceErasePersistentInfo(GetOtInstance());
+    }
+    otbrLogInfo("%s success...", event.c_str());
 
     if (mJoinReceiver != nullptr)
     {
-        mJoinReceiver->onError(OT_ERROR_ABORT, "Aborted by leave() operation");
+        mJoinReceiver->onError(OT_ERROR_ABORT, "Aborted by " + event + " operation");
         mJoinReceiver = nullptr;
     }
 
     if (mMigrationReceiver != nullptr)
     {
-        mMigrationReceiver->onError(OT_ERROR_ABORT, "Aborted by leave() operation");
+        mMigrationReceiver->onError(OT_ERROR_ABORT, "Aborted by " + event + " operation");
         mMigrationReceiver = nullptr;
     }
 
