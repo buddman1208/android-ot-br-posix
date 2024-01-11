@@ -666,6 +666,7 @@ void RetrieveAndPushAtoms(otInstance *otInstance)
     {
         otbrLogWarning("Failed to push ThreadnetworkDeviceInfoReported");
     }
+    otbrLogInfo("Pushed threadnetwork ATOMs.");
 }
 } // namespace Android
 } // namespace otbr
