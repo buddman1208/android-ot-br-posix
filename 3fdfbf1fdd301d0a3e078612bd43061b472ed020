@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0660852_b36bd531",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-12T08:17:17Z",
+      "side": 1,
+      "message": "There is a \"deprecated-this-capture\" build warning on this code:\n\n```\nexternal/ot-br-posix/src/android/otdaemon_server.cpp:367:52: warning: implicit capture of \u0027this\u0027 with a capture default of \u0027\u003d\u0027 is deprecated [-Wdeprecated-this-capture]\n                otError error \u003d otThreadSetEnabled(GetOtInstance(), false);\n                                                   ^\nexternal/ot-br-posix/src/android/otdaemon_server.cpp:366:30: note: add an explicit capture of \u0027this\u0027 to capture \u0027*this\u0027 by reference\n            LeaveGracefully([\u003d]() {\n```\n\nPlease resolve by capturing \"this\" explicitly:\n\n```\nLeaveGracefully([this]() {\n...\n})\n```",
+      "range": {
+        "startLine": 371,
+        "startChar": 0,
+        "endLine": 372,
+        "endChar": 71
+      },
+      "revId": "3fdfbf1fdd301d0a3e078612bd43061b472ed020",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
