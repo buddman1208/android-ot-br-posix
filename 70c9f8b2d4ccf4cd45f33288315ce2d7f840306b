@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e49fdd8_a93bdcf6",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-16T02:29:36Z",
+      "side": 1,
+      "message": "nit:\n```suggestion\n        ExitNow();\n```",
+      "range": {
+        "startLine": 353,
+        "startChar": 8,
+        "endLine": 353,
+        "endChar": 28
+      },
+      "revId": "70c9f8b2d4ccf4cd45f33288315ce2d7f840306b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87c920bb_c7b50c3e",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-16T02:29:36Z",
+      "side": 1,
+      "message": "Move this to the beginning of this method. Because you may access otInstance from the aReceiver-\u003eonSuccess.",
+      "range": {
+        "startLine": 356,
+        "startChar": 4,
+        "endLine": 356,
+        "endChar": 112
+      },
+      "revId": "70c9f8b2d4ccf4cd45f33288315ce2d7f840306b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "921f660a_db1318de",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-16T02:29:36Z",
+      "side": 1,
+      "message": "Isn\u0027t aReceiver guaranteed to be NonNull?",
+      "range": {
+        "startLine": 375,
+        "startChar": 16,
+        "endLine": 376,
+        "endChar": 17
+      },
+      "revId": "70c9f8b2d4ccf4cd45f33288315ce2d7f840306b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95df40f6_e53e0160",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-16T02:29:36Z",
+      "side": 1,
+      "message": "We can alllow leave when Thread is disabled given it\u0027s already \"left\" when Thread is disabled. In this case, leave() will simply wipe the persistent dataset",
+      "range": {
+        "startLine": 540,
+        "startChar": 4,
+        "endLine": 541,
+        "endChar": 49
+      },
+      "revId": "70c9f8b2d4ccf4cd45f33288315ce2d7f840306b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62c61d88_1631ee51",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-16T02:29:36Z",
+      "side": 1,
+      "message": "Again, always put this check at the beginning of a method. This OT_ERROR_INVALID_STATE error should never happen in real code (this check is for fuzzer check).",
+      "range": {
+        "startLine": 543,
+        "startChar": 0,
+        "endLine": 543,
+        "endChar": 112
+      },
+      "revId": "70c9f8b2d4ccf4cd45f33288315ce2d7f840306b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

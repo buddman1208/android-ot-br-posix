@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "91b8fda2_d9183c28",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-16T02:29:36Z",
+      "side": 1,
+      "message": "```suggestion\n    mThreadEnabled \u003d enabled;\n```\n\nThis is the initial state, no callbacks and Thread is never attached. So probably no necessary to go over DetachGracefully",
+      "range": {
+        "startLine": 323,
+        "startChar": 4,
+        "endLine": 323,
+        "endChar": 39
+      },
+      "revId": "3fdfbf1fdd301d0a3e078612bd43061b472ed020",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b0660852_b36bd531",
         "filename": "src/android/otdaemon_server.cpp",
         "patchSetId": 6
@@ -19,6 +42,29 @@
         "startChar": 0,
         "endLine": 372,
         "endChar": 71
+      },
+      "revId": "3fdfbf1fdd301d0a3e078612bd43061b472ed020",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e941dff_196976d0",
+        "filename": "src/android/otdaemon_server.hpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-16T02:29:36Z",
+      "side": 1,
+      "message": "In C++ code, the order of class members is:\n1. type definitions. Such as `using LeaveCallback \u003d std::function\u003cvoid()\u003e;`\n2. Constant value definitions\n3. member methods\n4. member fields\n\nThis is typically different with java practice.\n\n\nSo you should move this two lines down to around line 122.",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 32
       },
       "revId": "3fdfbf1fdd301d0a3e078612bd43061b472ed020",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
