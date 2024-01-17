@@ -1,0 +1,176 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d6fb983_c7409202",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/DnsTxtAttribute.aidl",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-17T08:37:49Z",
+      "side": 1,
+      "message": "no newline at end of file",
+      "revId": "5b5f3361b7f43f4e7643aa2d1dc6000e6f9854e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f37d46a1_29deaaa3",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IMdnsStatusReceiver.aidl",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-17T08:37:49Z",
+      "side": 1,
+      "message": "no newline at end of file",
+      "revId": "5b5f3361b7f43f4e7643aa2d1dc6000e6f9854e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2962437_d4d8b817",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IOtDaemon.aidl",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-17T08:37:49Z",
+      "side": 1,
+      "message": "This API should be call right after initialize(), so please move it close to initialize().\n\nOr even better, move the IMdnsPublisher into the argument list of `initialize()`",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 59
+      },
+      "revId": "5b5f3361b7f43f4e7643aa2d1dc6000e6f9854e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d83d275_dfa92a62",
+        "filename": "src/android/mdns_publisher.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-17T08:37:49Z",
+      "side": 1,
+      "message": "Question for you: do we really need the listenerId?",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 108,
+        "endChar": 42
+      },
+      "revId": "5b5f3361b7f43f4e7643aa2d1dc6000e6f9854e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a1165a0_be1d97d6",
+        "filename": "src/android/mdns_publisher.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-17T08:37:49Z",
+      "side": 1,
+      "message": "nit:\nput PublishService and UnpublishService together to each other",
+      "range": {
+        "startLine": 155,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 73
+      },
+      "revId": "5b5f3361b7f43f4e7643aa2d1dc6000e6f9854e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd264e93_fd831851",
+        "filename": "src/android/mdns_publisher.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-17T08:37:49Z",
+      "side": 1,
+      "message": "nit: move this to the begin of this class.",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 34
+      },
+      "revId": "5b5f3361b7f43f4e7643aa2d1dc6000e6f9854e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43da1dc9_3d816de3",
+        "filename": "src/android/mdns_publisher.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-17T08:37:49Z",
+      "side": 1,
+      "message": "```suggestion\n    std::shared_ptr\u003cINsdPublisher\u003e                    mNsdPublisher \u003d nullptr;\n```\n\nThen what about renaming the AIDL interface to INsdManager?",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 137,
+        "endChar": 79
+      },
+      "revId": "5b5f3361b7f43f4e7643aa2d1dc6000e6f9854e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "623113cc_892378ee",
+        "filename": "src/mdns/mdns.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-17T08:37:49Z",
+      "side": 1,
+      "message": "Unintentional change?",
+      "range": {
+        "startLine": 329,
+        "startChar": 0,
+        "endLine": 332,
+        "endChar": 1
+      },
+      "revId": "5b5f3361b7f43f4e7643aa2d1dc6000e6f9854e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
