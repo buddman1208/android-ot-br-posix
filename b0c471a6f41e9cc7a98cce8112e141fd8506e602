@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a249eb5_c14c6f16",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IOtDaemon.aidl",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-17T04:54:36Z",
+      "side": 1,
+      "message": "```suggestion\n    void onMdnsRegistrationCompleted(in int listenerId, in int otbrError);\n```",
+      "range": {
+        "startLine": 126,
+        "startChar": 4,
+        "endLine": 126,
+        "endChar": 10
+      },
+      "revId": "b0c471a6f41e9cc7a98cce8112e141fd8506e602",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcbeb6ac_db628cd2",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IOtDaemonCallback.aidl",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-17T04:54:36Z",
+      "side": 1,
+      "message": "```suggestion\n    void publishService(@nullable in String hostName,\n```",
+      "range": {
+        "startLine": 68,
+        "startChar": 24,
+        "endLine": 68,
+        "endChar": 43
+      },
+      "revId": "b0c471a6f41e9cc7a98cce8112e141fd8506e602",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14274801_9533af73",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IOtDaemonCallback.aidl",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-17T04:54:36Z",
+      "side": 1,
+      "message": "```suggestion\n}\n\n```\n\nno newline",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 1
+      },
+      "revId": "b0c471a6f41e9cc7a98cce8112e141fd8506e602",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
