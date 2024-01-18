@@ -41,6 +41,7 @@
 #include <openthread/link.h>
 #include <openthread/openthread-system.h>
 #include <openthread/platform/infra_if.h>
+#include <openthread/platform/radio.h>
 
 #include "agent/vendor.hpp"
 #include "android/otdaemon_telemetry.hpp"
@@ -594,6 +595,36 @@ Status OtDaemonServer::setCountryCode(const std::string                        &
     VerifyOrExit(GetOtInstance() != nullptr, error = OT_ERROR_INVALID_STATE, message = "OT is not initialized");
     countryCode = (static_cast<uint16_t>(aCountryCode[0]) << 8) | aCountryCode[1];
     SuccessOrExit(error = otLinkSetRegion(GetOtInstance(), countryCode), message = "Failed to set the country code");
+
+exit:
+    PropagateResult(error, message, aReceiver);
+    return Status::ok();
+}
+
+Status OtDaemonServer::setChannelMaxPowers(const std::vector<ChannelMaxPowerParcel> &aChannelMaxPowers,
+                                           const std::shared_ptr<IOtStatusReceiver> &aReceiver)
+{
+    otError     error = OT_ERROR_NONE;
+    std::string message;
+    uint8_t     channel;
+    int16_t     maxPower;
+
+    VerifyOrExit(GetOtInstance() != nullptr, error = OT_ERROR_INVALID_STATE, message = "OT is not initialized");
+
+    for (ChannelMaxPowerParcel channelMaxPower : aChannelMaxPowers)
+    {
+        VerifyOrExit((channelMaxPower.channel >= OT_RADIO_2P4GHZ_OQPSK_CHANNEL_MIN) &&
+                         (channelMaxPower.channel <= OT_RADIO_2P4GHZ_OQPSK_CHANNEL_MAX),
+                     error = OT_ERROR_INVALID_ARGS, message = "The channel is invalid");
+        VerifyOrExit((channelMaxPower.maxPower >= INT16_MIN) && (channelMaxPower.maxPower <= INT16_MAX),
+                     error = OT_ERROR_INVALID_ARGS, message = "The max power is invalid");
+
+        channel  = static_cast<uint8_t>(channelMaxPower.channel);
+        maxPower = static_cast<int16_t>(channelMaxPower.maxPower);
+        otbrLogInfo("Set channel max power: channel=%u, maxPower=%d", channel, maxPower);
+        SuccessOrExit(error   = otPlatRadioSetChannelTargetPower(GetOtInstance(), channel, maxPower),
+                      message = "Failed to set channel max power");
+    }
 
 exit:
     PropagateResult(error, message, aReceiver);
