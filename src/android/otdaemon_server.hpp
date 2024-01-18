@@ -54,6 +54,7 @@ using Status               = ::ndk::ScopedAStatus;
 using aidl::com::android::server::thread::openthread::BackboneRouterState;
 using aidl::com::android::server::thread::openthread::BnOtDaemon;
 using aidl::com::android::server::thread::openthread::BorderRouterConfigurationParcel;
+using aidl::com::android::server::thread::openthread::ChannelMaxPowerParcel;
 using aidl::com::android::server::thread::openthread::IChannelMasksReceiver;
 using aidl::com::android::server::thread::openthread::INsdPublisher;
 using aidl::com::android::server::thread::openthread::IOtDaemon;
@@ -112,6 +113,10 @@ private:
                                      const std::shared_ptr<IOtStatusReceiver> &aReceiver);
     Status setCountryCode(const std::string &aCountryCode, const std::shared_ptr<IOtStatusReceiver> &aReceiver);
     void   setCountryCodeInternal(const std::string &aCountryCode, const std::shared_ptr<IOtStatusReceiver> &aReceiver);
+    Status setChannelMaxPowers(const std::vector<ChannelMaxPowerParcel> &aChannelMaxPowers,
+                               const std::shared_ptr<IOtStatusReceiver> &aReceiver);
+    Status setChannelMaxPowersInternal(const std::vector<ChannelMaxPowerParcel> &aChannelMaxPowers,
+                                       const std::shared_ptr<IOtStatusReceiver> &aReceiver);
     Status configureBorderRouter(const BorderRouterConfigurationParcel    &aBorderRouterConfiguration,
                                  const std::shared_ptr<IOtStatusReceiver> &aReceiver) override;
     void   configureBorderRouterInternal(int                                       aIcmp6SocketFd,

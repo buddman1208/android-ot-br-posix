@@ -31,6 +31,7 @@ package com.android.server.thread.openthread;
 import android.os.ParcelFileDescriptor;
 
 import com.android.server.thread.openthread.BorderRouterConfigurationParcel;
+import com.android.server.thread.openthread.ChannelMaxPowerParcel;
 import com.android.server.thread.openthread.IChannelMasksReceiver;
 import com.android.server.thread.openthread.Ipv6AddressInfo;
 import com.android.server.thread.openthread.IOtStatusReceiver;
@@ -72,6 +73,7 @@ oneway interface IOtDaemon {
         OT_ERROR_BUSY = 5,
         OT_ERROR_PARSE = 6,
         OT_ERROR_ABORT = 11,
+        OT_ERROR_NOT_IMPLEMENTED = 12,
         OT_ERROR_INVALID_STATE = 13,
         OT_ERROR_RESPONSE_TIMEOUT = 28,
         OT_ERROR_REASSEMBLY_TIMEOUT = 30,
@@ -164,6 +166,14 @@ oneway interface IOtDaemon {
      * @param receiver the receiver to receive result of this operation
      */
     void getChannelMasks(in IChannelMasksReceiver receiver);
+
+   /**
+    * Sets the max power of each channel
+    *
+    * @param channelMaxPowers an array of {@code ChannelMaxPower}.
+    * @param receiver the receiver to the receive result of this operation.
+    */
+    void setChannelMaxPowers(in ChannelMaxPowerParcel[] channelMaxPowers, in IOtStatusReceiver receiver);
 
     // TODO: add Border Router APIs
 }
