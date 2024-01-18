@@ -37,6 +37,7 @@ import android.os.ParcelFileDescriptor;
 import android.os.RemoteException;
 
 import com.android.server.thread.openthread.BorderRouterConfigurationParcel;
+import com.android.server.thread.openthread.ChannelTargetPowerParcel;
 import com.android.server.thread.openthread.IOtDaemon;
 import com.android.server.thread.openthread.IOtDaemonCallback;
 import com.android.server.thread.openthread.IOtStatusReceiver;
@@ -208,6 +209,13 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
     public void setCountryCode(String countryCode, IOtStatusReceiver receiver)
             throws RemoteException {
         throw new UnsupportedOperationException(
-                "FakeOtDaemon#scheduleMigration is not implemented!");
+                "FakeOtDaemon#setCountryCode is not implemented!");
+    }
+
+    @Override
+    public void setChannelTargetPowers(ChannelTargetPowerParcel[] channelTargetPowers, IOtStatusReceiver receiver)
+            throws RemoteException {
+        throw new UnsupportedOperationException(
+                "FakeOtDaemon#setChannelTargetPowers is not implemented!");
     }
 }

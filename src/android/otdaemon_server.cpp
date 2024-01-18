@@ -41,6 +41,7 @@
 #include <openthread/link.h>
 #include <openthread/openthread-system.h>
 #include <openthread/platform/infra_if.h>
+#include <openthread/platform/radio.h>
 
 #include "agent/vendor.hpp"
 #include "android/otdaemon_telemetry.hpp"
@@ -594,6 +595,36 @@ Status OtDaemonServer::setCountryCode(const std::string                        &
     VerifyOrExit(GetOtInstance() != nullptr, error = OT_ERROR_INVALID_STATE, message = "OT is not initialized");
     countryCode = (static_cast<uint16_t>(aCountryCode[0]) << 8) | aCountryCode[1];
     SuccessOrExit(error = otLinkSetRegion(GetOtInstance(), countryCode), message = "Failed to set the country code");
+
+exit:
+    PropagateResult(error, message, aReceiver);
+    return Status::ok();
+}
+
+Status OtDaemonServer::setChannelTargetPowers(const std::vector<ChannelTargetPowerParcel> &aChannelTargetPowers,
+                                              const std::shared_ptr<IOtStatusReceiver>    &aReceiver)
+{
+    otError     error = OT_ERROR_NONE;
+    std::string message;
+    uint8_t     channel;
+    int16_t     targetPower;
+
+    VerifyOrExit(GetOtInstance() != nullptr, error = OT_ERROR_INVALID_STATE, message = "OT is not initialized");
+
+    for (ChannelTargetPowerParcel channelTargetPower : aChannelTargetPowers)
+    {
+        VerifyOrExit((channelTargetPower.channel >= OT_RADIO_2P4GHZ_OQPSK_CHANNEL_MIN) &&
+                         (channelTargetPower.channel <= OT_RADIO_2P4GHZ_OQPSK_CHANNEL_MAX),
+                     error = OT_ERROR_INVALID_ARGS, message = "The channel is invalid");
+        VerifyOrExit((channelTargetPower.targetPower >= INT16_MIN) && (channelTargetPower.targetPower <= INT16_MAX),
+                     error = OT_ERROR_INVALID_ARGS, message = "The target power is invalid");
+
+        channel     = static_cast<uint8_t>(channelTargetPower.channel);
+        targetPower = static_cast<int16_t>(channelTargetPower.targetPower);
+        otbrLogInfo("Set channel target power: channel=%u, targetPower=%d", channel, targetPower);
+        SuccessOrExit(error   = otPlatRadioSetChannelTargetPower(GetOtInstance(), channel, targetPower),
+                      message = "Failed to set channel target power");
+    }
 
 exit:
     PropagateResult(error, message, aReceiver);
