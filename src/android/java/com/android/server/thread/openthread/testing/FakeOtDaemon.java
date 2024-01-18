@@ -41,6 +41,7 @@ import android.os.RemoteException;
 
 import com.android.server.thread.openthread.BackboneRouterState;
 import com.android.server.thread.openthread.BorderRouterConfigurationParcel;
+import com.android.server.thread.openthread.ChannelMaxPowerParcel;
 import com.android.server.thread.openthread.IChannelMasksReceiver;
 import com.android.server.thread.openthread.INsdPublisher;
 import com.android.server.thread.openthread.IOtDaemon;
@@ -293,5 +294,12 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
 
     public void setChannelMasksReceiverOtError(int otError) {
         mChannelMasksReceiverOtError = otError;
+    }
+
+    @Override
+    public void setChannelMaxPowers(ChannelMaxPowerParcel[] channelMaxPowers, IOtStatusReceiver receiver)
+            throws RemoteException {
+        throw new UnsupportedOperationException(
+                "FakeOtDaemon#setChannelTargetPowers is not implemented!");
     }
 }
