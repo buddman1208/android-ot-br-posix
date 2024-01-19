@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2669854f_afe81fa2",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/DnsTxtAttribute.aidl",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-01-19T10:40:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d6fb983_c7409202",
+      "revId": "5b5f3361b7f43f4e7643aa2d1dc6000e6f9854e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f37d46a1_29deaaa3",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "36c995e5_b575259f",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IMdnsStatusReceiver.aidl",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-01-19T10:40:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f37d46a1_29deaaa3",
+      "revId": "5b5f3361b7f43f4e7643aa2d1dc6000e6f9854e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2962437_d4d8b817",
@@ -48,6 +84,30 @@
       "writtenOn": "2024-01-17T08:37:49Z",
       "side": 1,
       "message": "This API should be call right after initialize(), so please move it close to initialize().\n\nOr even better, move the IMdnsPublisher into the argument list of `initialize()`",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 59
+      },
+      "revId": "5b5f3361b7f43f4e7643aa2d1dc6000e6f9854e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd2c6c39_237482ce",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IOtDaemon.aidl",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-01-19T10:40:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2962437_d4d8b817",
       "range": {
         "startLine": 132,
         "startChar": 0,
@@ -81,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3454a310_b2f556d2",
+        "filename": "src/android/mdns_publisher.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-01-19T10:40:19Z",
+      "side": 1,
+      "message": "It reduces work on the Java side. \n\nThe other option is to pass in the record name (service name + type, hostname). In this way we have to keep the mapping from name to RegistrationListener at Java. Note that different records could have the same name (KEY \u0026 SRV, AAAA \u0026 SRV). We\u0027ll have to maintain multiple maps. Actually such mapping has already been done at C++ side so we just need to send the listener ID to Java and Java just need to maintain a single map.",
+      "parentUuid": "0d83d275_dfa92a62",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 108,
+        "endChar": 42
+      },
+      "revId": "5b5f3361b7f43f4e7643aa2d1dc6000e6f9854e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a1165a0_be1d97d6",
@@ -94,6 +178,30 @@
       "writtenOn": "2024-01-17T08:37:49Z",
       "side": 1,
       "message": "nit:\nput PublishService and UnpublishService together to each other",
+      "range": {
+        "startLine": 155,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 73
+      },
+      "revId": "5b5f3361b7f43f4e7643aa2d1dc6000e6f9854e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85fefe2a_51d1607c",
+        "filename": "src/android/mdns_publisher.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-01-19T10:40:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a1165a0_be1d97d6",
       "range": {
         "startLine": 155,
         "startChar": 0,
@@ -127,6 +235,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6209c924_50bb3081",
+        "filename": "src/android/mdns_publisher.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-01-19T10:40:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd264e93_fd831851",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 34
+      },
+      "revId": "5b5f3361b7f43f4e7643aa2d1dc6000e6f9854e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43da1dc9_3d816de3",
@@ -150,6 +282,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eaee2806_b912e3f2",
+        "filename": "src/android/mdns_publisher.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-01-19T10:40:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43da1dc9_3d816de3",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 137,
+        "endChar": 79
+      },
+      "revId": "5b5f3361b7f43f4e7643aa2d1dc6000e6f9854e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "623113cc_892378ee",
@@ -163,6 +319,30 @@
       "writtenOn": "2024-01-17T08:37:49Z",
       "side": 1,
       "message": "Unintentional change?",
+      "range": {
+        "startLine": 329,
+        "startChar": 0,
+        "endLine": 332,
+        "endChar": 1
+      },
+      "revId": "5b5f3361b7f43f4e7643aa2d1dc6000e6f9854e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e4ac4a6_30cf25ff",
+        "filename": "src/mdns/mdns.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-01-19T10:40:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "623113cc_892378ee",
       "range": {
         "startLine": 329,
         "startChar": 0,
