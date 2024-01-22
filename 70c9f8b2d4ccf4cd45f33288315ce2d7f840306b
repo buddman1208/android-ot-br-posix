@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfb65c09_71a78b5a",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-01-22T05:24:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e49fdd8_a93bdcf6",
+      "range": {
+        "startLine": 353,
+        "startChar": 8,
+        "endLine": 353,
+        "endChar": 28
+      },
+      "revId": "70c9f8b2d4ccf4cd45f33288315ce2d7f840306b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87c920bb_c7b50c3e",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-16T02:29:36Z",
       "side": 1,
       "message": "Move this to the beginning of this method. Because you may access otInstance from the aReceiver-\u003eonSuccess.",
+      "range": {
+        "startLine": 356,
+        "startChar": 4,
+        "endLine": 356,
+        "endChar": 112
+      },
+      "revId": "70c9f8b2d4ccf4cd45f33288315ce2d7f840306b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "139fe112_d56c30ba",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-01-22T05:24:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87c920bb_c7b50c3e",
       "range": {
         "startLine": 356,
         "startChar": 4,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5aed1d32_dec41bca",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-01-22T05:24:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "921f660a_db1318de",
+      "range": {
+        "startLine": 375,
+        "startChar": 16,
+        "endLine": 376,
+        "endChar": 17
+      },
+      "revId": "70c9f8b2d4ccf4cd45f33288315ce2d7f840306b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95df40f6_e53e0160",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c0bb7ef_97e84e39",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-01-22T05:24:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95df40f6_e53e0160",
+      "range": {
+        "startLine": 540,
+        "startChar": 4,
+        "endLine": 541,
+        "endChar": 49
+      },
+      "revId": "70c9f8b2d4ccf4cd45f33288315ce2d7f840306b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62c61d88_1631ee51",
@@ -106,6 +202,30 @@
       "writtenOn": "2024-01-16T02:29:36Z",
       "side": 1,
       "message": "Again, always put this check at the beginning of a method. This OT_ERROR_INVALID_STATE error should never happen in real code (this check is for fuzzer check).",
+      "range": {
+        "startLine": 543,
+        "startChar": 0,
+        "endLine": 543,
+        "endChar": 112
+      },
+      "revId": "70c9f8b2d4ccf4cd45f33288315ce2d7f840306b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "205ca94b_91dcc9c4",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-01-22T05:24:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62c61d88_1631ee51",
       "range": {
         "startLine": 543,
         "startChar": 0,
