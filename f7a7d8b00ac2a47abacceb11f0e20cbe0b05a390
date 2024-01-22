@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "333fac41_757dff7d",
+        "filename": "src/android/java/com/android/server/thread/openthread/testing/FakeOtDaemon.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-22T13:32:24Z",
+      "side": 1,
+      "message": "You should add also an \"isThreadEnabled()\" method to return current enabled state and check the return value in FakeOtDaemonTest to verify that \"setThreadEnabled()\" did set the enabled state value.",
+      "range": {
+        "startLine": 115,
+        "startChar": 4,
+        "endLine": 116,
+        "endChar": 32
+      },
+      "revId": "f7a7d8b00ac2a47abacceb11f0e20cbe0b05a390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4afc7992_4ec39a9f",
+        "filename": "src/android/java/com/android/server/thread/openthread/testing/FakeOtDaemon.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-22T13:32:24Z",
+      "side": 1,
+      "message": "This doesn\u0027t simulates the real behavior that when enabled, it will re-join the network if there is a dataset. when disabled, it will leave the network if it is currently connected.\n\nYou should really write unit tests for ThreadNetworkControllerService with the help of the FakeOtDaemon class. But to unblock the development, let\u0027s create a ticket and adds a TODO here.",
+      "range": {
+        "startLine": 119,
+        "startChar": 20,
+        "endLine": 119,
+        "endChar": 45
+      },
+      "revId": "f7a7d8b00ac2a47abacceb11f0e20cbe0b05a390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab80f868_83cf2470",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-22T13:32:24Z",
+      "side": 1,
+      "message": "This should be called only when Thread is currently not attached (not a child, router or leader).",
+      "range": {
+        "startLine": 345,
+        "startChar": 8,
+        "endLine": 346,
+        "endChar": 56
+      },
+      "revId": "f7a7d8b00ac2a47abacceb11f0e20cbe0b05a390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
