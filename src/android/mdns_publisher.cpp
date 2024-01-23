@@ -69,9 +69,41 @@ Status MdnsPublisher::NsdStatusReceiver::onError(int aError)
     return Status::ok();
 }
 
+Status MdnsPublisher::NsdResolvedHostReceiver::onResolved(const NsdResolvedHostInfo &aHostInfo)
+{
+    DiscoveredHostInfo hostInfo;
+
+    hostInfo.mHostName = aHostInfo.hostname;
+    uint8_t addrBuf[16];
+    for (const auto &address : aHostInfo.addresses)
+    {
+        for (int i = 0; i < 16; ++i)
+        {
+            addrBuf[i] = address.address[i];
+        }
+        hostInfo.mAddresses.push_back(Ip6Address(addrBuf));
+    }
+    hostInfo.mTtl = 10;
+    mPublisher->OnHostResolved(aHostInfo.hostname, hostInfo);
+
+    return Status::ok();
+}
+
+Status MdnsPublisher::NsdResolvedHostReceiver::onResolveFailed(const std::string &aHostname, int aErrorCode)
+{
+    mPublisher->OnHostResolveFailed(aHostname, aErrorCode);
+
+    return Status::ok();
+}
+
 std::shared_ptr<MdnsPublisher::NsdStatusReceiver> CreateReceiver(Mdns::Publisher::ResultCallback aCallback)
 {
     return ndk::SharedRefBase::make<MdnsPublisher::NsdStatusReceiver>(std::move(aCallback));
+}
+
+std::shared_ptr<MdnsPublisher::NsdResolvedHostReceiver> CreateResolvedHostReceiver(MdnsPublisher *aPublisher)
+{
+    return ndk::SharedRefBase::make<MdnsPublisher::NsdResolvedHostReceiver>(aPublisher);
 }
 
 void DieForNotImplemented(const char *aFuncName)
@@ -179,16 +211,14 @@ void MdnsPublisher::UnsubscribeService(const std::string &aType, const std::stri
 
 void MdnsPublisher::SubscribeHost(const std::string &aHostName)
 {
-    OTBR_UNUSED_VARIABLE(aHostName);
+    otbrLogInfo("Subscribe host: %s", aHostName.c_str());
 
-    DieForNotImplemented(__func__);
+    mNsdPublisher->subscribeHost(aHostName, CreateResolvedHostReceiver(this));
 }
 
 void MdnsPublisher::UnsubscribeHost(const std::string &aHostName)
 {
-    OTBR_UNUSED_VARIABLE(aHostName);
-
-    DieForNotImplemented(__func__);
+    otbrLogInfo("Unsubscribe host: %s", aHostName.c_str());
 }
 
 void MdnsPublisher::OnServiceResolveFailedImpl(const std::string &aType,

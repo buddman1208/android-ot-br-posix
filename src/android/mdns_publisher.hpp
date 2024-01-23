@@ -31,15 +31,19 @@
 
 #include "mdns/mdns.hpp"
 
+#include <aidl/com/android/server/thread/openthread/BnNsdResolvedHostReceiver.h>
 #include <aidl/com/android/server/thread/openthread/BnNsdStatusReceiver.h>
 #include <aidl/com/android/server/thread/openthread/DnsTxtAttribute.h>
 #include <aidl/com/android/server/thread/openthread/INsdPublisher.h>
+#include <aidl/com/android/server/thread/openthread/NsdResolvedHostInfo.h>
 
 namespace otbr {
 namespace Android {
+using aidl::com::android::server::thread::openthread::BnNsdResolvedHostReceiver;
 using aidl::com::android::server::thread::openthread::BnNsdStatusReceiver;
 using aidl::com::android::server::thread::openthread::DnsTxtAttribute;
 using aidl::com::android::server::thread::openthread::INsdPublisher;
+using aidl::com::android::server::thread::openthread::NsdResolvedHostInfo;
 
 class MdnsPublisher : public Mdns::Publisher
 {
@@ -90,6 +94,22 @@ public:
 
     private:
         Mdns::Publisher::ResultCallback mCallback;
+    };
+
+    class NsdResolvedHostReceiver : public BnNsdResolvedHostReceiver
+    {
+    public:
+        explicit NsdResolvedHostReceiver(MdnsPublisher *aPublisher)
+            : mPublisher(aPublisher)
+        {
+        }
+
+        ::ndk::ScopedAStatus onResolved(const NsdResolvedHostInfo &aHostInfo) override;
+
+        ::ndk::ScopedAStatus onResolveFailed(const std::string &aHostname, int aErrorCode) override;
+
+    private:
+        MdnsPublisher *mPublisher;
     };
 
 protected:

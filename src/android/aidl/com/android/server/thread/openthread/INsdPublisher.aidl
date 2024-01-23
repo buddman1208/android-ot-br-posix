@@ -30,6 +30,7 @@ package com.android.server.thread.openthread;
 
 import com.android.server.thread.openthread.DnsTxtAttribute;
 import com.android.server.thread.openthread.INsdStatusReceiver;
+import com.android.server.thread.openthread.INsdResolvedHostReceiver;
 
 /**
  * The service which supports mDNS advertising and discovery by {@link NsdManager}.
