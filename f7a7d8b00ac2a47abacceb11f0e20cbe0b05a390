@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "16336b3a_f1983bfa",
+        "filename": "src/android/java/com/android/server/thread/openthread/testing/FakeOtDaemon.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-01-23T04:40:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "333fac41_757dff7d",
+      "range": {
+        "startLine": 115,
+        "startChar": 4,
+        "endLine": 116,
+        "endChar": 32
+      },
+      "revId": "f7a7d8b00ac2a47abacceb11f0e20cbe0b05a390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4afc7992_4ec39a9f",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "57e2ef47_0bb38799",
+        "filename": "src/android/java/com/android/server/thread/openthread/testing/FakeOtDaemon.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-01-23T04:40:07Z",
+      "side": 1,
+      "message": "Follow up ticket: b/321853291",
+      "parentUuid": "4afc7992_4ec39a9f",
+      "range": {
+        "startLine": 119,
+        "startChar": 20,
+        "endLine": 119,
+        "endChar": 45
+      },
+      "revId": "f7a7d8b00ac2a47abacceb11f0e20cbe0b05a390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ab80f868_83cf2470",
         "filename": "src/android/otdaemon_server.cpp",
         "patchSetId": 9
@@ -60,6 +108,30 @@
       "writtenOn": "2024-01-22T13:32:24Z",
       "side": 1,
       "message": "This should be called only when Thread is currently not attached (not a child, router or leader).",
+      "range": {
+        "startLine": 345,
+        "startChar": 8,
+        "endLine": 346,
+        "endChar": 56
+      },
+      "revId": "f7a7d8b00ac2a47abacceb11f0e20cbe0b05a390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fc62603_f9cfa6bb",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-01-23T04:40:07Z",
+      "side": 1,
+      "message": "Done. (In the current code this `enableThread` function is only called after Thread is disabled.)",
+      "parentUuid": "ab80f868_83cf2470",
       "range": {
         "startLine": 345,
         "startChar": 8,
