@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcea392f_64deca2d",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/INsdPublisher.aidl",
+        "patchSetId": 10
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-24T06:57:52Z",
+      "side": 1,
+      "message": "nit:\n```suggestion\n    void unregisterService(in INsdStatusReceiver receiver, int listenerId);\n```\n\n`in` is not required for primitive or immutable type",
+      "range": {
+        "startLine": 67,
+        "startChar": 4,
+        "endLine": 68,
+        "endChar": 46
+      },
+      "revId": "964adfba7c7ef4104ebeff738c55271c0fb1c192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d3c31a4_47a12be7",
+        "filename": "src/android/java/com/android/server/thread/openthread/testing/FakeOtDaemon.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-24T06:57:52Z",
+      "side": 1,
+      "message": "This is never used, you should define a `getNsdPublisher()` API and add a test case for FakeOtDaemon to verify that the INsdPublisher is really set by the initialize() API.",
+      "range": {
+        "startLine": 69,
+        "startChar": 35,
+        "endLine": 69,
+        "endChar": 48
+      },
+      "revId": "964adfba7c7ef4104ebeff738c55271c0fb1c192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38049663_5a25aaa4",
+        "filename": "src/android/mdns_publisher.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-24T06:57:52Z",
+      "side": 1,
+      "message": "```suggestion\n    if (mNsdPublisher \u003d\u003d nullptr)\n    {\n        otbrWarn(\"No mDNS platform impl registered!\");\n        std::move(aCallback)(OTBR_ERROR_MDNS);\n        ExitNow(OTBR_ERROR_MDNS);\n    }\n```",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 5
+      },
+      "revId": "964adfba7c7ef4104ebeff738c55271c0fb1c192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56696887_d862c064",
+        "filename": "src/android/mdns_publisher.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-24T06:57:52Z",
+      "side": 1,
+      "message": "nit:\n```suggestion\n        mUnregisterReceiver \u003d CreateReceiver([](int) {});\n```",
+      "range": {
+        "startLine": 221,
+        "startChar": 47,
+        "endLine": 221,
+        "endChar": 93
+      },
+      "revId": "964adfba7c7ef4104ebeff738c55271c0fb1c192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d22936cf_4cd6b4ee",
+        "filename": "src/android/mdns_publisher.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-24T06:57:52Z",
+      "side": 1,
+      "message": "Don\u0027t we need to check the nullability of `mNsdPublisher` here?",
+      "range": {
+        "startLine": 223,
+        "startChar": 4,
+        "endLine": 223,
+        "endChar": 17
+      },
+      "revId": "964adfba7c7ef4104ebeff738c55271c0fb1c192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
