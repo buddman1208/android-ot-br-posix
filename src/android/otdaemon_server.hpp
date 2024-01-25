@@ -49,6 +49,7 @@ namespace Android {
 using BinderDeathRecipient = ::ndk::ScopedAIBinder_DeathRecipient;
 using ScopedFileDescriptor = ::ndk::ScopedFileDescriptor;
 using Status               = ::ndk::ScopedAStatus;
+using aidl::com::android::server::thread::openthread::BackboneRouterState;
 using aidl::com::android::server::thread::openthread::BnOtDaemon;
 using aidl::com::android::server::thread::openthread::BorderRouterConfigurationParcel;
 using aidl::com::android::server::thread::openthread::IOtDaemon;
@@ -111,6 +112,7 @@ private:
     static void ReceiveCallback(otMessage *aMessage, void *aBinderServer);
     void        ReceiveCallback(otMessage *aMessage);
     void        TransmitCallback(void);
+    void        SendBackboneRouterStateCallback(void);
     static void HandleBackboneMulticastListenerEvent(void                                  *aBinderServer,
                                                      otBackboneRouterMulticastListenerEvent aEvent,
                                                      const otIp6Address                    *aAddress);
