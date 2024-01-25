@@ -282,7 +282,17 @@ void OtDaemonServer::HandleBackboneMulticastListenerEvent(void                  
 
     if (thisServer->mCallback != nullptr)
     {
-        thisServer->mCallback->onMulticastForwardingAddressChanged(addressBytes, isAdded);
+        std::vector<std::string>                  addressList;
+        otBackboneRouterMulticastListenerInfo     info;
+        otBackboneRouterMulticastListenerIterator iter = OT_BACKBONE_ROUTER_MULTICAST_LISTENER_ITERATOR_INIT;
+        while (otBackboneRouterMulticastListenerGetNext(thisServer->GetOtInstance(), &iter, &info) == OT_ERROR_NONE)
+        {
+            char string[OT_IP6_ADDRESS_STRING_SIZE];
+
+            otIp6AddressToString(&info.mAddress, string, sizeof(string));
+            addressList.push_back(string);
+        }
+        thisServer->mCallback->onMulticastForwardingAddressChanged(addressList);
     }
     else
     {
