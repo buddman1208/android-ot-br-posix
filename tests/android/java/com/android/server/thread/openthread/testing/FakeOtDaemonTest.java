@@ -123,7 +123,6 @@ public final class FakeOtDaemonTest {
         assertThat(state.deviceRole).isEqualTo(FakeOtDaemon.OT_DEVICE_ROLE_DISABLED);
         assertThat(state.activeDatasetTlvs).isEmpty();
         assertThat(state.pendingDatasetTlvs).isEmpty();
-        assertThat(state.multicastForwardingEnabled).isFalse();
         assertThat(listenerIdRef.get()).isEqualTo(7);
     }
 
@@ -177,7 +176,6 @@ public final class FakeOtDaemonTest {
         assertThat(state.isInterfaceUp).isTrue();
         assertThat(state.deviceRole).isEqualTo(FakeOtDaemon.OT_DEVICE_ROLE_LEADER);
         assertThat(state.activeDatasetTlvs).isEqualTo(DEFAULT_ACTIVE_DATASET_TLVS);
-        assertThat(state.multicastForwardingEnabled).isTrue();
     }
 
     @Test
