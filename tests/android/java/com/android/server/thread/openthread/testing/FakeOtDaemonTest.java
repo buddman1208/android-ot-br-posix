@@ -44,6 +44,7 @@ import android.os.test.TestLooper;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.SmallTest;
 
+import com.android.server.thread.openthread.BackboneRouterState;
 import com.android.server.thread.openthread.INsdPublisher;
 import com.android.server.thread.openthread.IOtDaemonCallback;
 import com.android.server.thread.openthread.IOtStatusReceiver;
@@ -114,6 +115,7 @@ public final class FakeOtDaemonTest {
         mFakeOtDaemon.initialize(mMockTunFd, true, mMockNsdPublisher);
         final AtomicReference<OtDaemonState> stateRef = new AtomicReference<>();
         final AtomicLong listenerIdRef = new AtomicLong();
+        final AtomicReference<BackboneRouterState> bbrStateRef = new AtomicReference<>();
 
         mFakeOtDaemon.registerStateCallback(
                 new IOtDaemonCallback.Default() {
@@ -121,6 +123,11 @@ public final class FakeOtDaemonTest {
                     public void onStateChanged(OtDaemonState newState, long listenerId) {
                         stateRef.set(newState);
                         listenerIdRef.set(listenerId);
+                    }
+
+                    @Override
+                    public void onBackboneRouterStateChanged(BackboneRouterState bbrState) {
+                        bbrStateRef.set(bbrState);
                     }
                 },
                 7 /* listenerId */);
@@ -132,8 +139,9 @@ public final class FakeOtDaemonTest {
         assertThat(state.deviceRole).isEqualTo(FakeOtDaemon.OT_DEVICE_ROLE_DISABLED);
         assertThat(state.activeDatasetTlvs).isEmpty();
         assertThat(state.pendingDatasetTlvs).isEmpty();
-        assertThat(state.multicastForwardingEnabled).isFalse();
         assertThat(listenerIdRef.get()).isEqualTo(7);
+        BackboneRouterState bbrState = bbrStateRef.get();
+        assertThat(bbrState.multicastForwardingEnabled).isFalse();
     }
 
     @Test
@@ -156,11 +164,17 @@ public final class FakeOtDaemonTest {
     public void join_succeed_statesAreSentBack() throws Exception {
         final AtomicBoolean succeedRef = new AtomicBoolean(false);
         final AtomicReference<OtDaemonState> stateRef = new AtomicReference<>();
+        final AtomicReference<BackboneRouterState> bbrStateRef = new AtomicReference<>();
         mFakeOtDaemon.registerStateCallback(
                 new IOtDaemonCallback.Default() {
                     @Override
                     public void onStateChanged(OtDaemonState newState, long listenerId) {
                         stateRef.set(newState);
+                    }
+
+                    @Override
+                    public void onBackboneRouterStateChanged(BackboneRouterState bbrState) {
+                        bbrStateRef.set(bbrState);
                     }
                 },
                 11 /* listenerId */);
@@ -186,7 +200,8 @@ public final class FakeOtDaemonTest {
         assertThat(state.isInterfaceUp).isTrue();
         assertThat(state.deviceRole).isEqualTo(FakeOtDaemon.OT_DEVICE_ROLE_LEADER);
         assertThat(state.activeDatasetTlvs).isEqualTo(DEFAULT_ACTIVE_DATASET_TLVS);
-        assertThat(state.multicastForwardingEnabled).isTrue();
+        final BackboneRouterState bbrState = bbrStateRef.get();
+        assertThat(bbrState.multicastForwardingEnabled).isTrue();
     }
 
     @Test
