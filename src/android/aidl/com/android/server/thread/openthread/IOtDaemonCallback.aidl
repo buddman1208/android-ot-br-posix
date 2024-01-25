@@ -56,10 +56,8 @@ oneway interface IOtDaemonCallback {
     /**
      * Called when multicast forwarding listening address has been changed.
      *
-     * @param address the IPv6 address in bytes which has been updated. This is a multicast
-     *                address registered by multicast listeners
-     * @param isAdded {@code true} if this multicast address is being added;
-     *                Otherwise, this multicast address is being removed
+     * @param ipv6Addresses the full list of IPv6 address strings which are registered by
+     *                multicast listeners
      */
-    void onMulticastForwardingAddressChanged(in byte[] ipv6Address, boolean isAdded);
+    void onMulticastForwardingAddressChanged(in List<String> ipv6Addresses);
 }
