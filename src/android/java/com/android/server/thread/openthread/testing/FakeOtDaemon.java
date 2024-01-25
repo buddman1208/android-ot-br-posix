@@ -85,7 +85,6 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
         mState.deviceRole = OT_DEVICE_ROLE_DISABLED;
         mState.activeDatasetTlvs = new byte[0];
         mState.pendingDatasetTlvs = new byte[0];
-        mState.multicastForwardingEnabled = false;
     }
 
     @Override
@@ -186,7 +185,6 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
                 () -> {
                     mState.deviceRole = OT_DEVICE_ROLE_LEADER;
                     mState.activeDatasetTlvs = activeDataset.clone();
-                    mState.multicastForwardingEnabled = true;
 
                     onStateChanged(mState, PROACTIVE_LISTENER_ID);
                     try {
@@ -207,7 +205,6 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
             copyState.partitionId = state.partitionId;
             copyState.activeDatasetTlvs = state.activeDatasetTlvs.clone();
             copyState.pendingDatasetTlvs = state.pendingDatasetTlvs.clone();
-            copyState.multicastForwardingEnabled = state.multicastForwardingEnabled;
 
             mCallback.onStateChanged(copyState, listenerId);
         } catch (RemoteException e) {
