@@ -28,6 +28,7 @@
 
 package com.android.server.thread.openthread.testing;
 
+import static com.android.server.thread.openthread.IOtDaemon.ErrorCode.OT_ERROR_INVALID_STATE;
 import static com.android.server.thread.openthread.IOtDaemon.OT_STATE_DISABLED;
 import static com.android.server.thread.openthread.IOtDaemon.OT_STATE_ENABLED;
 
@@ -80,6 +81,9 @@ public final class FakeOtDaemonTest {
                                     + "53760F519A63BAFDDFFC80D2AF030F4F70656E5468726561"
                                     + "642D643961300102D9A00410A245479C836D551B9CA557F7"
                                     + "B9D351B40C0402A0FFF8");
+
+    private static int DEFAULT_SUPPORTED_CHANNEL_MASK = 0x07FFF800; // from channel 11 to 26
+    private static int DEFAULT_PREFERRED_CHANNEL_MASK = 0;
 
     private FakeOtDaemon mFakeOtDaemon;
     private TestLooper mTestLooper;
@@ -197,5 +201,60 @@ public final class FakeOtDaemonTest {
 
         assertThat(succeedRef.get()).isTrue();
         assertThat(mFakeOtDaemon.getEnabledState()).isEqualTo(OT_STATE_DISABLED);
+    }
+
+    @Test
+    public void getChannelMasks_succeed_onSuccessIsInvoked() throws Exception {
+        final AtomicInt supportedChannelMaskRef = new AtomicInt();
+        final AtomicInt preferredChannelMaskRef = new AtomicInt();
+        final AtomicBoolean errorRef = new AtomicBoolean(false);
+
+        mFakeOtDaemon.setChannelMasks(
+                DEFAULT_SUPPORTED_CHANNEL_MASK, DEFAULT_PREFERRED_CHANNEL_MASK);
+        mFakeOtDaemon.setChannelMasksReceiverOtError(FakeOtDaemon.OT_ERROR_NONE);
+
+        mFakeOtDaemon.getChannelMasks(
+                new IChannelMasksReceiver.Default() {
+                    @Override
+                    public void onSuccess(int supportedChannelMask, int preferredChannelMask) {
+                        supportedChannelMaskRef.set(supportedChannelMask);
+                        preferredChannelMaskRef.set(preferredChannelMask);
+                    }
+
+                    @Override
+                    public void onError(int otError, String message) {
+                        errorRef.set(true);
+                    }
+                });
+        mTestLooper.dispatchAll();
+
+        assertThat(errorRef.get()).isFalse();
+        assertThat(supportedChannelMaskRef.get()).isEqualTo(DEFAULT_SUPPORTED_CHANNEL_MASK);
+        assertThat(preferredChannelMaskRef.get()).isEqualTo(DEFAULT_PREFERRED_CHANNEL_MASK);
+    }
+
+    @Test
+    public void getChannelMasks_failed_onErrorIsInvoked() throws Exception {
+        final AtomicInt errorRef = new AtomicInt(FakeOtDaemon.OT_ERROR_NONE);
+        final AtomicBoolean succeedRef = new AtomicBoolean(false);
+
+        mFakeOtDaemon.setChannelMasksReceiverOtError(OT_ERROR_INVALID_STATE);
+
+        mFakeOtDaemon.getChannelMasks(
+                new IChannelMasksReceiver.Default() {
+                    @Override
+                    public void onSuccess(int supportedChannelMask, int preferredChannelMask) {
+                        succeedRef.set(true);
+                    }
+
+                    @Override
+                    public void onError(int otError, String message) {
+                        errorRef.set(otError);
+                    }
+                });
+        mTestLooper.dispatchAll();
+
+        assertThat(succeedRef.get()).isFalse();
+        assertThat(errorRef.get()).isEqualTo(OT_ERROR_INVALID_STATE);
     }
 }
