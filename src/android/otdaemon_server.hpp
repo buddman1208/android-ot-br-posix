@@ -51,6 +51,7 @@ using ScopedFileDescriptor = ::ndk::ScopedFileDescriptor;
 using Status               = ::ndk::ScopedAStatus;
 using aidl::com::android::server::thread::openthread::BnOtDaemon;
 using aidl::com::android::server::thread::openthread::BorderRouterConfigurationParcel;
+using aidl::com::android::server::thread::openthread::IChannelMasksReceiver;
 using aidl::com::android::server::thread::openthread::IOtDaemon;
 using aidl::com::android::server::thread::openthread::IOtDaemonCallback;
 using aidl::com::android::server::thread::openthread::IOtStatusReceiver;
@@ -98,6 +99,7 @@ private:
     Status setCountryCode(const std::string &aCountryCode, const std::shared_ptr<IOtStatusReceiver> &aReceiver);
     Status configureBorderRouter(const BorderRouterConfigurationParcel    &aBorderRouterConfiguration,
                                  const std::shared_ptr<IOtStatusReceiver> &aReceiver) override;
+    Status getChannelMasks(const std::shared_ptr<IChannelMasksReceiver> &aReceiver) override;
 
     bool        RefreshOtDaemonState(otChangedFlags aFlags);
     void        LeaveGracefully(const LeaveCallback &aReceiver);
