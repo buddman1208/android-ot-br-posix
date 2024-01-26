@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e23ae66_5b9827a8",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/INsdPublisher.aidl",
+        "patchSetId": 10
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-01-26T03:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fcea392f_64deca2d",
+      "range": {
+        "startLine": 67,
+        "startChar": 4,
+        "endLine": 68,
+        "endChar": 46
+      },
+      "revId": "964adfba7c7ef4104ebeff738c55271c0fb1c192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5d3c31a4_47a12be7",
@@ -70,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de2a6b2b_daa148cb",
+        "filename": "src/android/mdns_publisher.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-01-26T03:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38049663_5a25aaa4",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 5
+      },
+      "revId": "964adfba7c7ef4104ebeff738c55271c0fb1c192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56696887_d862c064",
@@ -93,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "002d0273_c8df6f59",
+        "filename": "src/android/mdns_publisher.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-01-26T03:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56696887_d862c064",
+      "range": {
+        "startLine": 221,
+        "startChar": 47,
+        "endLine": 221,
+        "endChar": 93
+      },
+      "revId": "964adfba7c7ef4104ebeff738c55271c0fb1c192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d22936cf_4cd6b4ee",
@@ -106,6 +178,30 @@
       "writtenOn": "2024-01-24T06:57:52Z",
       "side": 1,
       "message": "Don\u0027t we need to check the nullability of `mNsdPublisher` here?",
+      "range": {
+        "startLine": 223,
+        "startChar": 4,
+        "endLine": 223,
+        "endChar": 17
+      },
+      "revId": "964adfba7c7ef4104ebeff738c55271c0fb1c192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "977369b8_4c59e6be",
+        "filename": "src/android/mdns_publisher.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-01-26T03:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d22936cf_4cd6b4ee",
       "range": {
         "startLine": 223,
         "startChar": 4,
