@@ -37,6 +37,7 @@ import android.os.ParcelFileDescriptor;
 import android.os.RemoteException;
 
 import com.android.server.thread.openthread.BorderRouterConfigurationParcel;
+import com.android.server.thread.openthread.IChannelMasksReceiver;
 import com.android.server.thread.openthread.IOtDaemon;
 import com.android.server.thread.openthread.IOtDaemonCallback;
 import com.android.server.thread.openthread.IOtStatusReceiver;
@@ -56,10 +57,15 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
     static final int OT_DEVICE_ROLE_ROUTER = 3;
     static final int OT_DEVICE_ROLE_LEADER = 4;
 
+    private final int SUPPORTED_CHANNEL_MASK = 0x07FFF800; // from channel 11 to 26
+    private final int PREFERRED_CHANNEL_MASK = 0;
+    private final int OT_ERROR_INVALID_STATE = 13;
+
     private static final long PROACTIVE_LISTENER_ID = -1;
 
     private final Handler mHandler;
     private final OtDaemonState mState;
+    private boolean mChannelMasksReceiverSuccess = true;
 
     @Nullable private DeathRecipient mDeathRecipient;
 
@@ -207,7 +213,26 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
     @Override
     public void setCountryCode(String countryCode, IOtStatusReceiver receiver)
             throws RemoteException {
-        throw new UnsupportedOperationException(
-                "FakeOtDaemon#scheduleMigration is not implemented!");
+        throw new UnsupportedOperationException("FakeOtDaemon#setCountryCode is not implemented!");
+    }
+
+    @Override
+    public void getChannelMasks(IChannelMasksReceiver receiver) throws RemoteException {
+        mHandler.post(
+                () -> {
+                    try {
+                        if (mChannelMasksReceiverSuccess) {
+                            receiver.onSuccess(SUPPORTED_CHANNEL_MASK, PREFERRED_CHANNEL_MASK);
+                        } else {
+                            receiver.onError(OT_ERROR_INVALID_STATE, "OT is not initialized");
+                        }
+                    } catch (RemoteException e) {
+                        throw new AssertionError(e);
+                    }
+                });
+    }
+
+    public void setChannelMasksReceiverStatus(boolean aSuccess) {
+        mChannelMasksReceiverSuccess = aSuccess;
     }
 }
