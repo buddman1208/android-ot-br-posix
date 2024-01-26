@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "365b25cf_b17443c4",
+        "filename": "tests/android/java/com/android/server/thread/openthread/testing/FakeOtDaemonTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-26T08:02:58Z",
+      "side": 1,
+      "message": "```suggestion\n\n    @Test\n    public void setThreadEnabled_disableThread_succeed() throws Exception {\n        assertThat(mFakeOtDaemon.getEnabledState()).isEqualTo(OT_STATE_ENABLED);\n\n        final AtomicBoolean succeedRef \u003d new AtomicBoolean(false);\n        mFakeOtDaemon.setThreadEnabled(\n                false,\n                new IOtStatusReceiver.Default() {\n                    @Override\n                    public void onSuccess() {\n                        succeedRef.set(true);\n                    }\n                });\n        mTestLooper.dispatchAll();\n\n        assertThat(succeedRef.get()).isTrue();\n        assertThat(mFakeOtDaemon.getEnabledState()).isEqualTo(OT_STATE_DISABLED);\n    }\n```",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 201,
+        "endChar": 5
+      },
+      "revId": "68ae5c805341548081d83f97909939f56f3b37d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
