@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "587ef40a_32116b99",
+        "filename": "src/android/java/com/android/server/thread/openthread/testing/FakeOtDaemon.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-01-28T08:45:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d3c31a4_47a12be7",
+      "range": {
+        "startLine": 69,
+        "startChar": 35,
+        "endLine": 69,
+        "endChar": 48
+      },
+      "revId": "964adfba7c7ef4104ebeff738c55271c0fb1c192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38049663_5a25aaa4",
