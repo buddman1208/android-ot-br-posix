@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e1992f6_10d5ac07",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-28T11:03:39Z",
+      "side": 1,
+      "message": "BorderAgent should be stopped when Thread is disabled.\n\nThis allows you to workaround the meshcop service tests stability issue by disabling Thread in `tearDown()` to remove previous advertised meshcop services.",
+      "revId": "9952bf9e6b967926d4f89bb2b6fc5a5727c3d7cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
