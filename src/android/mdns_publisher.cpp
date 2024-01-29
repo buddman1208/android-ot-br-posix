@@ -91,6 +91,8 @@ otbrError MdnsPublisher::PublishServiceImpl(const std::string &aHostName,
     TxtList   txtList;
     otbrError error = OTBR_ERROR_NONE;
 
+    otbrLogInfo("start publishing %s %s", aName.c_str(), aType.c_str());
+
     std::vector<DnsTxtAttribute> txtAttributes;
 
     if (mNsdPublisher == nullptr)
@@ -118,10 +120,12 @@ otbrError MdnsPublisher::PublishServiceImpl(const std::string &aHostName,
                                                               /* aCallback= */ nullptr, this, listenerId,
                                                               mNsdPublisher));
 
+    otbrLogInfo("registering service at Nsd %s %s listener id %d ", aName.c_str(), aType.c_str(), listenerId);
     mNsdPublisher->registerService(aHostName, aName, aType, aSubTypeList, aPort, txtAttributes,
                                    CreateReceiver(std::move(aCallback)), listenerId);
 
 exit:
+    otbrLogInfo("end publishing %s %s", aName.c_str(), aType.c_str());
     return error;
 }
 
@@ -227,6 +231,7 @@ MdnsPublisher::NsdServiceRegistration::~NsdServiceRegistration(void)
         mUnregisterReceiver = CreateReceiver([](int) {});
     }
 
+    otbrLogInfo("unregistering service at Nsd %s %s listenerid %d", mName.c_str(), mType.c_str(), mListenerId);
     mNsdPublisher->unregisterService(mUnregisterReceiver, mListenerId);
 
 exit:
