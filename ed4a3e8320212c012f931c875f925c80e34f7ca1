@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "927d6bde_fbfd1950",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IOtDaemon.aidl",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-29T03:43:50Z",
+      "side": 1,
+      "message": "Remove oneway because the entire interface is already oneway:\n```suggestion\n    void getChannelMasks(in IChannelMasksReceiver receiver);\n```",
+      "range": {
+        "startLine": 158,
+        "startChar": 4,
+        "endLine": 158,
+        "endChar": 10
+      },
+      "revId": "ed4a3e8320212c012f931c875f925c80e34f7ca1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3efcc6b_2160d0b2",
+        "filename": "src/android/java/com/android/server/thread/openthread/testing/FakeOtDaemon.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-29T03:43:50Z",
+      "side": 1,
+      "message": "Please also add unit tests for the two new methods in FakeOtDaemonTest.java",
+      "revId": "ed4a3e8320212c012f931c875f925c80e34f7ca1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "157c9ffd_d028318c",
+        "filename": "src/android/java/com/android/server/thread/openthread/testing/FakeOtDaemon.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-29T03:43:50Z",
+      "side": 1,
+      "message": "What about add a method\n```\npublic void setChannelMask(int supportedChannelMask, int preferredChannelMask) {\n    mSupportedChannelMask \u003d supportedChannelMask;\n    mPreferredChannelMask \u003d preferredChannelMask;\n}\n```\n\nAnd use a specific channel mask (e.g. `0x07AABB800`) for tests in ThreadNetworkControllerServiceTest to verify that ThreadNetworkControllerService really calls otDaemon\u0027s API to retrieve the channel masks and uses the channel masks to construct randomized dataset.",
+      "revId": "ed4a3e8320212c012f931c875f925c80e34f7ca1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89b2eb50_8f58e259",
+        "filename": "src/android/java/com/android/server/thread/openthread/testing/FakeOtDaemon.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-29T03:43:50Z",
+      "side": 1,
+      "message": "Instead of using a boolean, prefer setting the concrete OT_ERROR_* code. So that it\u0027s clear what to be expected in unit tests.\n\n```suggestion\n    public void setChannelMasksReceiverStatus(int otError) {\n```",
+      "range": {
+        "startLine": 257,
+        "startChar": 4,
+        "endLine": 257,
+        "endChar": 65
+      },
+      "revId": "ed4a3e8320212c012f931c875f925c80e34f7ca1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
