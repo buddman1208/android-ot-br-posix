@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1784e0ac_6a9385c6",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-29T09:01:47Z",
+      "side": 1,
+      "message": "Please add a test for the new changes in this CL.\n\nYou can add a new OtDaemonTest.java class to https://cs.android.com/android/platform/superproject/main/+/main:external/ot-br-posix/tests/android/java/com/android/server/thread/openthread/ and use \"dumpsys ot_daemon\" command in your java test to issue a call to dump() and then verify the output.\n\n1. You can use [SystemUtils#runShellCommand](https://cs.android.com/android/platform/superproject/main/+/main:cts/common/device-side/util-axt/src/com/android/compatibility/common/util/SystemUtil.java;drc\u003d00ebc752bbdacfb1cc4d2f5b2a0c1d9f335f2c91;bpv\u003d1;bpt\u003d1;l\u003d121?gsn\u003drunShellCommand\u0026gs\u003dKYTHE%3A%2F%2Fkythe%3A%2F%2Fandroid.googlesource.com%2Fplatform%2Fsuperproject%2Fmain%2F%2Fmain%3Flang%3Djava%3Fpath%3Dcom.android.compatibility.common.util.SystemUtil%23b983d93914891537a9b39f7e5d965207170b6cd6229f8b56077877575198ab08) to run the command\n2. Run the tests with `atest OtDaemonUnitTests`. You probably want to rename `OtDaemonUnitTests` to `OtDaemonTests`",
+      "revId": "dbc616648fab91778536baa0788b5e26f5f5c725",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d02b27bb_f19c9f34",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-01-29T09:01:47Z",
+      "side": 1,
+      "message": "What\u0027s the consequence here? Does it mean `ot-ctl` won\u0027t be usable after dump() is called?\n\nI think we need to fix this issue in this CL as both are useful tools for testing.",
+      "range": {
+        "startLine": 772,
+        "startChar": 4,
+        "endLine": 773,
+        "endChar": 53
+      },
+      "revId": "dbc616648fab91778536baa0788b5e26f5f5c725",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
