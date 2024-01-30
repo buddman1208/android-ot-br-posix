@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "06587799_5e9eff95",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IOtDaemon.aidl",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1837411
+      },
+      "writtenOn": "2024-01-30T09:55:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "927d6bde_fbfd1950",
+      "range": {
+        "startLine": 158,
+        "startChar": 4,
+        "endLine": 158,
+        "endChar": 10
+      },
+      "revId": "ed4a3e8320212c012f931c875f925c80e34f7ca1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3efcc6b_2160d0b2",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-01-29T03:43:50Z",
       "side": 1,
       "message": "Please also add unit tests for the two new methods in FakeOtDaemonTest.java",
+      "revId": "ed4a3e8320212c012f931c875f925c80e34f7ca1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c1b5920_2d5127a2",
+        "filename": "src/android/java/com/android/server/thread/openthread/testing/FakeOtDaemon.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1837411
+      },
+      "writtenOn": "2024-01-30T09:55:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3efcc6b_2160d0b2",
       "revId": "ed4a3e8320212c012f931c875f925c80e34f7ca1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4c7cec4_52b2fa9e",
+        "filename": "src/android/java/com/android/server/thread/openthread/testing/FakeOtDaemon.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1837411
+      },
+      "writtenOn": "2024-01-30T09:55:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "157c9ffd_d028318c",
+      "revId": "ed4a3e8320212c012f931c875f925c80e34f7ca1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89b2eb50_8f58e259",
@@ -71,6 +131,30 @@
       "writtenOn": "2024-01-29T03:43:50Z",
       "side": 1,
       "message": "Instead of using a boolean, prefer setting the concrete OT_ERROR_* code. So that it\u0027s clear what to be expected in unit tests.\n\n```suggestion\n    public void setChannelMasksReceiverStatus(int otError) {\n```",
+      "range": {
+        "startLine": 257,
+        "startChar": 4,
+        "endLine": 257,
+        "endChar": 65
+      },
+      "revId": "ed4a3e8320212c012f931c875f925c80e34f7ca1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "577647d0_c040cdd1",
+        "filename": "src/android/java/com/android/server/thread/openthread/testing/FakeOtDaemon.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1837411
+      },
+      "writtenOn": "2024-01-30T09:55:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89b2eb50_8f58e259",
       "range": {
         "startLine": 257,
         "startChar": 4,
