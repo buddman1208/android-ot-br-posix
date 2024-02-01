@@ -113,9 +113,10 @@ public:
      */
     Mdns::Publisher &GetPublisher() { return *mPublisher; }
 
-private:
     void Start(void);
     void Stop(void);
+
+private:
     void HandleMdnsState(Mdns::Publisher::State aState);
     void PublishMeshCopService(void);
     void UpdateMeshCopService(void);

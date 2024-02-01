@@ -342,8 +342,10 @@ void OtDaemonServer::updateThreadEnabledState(const int enabled, const std::shar
     {
     case OT_STATE_ENABLED:
         mMdnsPublisher.SetINsdPublisher(mINsdPublisher);
+        mBorderAgent.Start();
         break;
     case OT_STATE_DISABLED:
+        mBorderAgent.Stop();
         mMdnsPublisher.SetINsdPublisher(nullptr);
         break;
     default:
