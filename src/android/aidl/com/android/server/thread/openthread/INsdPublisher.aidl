@@ -63,6 +63,20 @@ oneway interface INsdPublisher {
                         int listenerId);
 
     /**
+     * Registers an mDNS host.
+     *
+     * @param name the hostname like "my-host"
+     * @param addresses the IPv6 addresses of the host. Each String represents an address.
+     * @param receiver the receiver of the register callback
+     * @param listenerId the listener ID of the 'unregister' opreation which is used to
+     *                             identify the callback of the service unregistration
+     */
+    void registerHost(in String name,
+                      in List<String> addresses,
+                      in INsdStatusReceiver receiver,
+                      int listenerId);
+
+    /**
      * Unregisters an mDNS service.
      *
      * <p>To unregister a previously registered service/host/key, the caller must pass in the same
