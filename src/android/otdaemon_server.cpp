@@ -531,7 +531,7 @@ Status OtDaemonServer::join(const std::vector<uint8_t>               &aActiveOpD
                  message = "Thread is disabling");
 
     VerifyOrExit(mThreadEnabled == IOtDaemon::OT_STATE_ENABLED,
-                 error = static_cast<int>(IOtDaemon::ErrorCode::OT_ERROR_THREAD_DISABLED),
+                 error   = static_cast<int>(IOtDaemon::ErrorCode::OT_ERROR_THREAD_DISABLED),
                  message = "Thread is disabled");
 
     otbrLogInfo("Start joining...");
@@ -655,7 +655,7 @@ Status OtDaemonServer::scheduleMigration(const std::vector<uint8_t>             
                  message = "Thread is disabling");
 
     VerifyOrExit(mThreadEnabled == IOtDaemon::OT_STATE_ENABLED,
-                 error = static_cast<int>(IOtDaemon::ErrorCode::OT_ERROR_THREAD_DISABLED),
+                 error   = static_cast<int>(IOtDaemon::ErrorCode::OT_ERROR_THREAD_DISABLED),
                  message = "Thread is disabled");
 
     if (GetOtInstance() == nullptr)

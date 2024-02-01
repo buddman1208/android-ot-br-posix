@@ -51,7 +51,7 @@ oneway interface INsdPublisher {
      * @param port the port number of the service
      * @param txt the entries of the TXT record
      * @param receiver the receiver of the register callback
-     * @param listenerId the listener ID of the 'unregister' opreation
+     * @param listenerId the listener ID of the 'unregister' operation
      */
     void registerService(in @nullable String hostname,
                         in String name,
@@ -61,6 +61,20 @@ oneway interface INsdPublisher {
                         in List<DnsTxtAttribute> txt,
                         in INsdStatusReceiver receiver,
                         int listenerId);
+
+    /**
+     * Registers an mDNS host.
+     *
+     * @param name the hostname like "my-host"
+     * @param addresses the IPv6 addresses of the host. Each String represents an address.
+     * @param receiver the receiver of the register callback
+     * @param listenerId the listener ID of the 'unregister' operation which is used to
+     *                             identify the callback of the service unregistration
+     */
+    void registerHost(in String name,
+                      in List<String> addresses,
+                      in INsdStatusReceiver receiver,
+                      int listenerId);
 
     /**
      * Unregisters an mDNS service.
