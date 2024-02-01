@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0c35cf25_ab6b912a",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IOtDaemonCallback.aidl",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-02-01T03:55:08Z",
+      "side": 1,
+      "message": "Can we build a BackboneRouterState parcel struct which contains all the BBR-related states? Like\n```\nstruct BackboneRouterState{\n  int state;\n  List\u003cString\u003e listeningAddresses;\n}\n```\n\nSo that the system server can build the multicast routing config right from this struct every time it changes, rather than need to save the states in system server. This will avoid the consistence issues of different copies of the same states in both ot-daemon and system server.",
+      "revId": "c2f5dfc149210be9dc44fab59f9641a4309669c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1a35b507_d6d2f541",
         "filename": "src/android/otdaemon_server.cpp",
         "patchSetId": 2
