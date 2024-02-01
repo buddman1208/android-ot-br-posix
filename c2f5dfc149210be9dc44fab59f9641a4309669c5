@@ -22,6 +22,30 @@
       },
       "revId": "c2f5dfc149210be9dc44fab59f9641a4309669c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e736229_7ffc78d9",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-02-01T03:07:13Z",
+      "side": 1,
+      "message": "Is it because List\u003cbyte[]\u003e is not supported?",
+      "parentUuid": "1a35b507_d6d2f541",
+      "range": {
+        "startLine": 290,
+        "startChar": 0,
+        "endLine": 293,
+        "endChar": 42
+      },
+      "revId": "c2f5dfc149210be9dc44fab59f9641a4309669c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
