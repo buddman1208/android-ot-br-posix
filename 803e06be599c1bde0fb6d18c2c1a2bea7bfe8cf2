@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc57c72b_587affdc",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-02-02T11:32:26Z",
+      "side": 1,
+      "message": "It should be better to call `MdnsPublisher::Start()` and `MdnsPublisher::Stop()` respectively (Given `Stop()` will clear already published services).",
+      "range": {
+        "startLine": 352,
+        "startChar": 0,
+        "endLine": 356,
+        "endChar": 49
+      },
+      "revId": "803e06be599c1bde0fb6d18c2c1a2bea7bfe8cf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
