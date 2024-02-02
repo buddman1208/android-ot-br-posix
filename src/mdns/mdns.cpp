@@ -35,6 +35,8 @@
 
 #include "mdns/mdns.hpp"
 
+#if OTBR_ENABLE_MDNS
+
 #include <assert.h>
 
 #include <algorithm>
@@ -621,3 +623,5 @@ void Publisher::UpdateHostResolutionEmaLatency(const std::string &aHostName, otb
 
 } // namespace Mdns
 } // namespace otbr
+
+#endif // OTBR_ENABLE_MDNS
