@@ -22,6 +22,30 @@
       },
       "revId": "803e06be599c1bde0fb6d18c2c1a2bea7bfe8cf2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7193ba67_2497299f",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-02-04T05:22:30Z",
+      "side": 1,
+      "message": "`mMdnsPublisher.SetINsdPublisher(nullptr)` also triggers `Publisher::Stop()` which clears the  registered services.",
+      "parentUuid": "dc57c72b_587affdc",
+      "range": {
+        "startLine": 352,
+        "startChar": 0,
+        "endLine": 356,
+        "endChar": 49
+      },
+      "revId": "803e06be599c1bde0fb6d18c2c1a2bea7bfe8cf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
