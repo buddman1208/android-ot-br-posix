@@ -100,7 +100,7 @@ static Ipv6AddressInfo ConvertToAddressInfo(const otIp6AddressInfo &aAddressInfo
 OtDaemonServer::OtDaemonServer(Application &aApplication)
     : mNcp(aApplication.GetNcp())
     , mBorderAgent(aApplication.GetBorderAgent())
-    , mMdnsPublisher(static_cast<MdnsPublisher &>(aApplication.GetBorderAgent().GetPublisher()))
+    , mMdnsPublisher(static_cast<MdnsPublisher &>(aApplication.GetPublisher()))
     , mBorderRouterConfiguration()
 {
     mClientDeathRecipient =
