@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3131047e_3452433e",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IOtDaemonCallback.aidl",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-02-19T02:59:46Z",
+      "side": 1,
+      "message": "Good suggestion, thanks, done",
+      "parentUuid": "0c35cf25_ab6b912a",
+      "revId": "c2f5dfc149210be9dc44fab59f9641a4309669c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a35b507_d6d2f541",
@@ -79,6 +97,30 @@
       "side": 1,
       "message": "That\u0027s right, it\u0027s because List\u003cbyte[]\u003e is not supported.",
       "parentUuid": "9e736229_7ffc78d9",
+      "range": {
+        "startLine": 290,
+        "startChar": 0,
+        "endLine": 293,
+        "endChar": 42
+      },
+      "revId": "c2f5dfc149210be9dc44fab59f9641a4309669c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97fae94e_9ef2be50",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-02-19T02:59:46Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "af0bfc2e_fc37cd96",
       "range": {
         "startLine": 290,
         "startChar": 0,
