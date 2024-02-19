@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b857df24_c599ae17",
+        "filename": "src/android/java/com/android/server/thread/openthread/testing/FakeOtDaemon.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-02-19T03:33:56Z",
+      "side": 1,
+      "message": "-\u003e `state`",
+      "range": {
+        "startLine": 226,
+        "startChar": 30,
+        "endLine": 226,
+        "endChar": 36
+      },
+      "revId": "c05e36196e8e42a4eca7fdcc12c12f7ab9cab2eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3804ba75_a4e3ae72",
+        "filename": "src/android/java/com/android/server/thread/openthread/testing/FakeOtDaemon.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-02-19T03:33:56Z",
+      "side": 1,
+      "message": "-\u003e copyState",
+      "range": {
+        "startLine": 230,
+        "startChar": 51,
+        "endLine": 230,
+        "endChar": 56
+      },
+      "revId": "c05e36196e8e42a4eca7fdcc12c12f7ab9cab2eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fa59780_749998c2",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-02-19T03:33:56Z",
+      "side": 1,
+      "message": "Log the state change if this is not already logged in OT core",
+      "range": {
+        "startLine": 278,
+        "startChar": 0,
+        "endLine": 287,
+        "endChar": 5
+      },
+      "revId": "c05e36196e8e42a4eca7fdcc12c12f7ab9cab2eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3856c711_f71a9394",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-02-19T03:33:56Z",
+      "side": 1,
+      "message": "nit: instead of naming this method `SendBackboneRouterStateCallback()`, we can keep it consistent with other callbacks by creating a `makeBorderRouterState()` or `getBorderRouterState()` helper method and use `mCallback-\u003eonBorderRouterStateChanged(getBorderRouterState())`.",
+      "range": {
+        "startLine": 456,
+        "startChar": 4,
+        "endLine": 457,
+        "endChar": 38
+      },
+      "revId": "c05e36196e8e42a4eca7fdcc12c12f7ab9cab2eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

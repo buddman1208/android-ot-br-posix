@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02943516_5ef99c35",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-02-19T03:33:56Z",
+      "side": 0,
+      "message": "Log the address change if this is not already logged in OT core",
+      "range": {
+        "startLine": 285,
+        "startChar": 4,
+        "endLine": 285,
+        "endChar": 113
+      },
+      "revId": "69b880e0536c7f861f30e17ac8f9efeb58cf98e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
