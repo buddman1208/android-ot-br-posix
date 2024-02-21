@@ -665,7 +665,7 @@ Status OtDaemonServer::scheduleMigration(const std::vector<uint8_t>             
     if (!isAttached())
     {
         message = "Cannot schedule migration when this device is detached";
-        ExitNow(error = OT_ERROR_INVALID_STATE);
+        ExitNow(error = (int)IOtDaemon::ErrorCode::OT_ERROR_FAILED_PRECONDITION);
     }
 
     // TODO: check supported channel mask
