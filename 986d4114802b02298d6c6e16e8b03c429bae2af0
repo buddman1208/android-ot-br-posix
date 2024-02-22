@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abc5290b_d1139e62",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-02-22T01:31:34Z",
+      "side": 1,
+      "message": "nit: use `static_cast`\n```suggestion\n        ExitNow(error \u003d static_cast\u003cint\u003e(IOtDaemon::ErrorCode::OT_ERROR_FAILED_PRECONDITION));\n```",
+      "revId": "986d4114802b02298d6c6e16e8b03c429bae2af0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
