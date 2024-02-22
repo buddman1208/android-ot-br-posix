@@ -36,6 +36,7 @@ android_test {
     srcs: ["java/**/*.java"],
     test_suites: [
         "general-tests",
+        "mts-tethering",
     ],
 
     libs: [
@@ -47,6 +48,7 @@ android_test {
         "frameworks-base-testutils",
         "guava",
         "mockito-target-minus-junit4",
+        "net-tests-utils",
         "ot-daemon-aidl-java",
         "ot-daemon-testing",
         "truth",

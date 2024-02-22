@@ -31,6 +31,19 @@
     <option name="test-tag" value="OtDaemonUnitTests" />
     <option name="test-suite-tag" value="apct" />
 
+    <!--
+        Only run tests if the device under test is SDK version 34 (Android 14) or above because
+        Thread is only available on U+
+    -->
+    <object type="module_controller"
+            class="com.android.tradefed.testtype.suite.module.Sdk34ModuleController" />
+
+    <!-- Run tests in MTS only if the Tethering Mainline module is installed. -->
+    <object type="module_controller"
+            class="com.android.tradefed.testtype.suite.module.MainlineTestModuleController">
+        <option name="mainline-module-package-name" value="com.google.android.tethering" />
+    </object>
+
     <target_preparer class="com.android.tradefed.targetprep.suite.SuiteApkInstaller">
         <option name="test-file-name" value="OtDaemonUnitTests.apk" />
         <option name="check-min-sdk" value="true" />

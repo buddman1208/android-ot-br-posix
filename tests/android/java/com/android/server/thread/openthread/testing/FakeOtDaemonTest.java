@@ -35,12 +35,16 @@ import static com.google.common.io.BaseEncoding.base16;
 import static com.google.common.truth.Truth.assertThat;
 
 import static org.junit.Assert.assertThrows;
+import static org.junit.Assume.assumeNotNull;
 
+import android.content.Context;
+import android.net.thread.ThreadNetworkManager;
+import android.os.Build;
 import android.os.Handler;
 import android.os.ParcelFileDescriptor;
 import android.os.RemoteException;
 import android.os.test.TestLooper;
-
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.SmallTest;
 
@@ -48,6 +52,8 @@ import com.android.server.thread.openthread.INsdPublisher;
 import com.android.server.thread.openthread.IOtDaemonCallback;
 import com.android.server.thread.openthread.IOtStatusReceiver;
 import com.android.server.thread.openthread.OtDaemonState;
+import com.android.testutils.DevSdkIgnoreRule.IgnoreUpTo;
+import com.android.testutils.DevSdkIgnoreRunner;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -61,7 +67,8 @@ import java.util.concurrent.atomic.AtomicReference;
 
 /** Unit tests for {@link FakeOtDaemon}. */
 @SmallTest
-@RunWith(AndroidJUnit4.class)
+@RunWith(DevSdkIgnoreRunner.class)
+@IgnoreUpTo(Build.VERSION_CODES.TIRAMISU) // Thread is available on only U+
 public final class FakeOtDaemonTest {
     // A valid Thread Active Operational Dataset generated from OpenThread CLI "dataset new":
     // Active Timestamp: 1
@@ -82,6 +89,7 @@ public final class FakeOtDaemonTest {
                                     + "642D643961300102D9A00410A245479C836D551B9CA557F7"
                                     + "B9D351B40C0402A0FFF8");
 
+    private final Context mContext = ApplicationProvider.getApplicationContext();
     private FakeOtDaemon mFakeOtDaemon;
     private TestLooper mTestLooper;
     @Mock private ParcelFileDescriptor mMockTunFd;
@@ -89,6 +97,9 @@ public final class FakeOtDaemonTest {
 
     @Before
     public void setUp() {
+        // Skip this test class if Thread is not available
+        assumeNotNull(mContext.getSystemService(ThreadNetworkManager.class));
+
         MockitoAnnotations.initMocks(this);
 
         mTestLooper = new TestLooper();
