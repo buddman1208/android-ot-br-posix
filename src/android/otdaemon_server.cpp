@@ -324,19 +324,21 @@ Status OtDaemonServer::initialize(const ScopedFileDescriptor           &aTunFd,
                                   const bool                            enabled,
                                   const std::shared_ptr<INsdPublisher> &aINsdPublisher)
 {
-    otbrLogInfo("OT daemon is initialized by system server (tunFd=%d, enabled=%s)",
-            aTunFd.get(), enabled ? "true" : "false");
-    mTunFd = aTunFd.dup();
+    otbrLogInfo("OT daemon is initialized by system server (tunFd=%d, enabled=%s)", aTunFd.get(),
+                enabled ? "true" : "false");
+    mTunFd         = aTunFd.dup();
     mINsdPublisher = aINsdPublisher;
 
-    if (enabled)
-    {
-        enableThread(nullptr /* aReceiver */);
-    }
-    else
-    {
-        updateThreadEnabledState(enabled, nullptr /* Receiver */);
-    }
+    mTaskRunner.Post([enabled, this]() {
+        if (enabled)
+        {
+            enableThread(nullptr /* aReceiver */);
+        }
+        else
+        {
+            updateThreadEnabledState(enabled, nullptr /* aReceiver */);
+        }
+    });
 
     return Status::ok();
 }
@@ -396,25 +398,27 @@ Status OtDaemonServer::setThreadEnabled(const bool enabled, const std::shared_pt
         ExitNow();
     }
 
-    if (enabled)
-    {
-        enableThread(aReceiver);
-    }
-    else
-    {
-        mThreadEnabled = IOtDaemon::OT_STATE_DISABLING;
-        if (mCallback != nullptr)
+    mTaskRunner.Post([enabled, aReceiver, this]() {
+        if (enabled)
         {
-            mCallback->onThreadEnabledChanged(mThreadEnabled);
+            enableThread(aReceiver);
         }
+        else
+        {
+            mThreadEnabled = IOtDaemon::OT_STATE_DISABLING;
+            if (mCallback != nullptr)
+            {
+                mCallback->onThreadEnabledChanged(mThreadEnabled);
+            }
 
-        LeaveGracefully([aReceiver, this]() {
-            // Ignore errors as those operations should always succeed
-            (void)otThreadSetEnabled(GetOtInstance(), false);
-            (void)otIp6SetEnabled(GetOtInstance(), false);
-            updateThreadEnabledState(IOtDaemon::OT_STATE_DISABLED, aReceiver);
-        });
-    }
+            LeaveGracefully([aReceiver, this]() {
+                // Ignore errors as those operations should always succeed
+                (void)otThreadSetEnabled(GetOtInstance(), false);
+                (void)otIp6SetEnabled(GetOtInstance(), false);
+                updateThreadEnabledState(IOtDaemon::OT_STATE_DISABLED, aReceiver);
+            });
+        }
+    });
 
 exit:
     if (error != OT_ERROR_NONE)
@@ -434,11 +438,13 @@ Status OtDaemonServer::registerStateCallback(const std::shared_ptr<IOtDaemonCall
         AIBinder_linkToDeath(mCallback->asBinder().get(), mClientDeathRecipient.get(), this);
     }
 
-    // To ensure that a client app can get the latest correct state immediately when registering a
-    // state callback, here needs to invoke the callback
-    RefreshOtDaemonState(/* aFlags */ 0xffffffff);
-    mCallback->onStateChanged(mState, listenerId);
-    mCallback->onThreadEnabledChanged(mThreadEnabled);
+    mTaskRunner.Post([listenerId, this]() {
+        // To ensure that a client app can get the latest correct state immediately when registering a
+        // state callback, here needs to invoke the callback
+        RefreshOtDaemonState(/* aFlags */ 0xffffffff);
+        mCallback->onStateChanged(mState, listenerId);
+        mCallback->onThreadEnabledChanged(mThreadEnabled);
+    });
 
 exit:
     return Status::ok();
@@ -523,44 +529,55 @@ bool OtDaemonServer::RefreshOtDaemonState(otChangedFlags aFlags)
 Status OtDaemonServer::join(const std::vector<uint8_t>               &aActiveOpDatasetTlvs,
                             const std::shared_ptr<IOtStatusReceiver> &aReceiver)
 {
-    int                      error = OT_ERROR_NONE;
-    std::string              message;
-    otOperationalDatasetTlvs datasetTlvs;
+    int         error = OT_ERROR_NONE;
+    std::string message;
 
     VerifyOrExit(mThreadEnabled != IOtDaemon::OT_STATE_DISABLING, error = OT_ERROR_BUSY,
                  message = "Thread is disabling");
 
     VerifyOrExit(mThreadEnabled == IOtDaemon::OT_STATE_ENABLED,
-                 error = static_cast<int>(IOtDaemon::ErrorCode::OT_ERROR_THREAD_DISABLED),
+                 error   = static_cast<int>(IOtDaemon::ErrorCode::OT_ERROR_THREAD_DISABLED),
                  message = "Thread is disabled");
 
     otbrLogInfo("Start joining...");
 
     VerifyOrExit(GetOtInstance() != nullptr, error = OT_ERROR_INVALID_STATE, message = "OT is not initialized");
 
-    if (otThreadGetDeviceRole(GetOtInstance()) != OT_DEVICE_ROLE_DISABLED)
-    {
-        LeaveGracefully([aActiveOpDatasetTlvs, aReceiver, this]() { join(aActiveOpDatasetTlvs, aReceiver); });
-        ExitNow();
-    }
+    mTaskRunner.Post([aActiveOpDatasetTlvs, aReceiver, this]() {
+        int                      error = OT_ERROR_NONE;
+        std::string              message;
+        otOperationalDatasetTlvs datasetTlvs;
 
-    std::copy(aActiveOpDatasetTlvs.begin(), aActiveOpDatasetTlvs.end(), datasetTlvs.mTlvs);
-    datasetTlvs.mLength = aActiveOpDatasetTlvs.size();
-    SuccessOrExit(error   = otDatasetSetActiveTlvs(GetOtInstance(), &datasetTlvs),
-                  message = "Failed to set Active Operational Dataset");
+        if (otThreadGetDeviceRole(GetOtInstance()) != OT_DEVICE_ROLE_DISABLED)
+        {
+            LeaveGracefully([aActiveOpDatasetTlvs, aReceiver, this]() { join(aActiveOpDatasetTlvs, aReceiver); });
+            ExitNow();
+        }
 
-    // TODO(b/273160198): check how we can implement join as a child
+        std::copy(aActiveOpDatasetTlvs.begin(), aActiveOpDatasetTlvs.end(), datasetTlvs.mTlvs);
+        datasetTlvs.mLength = aActiveOpDatasetTlvs.size();
+        SuccessOrExit(error   = otDatasetSetActiveTlvs(GetOtInstance(), &datasetTlvs),
+                      message = "Failed to set Active Operational Dataset");
 
-    // Shouldn't we have an equivalent `otThreadAttach` method vs `otThreadDetachGracefully`?
-    SuccessOrExit(error = otIp6SetEnabled(GetOtInstance(), true), message = "Failed to bring up Thread interface");
-    SuccessOrExit(error = otThreadSetEnabled(GetOtInstance(), true), message = "Failed to bring up Thread stack");
+        // TODO(b/273160198): check how we can implement join as a child
 
-    // Abort an ongoing join()
-    if (mJoinReceiver != nullptr)
-    {
-        mJoinReceiver->onError(OT_ERROR_ABORT, "Join() is aborted");
-    }
-    mJoinReceiver = aReceiver;
+        // Shouldn't we have an equivalent `otThreadAttach` method vs `otThreadDetachGracefully`?
+        SuccessOrExit(error = otIp6SetEnabled(GetOtInstance(), true), message = "Failed to bring up Thread interface");
+        SuccessOrExit(error = otThreadSetEnabled(GetOtInstance(), true), message = "Failed to bring up Thread stack");
+
+        // Abort an ongoing join()
+        if (mJoinReceiver != nullptr)
+        {
+            mJoinReceiver->onError(OT_ERROR_ABORT, "Join() is aborted");
+        }
+        mJoinReceiver = aReceiver;
+
+    exit:
+        if (error != OT_ERROR_NONE)
+        {
+            PropagateResult(error, message, aReceiver);
+        }
+    });
 
 exit:
     if (error != OT_ERROR_NONE)
@@ -580,16 +597,21 @@ Status OtDaemonServer::leave(const std::shared_ptr<IOtStatusReceiver> &aReceiver
     VerifyOrExit(mThreadEnabled != IOtDaemon::OT_STATE_DISABLING, error = OT_ERROR_BUSY,
                  message = "Thread is disabling");
 
-    if (mThreadEnabled == IOtDaemon::OT_STATE_DISABLED)
-    {
-        (void)otInstanceErasePersistentInfo(GetOtInstance());
-        aReceiver->onSuccess();
-        ExitNow();
-    }
+    mTaskRunner.Post([aReceiver, this]() {
+        if (mThreadEnabled == IOtDaemon::OT_STATE_DISABLED)
+        {
+            (void)otInstanceErasePersistentInfo(GetOtInstance());
+            aReceiver->onSuccess();
+            ExitNow();
+        }
 
-    LeaveGracefully([aReceiver, this]() {
-        (void)otInstanceErasePersistentInfo(GetOtInstance());
-        aReceiver->onSuccess();
+        LeaveGracefully([aReceiver, this]() {
+            (void)otInstanceErasePersistentInfo(GetOtInstance());
+            aReceiver->onSuccess();
+        });
+
+    exit:
+        return;
     });
 
 exit:
@@ -647,15 +669,14 @@ bool OtDaemonServer::isAttached()
 Status OtDaemonServer::scheduleMigration(const std::vector<uint8_t>               &aPendingOpDatasetTlvs,
                                          const std::shared_ptr<IOtStatusReceiver> &aReceiver)
 {
-    int                  error;
-    std::string          message;
-    otOperationalDataset emptyDataset;
+    int         error = OT_ERROR_NONE;
+    std::string message;
 
     VerifyOrExit(mThreadEnabled != IOtDaemon::OT_STATE_DISABLING, error = OT_ERROR_BUSY,
                  message = "Thread is disabling");
 
     VerifyOrExit(mThreadEnabled == IOtDaemon::OT_STATE_ENABLED,
-                 error = static_cast<int>(IOtDaemon::ErrorCode::OT_ERROR_THREAD_DISABLED),
+                 error   = static_cast<int>(IOtDaemon::ErrorCode::OT_ERROR_THREAD_DISABLED),
                  message = "Thread is disabled");
 
     if (GetOtInstance() == nullptr)
@@ -664,33 +685,45 @@ Status OtDaemonServer::scheduleMigration(const std::vector<uint8_t>             
         ExitNow(error = OT_ERROR_INVALID_STATE);
     }
 
-    if (!isAttached())
-    {
-        message = "Cannot schedule migration when this device is detached";
-        ExitNow(error = static_cast<int>(IOtDaemon::ErrorCode::OT_ERROR_FAILED_PRECONDITION));
-    }
+    mTaskRunner.Post([aPendingOpDatasetTlvs, aReceiver, this]() {
+        int                  error = OT_ERROR_NONE;
+        std::string          message;
+        otOperationalDataset emptyDataset;
 
-    // TODO: check supported channel mask
+        if (!isAttached())
+        {
+            message = "Cannot schedule migration when this device is detached";
+            ExitNow(error = static_cast<int>(IOtDaemon::ErrorCode::OT_ERROR_FAILED_PRECONDITION));
+        }
 
-    error = otDatasetSendMgmtPendingSet(GetOtInstance(), &emptyDataset, aPendingOpDatasetTlvs.data(),
-                                        aPendingOpDatasetTlvs.size(), SendMgmtPendingSetCallback,
-                                        /* aBinderServer= */ this);
-    if (error != OT_ERROR_NONE)
-    {
-        message = "Failed to send MGMT_PENDING_SET.req";
-    }
+        // TODO: check supported channel mask
+
+        error = otDatasetSendMgmtPendingSet(GetOtInstance(), &emptyDataset, aPendingOpDatasetTlvs.data(),
+                                            aPendingOpDatasetTlvs.size(), SendMgmtPendingSetCallback,
+                                            /* aBinderServer= */ this);
+        if (error != OT_ERROR_NONE)
+        {
+            message = "Failed to send MGMT_PENDING_SET.req";
+        }
+
+    exit:
+        if (error != OT_ERROR_NONE)
+        {
+            PropagateResult(error, message, aReceiver);
+        }
+        else
+        {
+            // otDatasetSendMgmtPendingSet() returns OT_ERROR_BUSY if it has already been called before but the
+            // callback hasn't been invoked. So we can guarantee that mMigrationReceiver is always nullptr here
+            assert(mMigrationReceiver == nullptr);
+            mMigrationReceiver = aReceiver;
+        }
+    });
 
 exit:
     if (error != OT_ERROR_NONE)
     {
         PropagateResult(error, message, aReceiver);
-    }
-    else
-    {
-        // otDatasetSendMgmtPendingSet() returns OT_ERROR_BUSY if it has already been called before but the
-        // callback hasn't been invoked. So we can guarantee that mMigrationReceiver is always nullptr here
-        assert(mMigrationReceiver == nullptr);
-        mMigrationReceiver = aReceiver;
     }
     return Status::ok();
 }
@@ -720,17 +753,34 @@ Status OtDaemonServer::setCountryCode(const std::string                        &
     otbrLogInfo("Set country code: %c%c", aCountryCode[0], aCountryCode[1]);
     VerifyOrExit(GetOtInstance() != nullptr, error = OT_ERROR_INVALID_STATE, message = "OT is not initialized");
     countryCode = (static_cast<uint16_t>(aCountryCode[0]) << 8) | aCountryCode[1];
-    SuccessOrExit(error = otLinkSetRegion(GetOtInstance(), countryCode), message = "Failed to set the country code");
+
+    mTaskRunner.Post([countryCode, aReceiver, this]() {
+        otError     error = OT_ERROR_NONE;
+        std::string message;
+
+        SuccessOrExit(error   = otLinkSetRegion(GetOtInstance(), countryCode),
+                      message = "Failed to set the country code");
+
+    exit:
+        PropagateResult(error, message, aReceiver);
+    });
 
 exit:
-    PropagateResult(error, message, aReceiver);
+    if (error != OT_ERROR_NONE)
+    {
+        PropagateResult(error, message, aReceiver);
+    }
+
     return Status::ok();
 }
 
 Status OtDaemonServer::configureBorderRouter(const BorderRouterConfigurationParcel    &aBorderRouterConfiguration,
                                              const std::shared_ptr<IOtStatusReceiver> &aReceiver)
 {
-    int         icmp6SocketFd = aBorderRouterConfiguration.infraInterfaceIcmp6Socket.dup().release();
+    int         icmp6SocketFd          = aBorderRouterConfiguration.infraInterfaceIcmp6Socket.dup().release();
+    std::string infraInterfaceName     = aBorderRouterConfiguration.infraInterfaceName;
+    bool        isBorderRoutingEnabled = aBorderRouterConfiguration.isBorderRoutingEnabled;
+    bool        isBorderRouterConfigChanged;
     std::string message;
     otError     error = OT_ERROR_NONE;
 
@@ -738,39 +788,57 @@ Status OtDaemonServer::configureBorderRouter(const BorderRouterConfigurationParc
 
     VerifyOrExit(GetOtInstance() != nullptr, error = OT_ERROR_INVALID_STATE, message = "OT is not initialized");
 
-    if (mBorderRouterConfiguration != aBorderRouterConfiguration)
-    {
-        if (aBorderRouterConfiguration.isBorderRoutingEnabled)
-        {
-            int infraIfIndex = if_nametoindex(aBorderRouterConfiguration.infraInterfaceName.c_str());
-            SuccessOrExit(error   = otBorderRoutingSetEnabled(GetOtInstance(), false /* aEnabled */),
-                          message = "failed to disable border routing");
-            otSysSetInfraNetif(aBorderRouterConfiguration.infraInterfaceName.c_str(), icmp6SocketFd);
-            icmp6SocketFd = -1;
-            SuccessOrExit(error   = otBorderRoutingInit(GetOtInstance(), infraIfIndex, otSysInfraIfIsRunning()),
-                          message = "failed to initialize border routing");
-            SuccessOrExit(error   = otBorderRoutingSetEnabled(GetOtInstance(), true /* aEnabled */),
-                          message = "failed to enable border routing");
-            // TODO: b/320836258 - Make BBR independently configurable
-            otBackboneRouterSetEnabled(GetOtInstance(), true /* aEnabled */);
-        }
-        else
-        {
-            SuccessOrExit(error   = otBorderRoutingSetEnabled(GetOtInstance(), false /* aEnabled */),
-                          message = "failed to disable border routing");
-            otBackboneRouterSetEnabled(GetOtInstance(), false /* aEnabled */);
-        }
-    }
+    // The copy constructor of `BorderRouterConfigurationParcel` is deleted. Unable to directly pass the
+    // `aBorderRouterConfiguration` to the lambda function. Only pass the necessary parameters of
+    // `BorderRouterConfigurationParcel` to the lambda function.
+    isBorderRouterConfigChanged = (mBorderRouterConfiguration != aBorderRouterConfiguration);
+    mTaskRunner.Post(
+        [icmp6SocketFd, infraInterfaceName, isBorderRoutingEnabled, isBorderRouterConfigChanged, aReceiver, this]() {
+            int         socketFd = icmp6SocketFd;
+            otError     error    = OT_ERROR_NONE;
+            std::string message;
 
-    mBorderRouterConfiguration.isBorderRoutingEnabled = aBorderRouterConfiguration.isBorderRoutingEnabled;
-    mBorderRouterConfiguration.infraInterfaceName     = aBorderRouterConfiguration.infraInterfaceName;
+            if (isBorderRouterConfigChanged)
+            {
+                if (isBorderRoutingEnabled)
+                {
+                    int infraIfIndex = if_nametoindex(infraInterfaceName.c_str());
+                    SuccessOrExit(error   = otBorderRoutingSetEnabled(GetOtInstance(), false /* aEnabled */),
+                                  message = "failed to disable border routing");
+                    otSysSetInfraNetif(infraInterfaceName.c_str(), socketFd);
+                    socketFd = -1;
+                    SuccessOrExit(error   = otBorderRoutingInit(GetOtInstance(), infraIfIndex, otSysInfraIfIsRunning()),
+                                  message = "failed to initialize border routing");
+                    SuccessOrExit(error   = otBorderRoutingSetEnabled(GetOtInstance(), true /* aEnabled */),
+                                  message = "failed to enable border routing");
+                    // TODO: b/320836258 - Make BBR independently configurable
+                    otBackboneRouterSetEnabled(GetOtInstance(), true /* aEnabled */);
+                }
+                else
+                {
+                    SuccessOrExit(error   = otBorderRoutingSetEnabled(GetOtInstance(), false /* aEnabled */),
+                                  message = "failed to disable border routing");
+                    otBackboneRouterSetEnabled(GetOtInstance(), false /* aEnabled */);
+                }
+            }
+
+            mBorderRouterConfiguration.isBorderRoutingEnabled = isBorderRoutingEnabled;
+            mBorderRouterConfiguration.infraInterfaceName     = infraInterfaceName;
+
+        exit:
+            if (error != OT_ERROR_NONE)
+            {
+                close(socketFd);
+            }
+            PropagateResult(error, message, aReceiver);
+        });
 
 exit:
     if (error != OT_ERROR_NONE)
     {
         close(icmp6SocketFd);
+        PropagateResult(error, message, aReceiver);
     }
-    PropagateResult(error, message, aReceiver);
 
     return Status::ok();
 }
