@@ -30,6 +30,8 @@ package com.android.server.thread.openthread;
 
 import com.android.server.thread.openthread.DnsTxtAttribute;
 import com.android.server.thread.openthread.INsdStatusReceiver;
+import com.android.server.thread.openthread.INsdDiscoverServiceCallback;
+import com.android.server.thread.openthread.INsdResolveServiceCallback;
 
 /**
  * The service which supports mDNS advertising and discovery by {@link NsdManager}.
@@ -86,4 +88,13 @@ oneway interface INsdPublisher {
      * @param listenerId the listenerId of the 'unregister' operation
      */
     void unregister(in INsdStatusReceiver receiver, int listenerId);
+
+    void discoverService(in String type,
+                         in INsdDiscoverServiceCallback callback,
+                         int listenerId);
+
+    void resolveService(in String name,
+                        in String type,
+                        in INsdResolveServiceCallback callback,
+                        int listenerId);
 }

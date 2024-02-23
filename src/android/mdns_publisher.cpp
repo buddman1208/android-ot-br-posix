@@ -61,6 +61,51 @@ Status MdnsPublisher::NsdStatusReceiver::onSuccess()
     return Status::ok();
 }
 
+Status MdnsPublisher::NsdDiscoverServiceCallback::onServiceDiscovered(const std::string &aName,
+                                                                      const std::string &aType,
+                                                                      bool               aIsFound)
+{
+    VerifyOrExit(aIsFound, mSubscription.mPublisher.OnServiceRemoved(0, aType, aName));
+
+    mSubscription.Resolve(aName, aType);
+
+exit:
+    return Status::ok();
+}
+
+Status MdnsPublisher::NsdResolveServiceCallback::onServiceResolved(const std::string                  &aHostname,
+                                                                   const std::string                  &aName,
+                                                                   const std::string                  &aType,
+                                                                   int                                 aPort,
+                                                                   const std::vector<std::string>     &aAddresses,
+                                                                   const std::vector<DnsTxtAttribute> &aTxt)
+{
+    DiscoveredInstanceInfo info;
+    TxtList                txtList;
+
+    info.mHostName = aHostname + ".local.";
+    info.mName     = aName;
+    info.mPort     = aPort;
+    info.mTtl      = 10;
+    for (const auto &addressStr : aAddresses)
+    {
+        Ip6Address address;
+
+        Ip6Address::FromString(addressStr.c_str(), address);
+        info.mAddresses.push_back(address);
+    }
+    for (const auto &entry : aTxt)
+    {
+        txtList.emplace_back(entry.name.c_str(), entry.value.data(), entry.value.size());
+    }
+    EncodeTxtData(txtList, info.mTxtData);
+
+    mSubscription.mPublisher.OnServiceResolved(aType, info);
+
+exit:
+    return Status::ok();
+}
+
 void MdnsPublisher::SetINsdPublisher(std::shared_ptr<INsdPublisher> aINsdPublisher)
 {
     otbrLogInfo("Set INsdPublisher %p", aINsdPublisher.get());
@@ -90,6 +135,18 @@ Status MdnsPublisher::NsdStatusReceiver::onError(int aError)
 std::shared_ptr<MdnsPublisher::NsdStatusReceiver> CreateReceiver(Mdns::Publisher::ResultCallback aCallback)
 {
     return ndk::SharedRefBase::make<MdnsPublisher::NsdStatusReceiver>(std::move(aCallback));
+}
+
+std::shared_ptr<MdnsPublisher::NsdDiscoverServiceCallback> CreateNsdDiscoverServiceCallback(
+    MdnsPublisher::ServiceSubscription &aServiceSubscription)
+{
+    return ndk::SharedRefBase::make<MdnsPublisher::NsdDiscoverServiceCallback>(aServiceSubscription);
+}
+
+std::shared_ptr<MdnsPublisher::NsdResolveServiceCallback> CreateNsdResolveServiceCallback(
+    MdnsPublisher::ServiceSubscription &aServiceSubscription)
+{
+    return ndk::SharedRefBase::make<MdnsPublisher::NsdResolveServiceCallback>(aServiceSubscription);
 }
 
 void DieForNotImplemented(const char *aFuncName)
@@ -251,7 +308,25 @@ void MdnsPublisher::SubscribeService(const std::string &aType, const std::string
     OTBR_UNUSED_VARIABLE(aType);
     OTBR_UNUSED_VARIABLE(aInstanceName);
 
-    DieForNotImplemented(__func__);
+    auto service = MakeUnique<ServiceSubscription>(aType, aInstanceName, *this, mNsdPublisher);
+
+    VerifyOrExit(IsStarted(), otbrLogWarning("No platform mDNS implementation registered!"));
+
+    mSubscribedServices.push_back(std::move(service));
+
+    otbrLogInfo("Subscribe service %s.%s (total %zu)", aInstanceName.c_str(), aType.c_str(),
+                mSubscribedServices.size());
+
+    if (aInstanceName.empty())
+    {
+        mSubscribedServices.back()->Browse();
+    }
+    else
+    {
+        mSubscribedServices.back()->Resolve(aInstanceName, aType);
+    }
+exit:
+    return;
 }
 
 void MdnsPublisher::UnsubscribeService(const std::string &aType, const std::string &aInstanceName)
@@ -259,7 +334,7 @@ void MdnsPublisher::UnsubscribeService(const std::string &aType, const std::stri
     OTBR_UNUSED_VARIABLE(aType);
     OTBR_UNUSED_VARIABLE(aInstanceName);
 
-    DieForNotImplemented(__func__);
+    // DieForNotImplemented(__func__);
 }
 
 void MdnsPublisher::SubscribeHost(const std::string &aHostName)
@@ -333,6 +408,30 @@ MdnsPublisher::NsdHostRegistration::~NsdHostRegistration(void)
     }
 
     mNsdPublisher->unregister(mUnregisterReceiver, mListenerId);
+
+exit:
+    return;
+}
+
+void MdnsPublisher::ServiceSubscription::Browse(void)
+{
+    otbrLogInfo("Browsing service type %s", mType.c_str());
+
+    mNsdPublisher->discoverService(mType, CreateNsdDiscoverServiceCallback(*this), mBrowseListenerId);
+
+exit:
+    return;
+}
+
+void MdnsPublisher::ServiceSubscription::Resolve(const std::string &aName, const std::string &aType)
+{
+    ServiceResolver *resolver = new ServiceResolver(mPublisher.AllocateListenerId(), mNsdPublisher);
+
+    otbrLogInfo("Resolving service %s.%s", aName.c_str(), aType.c_str());
+
+    mResolvers[aName].insert(resolver);
+
+    mNsdPublisher->resolveService(aName, aType, CreateNsdResolveServiceCallback(*this), resolver->mListenerId);
 
 exit:
     return;
