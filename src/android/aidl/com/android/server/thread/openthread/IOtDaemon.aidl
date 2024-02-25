@@ -85,9 +85,15 @@ oneway interface IOtDaemon {
      * @param enabled the Thead enabled state from Persistent Settings
      * @param nsdPublisher the INsdPublisher which can be used for mDNS advertisement/discovery
      *                    on AIL by {@link NsdManager}
+     * @param vendorName the vendor name which will be truncated to 24 utf-8 bytes
+     * @param modelName the model name which will be truncated to 24 utf-8 bytes
      */
-    void initialize(in ParcelFileDescriptor tunFd, in boolean enabled,
-                    in INsdPublisher nsdPublisher);
+    void initialize(
+            in ParcelFileDescriptor tunFd,
+            in boolean enabled,
+            in INsdPublisher nsdPublisher,
+            String vendorName,
+            String modelName);
 
     /**
      * Enables/disables Thread.
