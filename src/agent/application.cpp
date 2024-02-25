@@ -91,29 +91,38 @@ Application::Application(const std::string               &aInterfaceName,
 #if OTBR_ENABLE_VENDOR_SERVER
     , mVendorServer(vendor::VendorServer::newInstance(*this))
 #endif
+    , mThreadEnabled(false)
 {
     OTBR_UNUSED_VARIABLE(aRestListenAddress);
     OTBR_UNUSED_VARIABLE(aRestListenPort);
 }
 
-void Application::Init(void)
+void Application::onThreadEnabledChanged(bool aThreadEnabled)
+{
+    if (mThreadEnabled != aThreadEnabled)
+    {
+        mThreadEnabled = aThreadEnabled;
+#if OTBR_ENABLE_BORDER_AGENT
+        mBorderAgent.SetEnabled(mThreadEnabled);
+#endif
+#if OTBR_ENABLE_SRP_ADVERTISING_PROXY
+        mAdvertisingProxy.SetEnabled(mThreadEnabled);
+#endif
+#if OTBR_ENABLE_DNSSD_DISCOVERY_PROXY
+        mDiscoveryProxy.SetEnabled(mThreadEnabled);
+#endif
+    }
+}
+
+void Application::Init(bool aThreadEnabled)
 {
     mNcp.Init();
 
 #if OTBR_ENABLE_MDNS
     mPublisher->Start();
 #endif
-#if OTBR_ENABLE_BORDER_AGENT
-    mBorderAgent.SetEnabled(true);
-#endif
 #if OTBR_ENABLE_BACKBONE_ROUTER
     mBackboneAgent.Init();
-#endif
-#if OTBR_ENABLE_SRP_ADVERTISING_PROXY
-    mAdvertisingProxy.SetEnabled(true);
-#endif
-#if OTBR_ENABLE_DNSSD_DISCOVERY_PROXY
-    mDiscoveryProxy.SetEnabled(true);
 #endif
 #if OTBR_ENABLE_OPENWRT
     mUbusAgent.Init();
@@ -127,6 +136,8 @@ void Application::Init(void)
 #if OTBR_ENABLE_VENDOR_SERVER
     mVendorServer->Init();
 #endif
+
+    onThreadEnabledChanged(aThreadEnabled);
 }
 
 void Application::Deinit(void)
