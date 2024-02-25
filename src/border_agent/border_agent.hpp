@@ -95,6 +95,24 @@ public:
     ~BorderAgent(void) = default;
 
     /**
+     * Sets the predefined product name, vendor name and vendor OUI that are advertised in the MeshCoP service.
+     *
+     * This method should be called before this BorderAgent is enabled by SetEnabled.
+     *
+     * @param[in] aProductName  The product name; must not exceed length of kMaxProductNameLength
+     *                          and an empty string will be ignored
+     * @param[in] aVendorName   The vendor name; must not exceed length of kMaxVendorNameLength
+     *                          and an empty string will be ignored
+     * @param[in] aVendorOui    The vendor OUI; must has length of 3 bytes or be empty and ignored
+     *
+     * @returns OTBR_ERROR_INVALID_ARGS  if aVendorName, aProductName or aVendorOui exceeds the
+     *                                   allowed ranges
+     */
+    otbrError SetPredefinedVendorTxtValues(const std::string          &aProductName,
+                                           const std::string          &aVendorName,
+                                           const std::vector<uint8_t> &aVendorOui = {});
+
+    /**
      * This method enables/disables the Border Agent.
      *
      * @param[in] aIsEnabled  Whether to enable the Border Agent.
@@ -124,7 +142,7 @@ private:
     void HandleThreadStateChanged(otChangedFlags aFlags);
 
     bool        IsThreadStarted(void) const;
-    std::string BaseServiceInstanceName() const;
+    std::string MakeServiceInstanceName(void) const;
     std::string GetAlternativeServiceInstanceName() const;
 
     otbr::Ncp::ControllerOpenThread &mNcp;
@@ -135,6 +153,10 @@ private:
     std::map<std::string, std::vector<uint8_t>> mMeshCopTxtUpdate;
 #endif
 
+    std::vector<uint8_t> mVendorOui;
+
+    std::string mVendorName;
+    std::string mProductName;
     std::string mServiceInstanceName;
 };
 
