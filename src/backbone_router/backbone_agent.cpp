@@ -70,8 +70,11 @@ void BackboneAgent::Init(void)
     otBackboneRouterSetNdProxyCallback(mNcp.GetInstance(), &BackboneAgent::HandleBackboneRouterNdProxyEvent, this);
     mNdProxyManager.Init();
 #endif
+}
 
-    otBackboneRouterSetEnabled(mNcp.GetInstance(), /* aEnabled */ true);
+void BackboneAgent::SetEnabled(bool enabled)
+{
+    otBackboneRouterSetEnabled(mNcp.GetInstance(), enabled);
 }
 
 void BackboneAgent::HandleThreadStateChanged(otChangedFlags aFlags)

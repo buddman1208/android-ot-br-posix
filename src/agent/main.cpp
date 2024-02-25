@@ -76,6 +76,7 @@ enum
     OTBR_OPT_AUTO_ATTACH,
     OTBR_OPT_REST_LISTEN_ADDR,
     OTBR_OPT_REST_LISTEN_PORT,
+    OTBR_OPT_THREAD_ENABLED,
 };
 
 #ifndef __ANDROID__
@@ -93,6 +94,7 @@ static const struct option kOptions[] = {
     {"version", no_argument, nullptr, OTBR_OPT_VERSION},
     {"radio-version", no_argument, nullptr, OTBR_OPT_RADIO_VERSION},
     {"auto-attach", optional_argument, nullptr, OTBR_OPT_AUTO_ATTACH},
+    {"thread-enabled", optional_argument, nullptr, OTBR_OPT_THREAD_ENABLED},
     {"rest-listen-address", required_argument, nullptr, OTBR_OPT_REST_LISTEN_ADDR},
     {"rest-listen-port", required_argument, nullptr, OTBR_OPT_REST_LISTEN_PORT},
     {0, 0, 0, 0}};
@@ -197,6 +199,7 @@ static int realmain(int argc, char *argv[])
     bool                      verbose           = false;
     bool                      printRadioVersion = false;
     bool                      enableAutoAttach  = true;
+    bool                      threadEnabled     = true;
     const char               *restListenAddress = "";
     int                       restListenPort    = kPortNumber;
     std::vector<const char *> radioUrls;
@@ -253,6 +256,17 @@ static int realmain(int argc, char *argv[])
                 enableAutoAttach = parseResult;
             }
             break;
+        case OTBR_OPT_THREAD_ENABLED:
+            if (optarg == nullptr)
+            {
+                threadEnabled = true;
+            }
+            else
+            {
+                VerifyOrExit(ParseInteger(optarg, parseResult), ret = EXIT_FAILURE);
+                threadEnabled = parseResult;
+            }
+            break;
         case OTBR_OPT_REST_LISTEN_ADDR:
             restListenAddress = optarg;
             break;
@@ -296,7 +310,7 @@ static int realmain(int argc, char *argv[])
                               restListenPort);
 
         gApp = &app;
-        app.Init();
+        app.Init(threadEnabled);
 
         ret = app.Run();
 
