@@ -82,6 +82,14 @@ public:
      */
     void Init(void);
 
+    /**
+     * Enables/disables the backbone router functionalities.
+     *
+     * @param[in] aEnabled TRUE for enabling backbone rouer, FALSE for disabling backbone router
+     *
+     */
+    void SetEnabled(bool aEnabled);
+
 private:
     void        OnBecomePrimary(void);
     void        OnResignPrimary(void);

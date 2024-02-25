@@ -109,14 +109,22 @@ public:
     /**
      * This method initializes the Application instance.
      *
+     * @param[in] aThreadEnabled  A boolean indicates whether Thread is enabled or not
      */
-    void Init(void);
+    void Init(bool aThreadEnabled);
 
     /**
      * This method de-initializes the Application instance.
      *
      */
     void Deinit(void);
+
+    /**
+     * Called when the Thread enabled state is changed.
+     *
+     * @param[in] aThreadEnabled  A boolean indicates whether Thread is enabled or not
+     */
+    void OnThreadEnabledChanged(bool aThreadEnabled);
 
     /**
      * This method runs the application until exit.
@@ -292,6 +300,8 @@ private:
 #if OTBR_ENABLE_VENDOR_SERVER
     std::shared_ptr<vendor::VendorServer> mVendorServer;
 #endif
+
+    bool mThreadEnabled;
 
     static std::atomic_bool sShouldTerminate;
 };
