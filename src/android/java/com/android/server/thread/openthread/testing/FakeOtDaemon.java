@@ -67,15 +67,12 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
     private int mThreadEnabled = OT_STATE_ENABLED;
 
     @Nullable private DeathRecipient mDeathRecipient;
-
     @Nullable private ParcelFileDescriptor mTunFd;
-
-    @NonNull private INsdPublisher mNsdPublisher;
-
+    @Nullable private INsdPublisher mNsdPublisher;
+    @Nullable private String mVendorName;
+    @Nullable private String mModelName;
     @Nullable private IOtDaemonCallback mCallback;
-
     @Nullable private Long mCallbackListenerId;
-
     @Nullable private RemoteException mJoinException;
 
     public FakeOtDaemon(Handler handler) {
@@ -113,11 +110,18 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
     }
 
     @Override
-    public void initialize(ParcelFileDescriptor tunFd, boolean enabled, INsdPublisher nsdPublisher)
+    public void initialize(
+            ParcelFileDescriptor tunFd,
+            boolean enabled,
+            INsdPublisher nsdPublisher,
+            String vendorName,
+            String modelName)
             throws RemoteException {
         mTunFd = tunFd;
         mThreadEnabled = enabled ? OT_STATE_ENABLED : OT_STATE_DISABLED;
         mNsdPublisher = nsdPublisher;
+        mVendorName = vendorName;
+        mModelName = modelName;
     }
 
     @Override
@@ -153,6 +157,24 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
     @Nullable
     public INsdPublisher getNsdPublisher() {
         return mNsdPublisher;
+    }
+
+    /**
+     * Returns the Vendor Name set to OT daemon or {@code null} if {@link #initialize} is never
+     * called.
+     */
+    @Nullable
+    public String getVendorName() {
+        return mVendorName;
+    }
+
+    /**
+     * Returns the Model Name set to OT daemon or {@code null} if {@link #initialize} is never
+     * called.
+     */
+    @Nullable
+    public String getModelName() {
+        return mModelName;
     }
 
     @Override
