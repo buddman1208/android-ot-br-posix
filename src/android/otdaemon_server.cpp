@@ -98,7 +98,8 @@ static Ipv6AddressInfo ConvertToAddressInfo(const otIp6AddressInfo &aAddressInfo
 }
 
 OtDaemonServer::OtDaemonServer(Application &aApplication)
-    : mNcp(aApplication.GetNcp())
+    : mApplication(aApplication)
+    , mNcp(aApplication.GetNcp())
     , mBorderAgent(aApplication.GetBorderAgent())
     , mMdnsPublisher(static_cast<MdnsPublisher &>(aApplication.GetPublisher()))
     , mBorderRouterConfiguration()
@@ -322,12 +323,15 @@ void OtDaemonServer::Process(const MainloopContext &aMainloop)
 
 Status OtDaemonServer::initialize(const ScopedFileDescriptor           &aTunFd,
                                   const bool                            enabled,
-                                  const std::shared_ptr<INsdPublisher> &aINsdPublisher)
+                                  const std::shared_ptr<INsdPublisher> &aINsdPublisher,
+                                  const std::string                    &aVendorName,
+                                  const std::string                    &aProductName)
 {
     otbrLogInfo("OT daemon is initialized by system server (tunFd=%d, enabled=%s)", aTunFd.get(),
                 enabled ? "true" : "false");
-    mTunFd         = aTunFd.dup();
-    mINsdPublisher = aINsdPublisher;
+    mTunFd = aTunFd.dup();
+    mMdnsPublisher.SetINsdPublisher(aINsdPublisher);
+    mBorderAgent.setVendorAndProductName(aVendorName, aProductName);
 
     if (enabled)
     {
@@ -349,16 +353,9 @@ void OtDaemonServer::updateThreadEnabledState(const int enabled, const std::shar
         aReceiver->onSuccess();
     }
 
-    switch (enabled)
+    if (enabled == OT_STATE_ENABLED || enabled == OT_STATE_DISABLED)
     {
-    case OT_STATE_ENABLED:
-        mMdnsPublisher.SetINsdPublisher(mINsdPublisher);
-        break;
-    case OT_STATE_DISABLED:
-        mMdnsPublisher.SetINsdPublisher(nullptr);
-        break;
-    default:
-        break;
+        mApplication.onThreadEnabledChanged(enabled == OT_STATE_ENABLED);
     }
 
     if (mCallback != nullptr)
@@ -531,7 +528,7 @@ Status OtDaemonServer::join(const std::vector<uint8_t>               &aActiveOpD
                  message = "Thread is disabling");
 
     VerifyOrExit(mThreadEnabled == IOtDaemon::OT_STATE_ENABLED,
-                 error = static_cast<int>(IOtDaemon::ErrorCode::OT_ERROR_THREAD_DISABLED),
+                 error   = static_cast<int>(IOtDaemon::ErrorCode::OT_ERROR_THREAD_DISABLED),
                  message = "Thread is disabled");
 
     otbrLogInfo("Start joining...");
@@ -655,7 +652,7 @@ Status OtDaemonServer::scheduleMigration(const std::vector<uint8_t>             
                  message = "Thread is disabling");
 
     VerifyOrExit(mThreadEnabled == IOtDaemon::OT_STATE_ENABLED,
-                 error = static_cast<int>(IOtDaemon::ErrorCode::OT_ERROR_THREAD_DISABLED),
+                 error   = static_cast<int>(IOtDaemon::ErrorCode::OT_ERROR_THREAD_DISABLED),
                  message = "Thread is disabled");
 
     if (GetOtInstance() == nullptr)

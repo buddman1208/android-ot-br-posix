@@ -82,6 +82,9 @@ public final class FakeOtDaemonTest {
                                     + "642D643961300102D9A00410A245479C836D551B9CA557F7"
                                     + "B9D351B40C0402A0FFF8");
 
+    private static final String TEST_VENDOR = "test vendor";
+    private static final String TEST_MODEL = "test model";
+
     private FakeOtDaemon mFakeOtDaemon;
     private TestLooper mTestLooper;
     @Mock private ParcelFileDescriptor mMockTunFd;
@@ -97,21 +100,29 @@ public final class FakeOtDaemonTest {
 
     @Test
     public void initialize_succeed_tunFdIsSet() throws Exception {
-        mFakeOtDaemon.initialize(mMockTunFd, true, mMockNsdPublisher);
+        mFakeOtDaemon.initialize(mMockTunFd, true, mMockNsdPublisher, TEST_VENDOR, TEST_MODEL);
 
         assertThat(mFakeOtDaemon.getTunFd()).isEqualTo(mMockTunFd);
     }
 
     @Test
     public void initialize_succeed_NsdPublisherIsSet() throws Exception {
-        mFakeOtDaemon.initialize(mMockTunFd, true, mMockNsdPublisher);
+        mFakeOtDaemon.initialize(mMockTunFd, true, mMockNsdPublisher, TEST_VENDOR, TEST_MODEL);
 
         assertThat(mFakeOtDaemon.getNsdPublisher()).isEqualTo(mMockNsdPublisher);
     }
 
     @Test
+    public void initialize_succeed_vendorAndModelNameAreSet() throws Exception {
+        mFakeOtDaemon.initialize(mMockTunFd, true, mMockNsdPublisher, TEST_VENDOR, TEST_MODEL);
+
+        assertThat(mFakeOtDaemon.getVendorName()).isEqualTo(TEST_VENDOR);
+        assertThat(mFakeOtDaemon.getModelName()).isEqualTo(TEST_MODEL);
+    }
+
+    @Test
     public void registerStateCallback_noStateChange_callbackIsInvoked() throws Exception {
-        mFakeOtDaemon.initialize(mMockTunFd, true, mMockNsdPublisher);
+        mFakeOtDaemon.initialize(mMockTunFd, true, mMockNsdPublisher, TEST_VENDOR, TEST_MODEL);
         final AtomicReference<OtDaemonState> stateRef = new AtomicReference<>();
         final AtomicLong listenerIdRef = new AtomicLong();
 
