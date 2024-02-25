@@ -91,7 +91,9 @@ private:
 
     Status initialize(const ScopedFileDescriptor           &aTunFd,
                       const bool                            enabled,
-                      const std::shared_ptr<INsdPublisher> &aNsdPublisher) override;
+                      const std::shared_ptr<INsdPublisher> &aNsdPublisher,
+                      const std::string                    &aVendorName,
+                      const std::string                    &aProductName) override;
     Status setThreadEnabled(const bool enabled, const std::shared_ptr<IOtStatusReceiver> &aReceiver) override;
     Status registerStateCallback(const std::shared_ptr<IOtDaemonCallback> &aCallback, int64_t listenerId) override;
     bool   isAttached(void);
@@ -124,10 +126,10 @@ private:
     void        enableThread(const std::shared_ptr<IOtStatusReceiver> &aReceiver);
 
     int                                mThreadEnabled = IOtDaemon::OT_STATE_DISABLED;
+    otbr::Application                 &mApplication;
     otbr::Ncp::ControllerOpenThread   &mNcp;
     otbr::BorderAgent                 &mBorderAgent;
     MdnsPublisher                     &mMdnsPublisher;
-    std::shared_ptr<INsdPublisher>     mINsdPublisher;
     TaskRunner                         mTaskRunner;
     ScopedFileDescriptor               mTunFd;
     OtDaemonState                      mState;
