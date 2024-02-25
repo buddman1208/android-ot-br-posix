@@ -69,11 +69,9 @@
 
 namespace otbr {
 
-static const char kVendorName[]             = OTBR_VENDOR_NAME;
-static const char kProductName[]            = OTBR_PRODUCT_NAME;
-static const char kBorderAgentServiceType[] = "_meshcop._udp"; ///< Border agent service type of mDNS
-static const char kBorderAgentServiceInstanceName[] =
-    OTBR_MESHCOP_SERVICE_INSTANCE_NAME; ///< Border agent service name of mDNS
+static const char    kVendorName[]                = OTBR_VENDOR_NAME;
+static const char    kProductName[]               = OTBR_PRODUCT_NAME;
+static const char    kBorderAgentServiceType[]    = "_meshcop._udp"; ///< Border agent service type of mDNS
 static constexpr int kBorderAgentServiceDummyPort = 49152;
 
 /**
@@ -143,7 +141,39 @@ BorderAgent::BorderAgent(otbr::Ncp::ControllerOpenThread &aNcp, Mdns::Publisher 
     : mNcp(aNcp)
     , mPublisher(aPublisher)
     , mIsEnabled(false)
+    , mVendorName(OTBR_VENDOR_NAME)
+    , mProductName(OTBR_PRODUCT_NAME)
 {
+    setVendorAndProductName(OTBR_VENDOR_NAME, OTBR_PRODUCT_NAME);
+}
+
+void BorderAgent::setVendorAndProductName(const std::string &aVendorName, const std::string &aProductName)
+{
+    if (aVendorName.size() > kMaxVendorNameLength)
+    {
+        mVendorName = aVendorName.substr(0, 24);
+        otbrLogWarning("Vendor name is truncated to %s", mVendorName.c_str());
+    }
+    else if (!aVendorName.empty())
+    {
+        mVendorName = aVendorName;
+    }
+
+    if (aProductName.size() > kMaxProductNameLength)
+    {
+        mProductName = aProductName.substr(0, 24);
+        otbrLogWarning("Product name is truncated to %s", mProductName.c_str());
+    }
+    else if (!aProductName.empty())
+    {
+        mProductName = aProductName;
+    }
+
+#ifdef OTBR_MESHCOP_SERVICE_INSTANCE_NAME
+    mServiceInstanceName = OTBR_MESHCOP_SERVICE_INSTANCE_NAME;
+#else
+    mServiceInstanceName = std::string(mVendorName) + " " + mProductName;
+#endif
 }
 
 void BorderAgent::SetEnabled(bool aIsEnabled)
@@ -489,7 +519,7 @@ std::string BorderAgent::BaseServiceInstanceName() const
     const otExtAddress *extAddress = otLinkGetExtendedAddress(mNcp.GetInstance());
     std::stringstream   ss;
 
-    ss << kBorderAgentServiceInstanceName << " #";
+    ss << mServiceInstanceName << " #";
     ss << std::uppercase << std::hex << std::setfill('0');
     ss << std::setw(2) << static_cast<int>(extAddress->m8[6]);
     ss << std::setw(2) << static_cast<int>(extAddress->m8[7]);
