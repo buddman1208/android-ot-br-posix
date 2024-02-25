@@ -95,6 +95,18 @@ public:
     ~BorderAgent(void) = default;
 
     /**
+     * Sets the vendor and product name that are advertised in the MeshCoP service.
+     *
+     * This method should be called before this BorderAgent is enabled by SetEnabled.
+     *
+     * @param[in] aVendorName  the vendor name; an empty string will be ignored and a string
+     *                         that exceeds kMaxVendorNameLength will be truncated
+     * @param[in] aProductName the product name; an empty string will be ignored and a string
+     *                         that exceeds kMaxProductNameLength will be truncated
+     */
+    void setVendorAndProductName(const std::string &aVendorName, const std::string &aProductName);
+
+    /**
      * This method enables/disables the Border Agent.
      *
      * @param[in] aIsEnabled  Whether to enable the Border Agent.
@@ -135,6 +147,8 @@ private:
     std::map<std::string, std::vector<uint8_t>> mMeshCopTxtUpdate;
 #endif
 
+    std::string mVendorName;
+    std::string mProductName;
     std::string mServiceInstanceName;
 };
 
