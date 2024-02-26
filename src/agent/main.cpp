@@ -156,7 +156,7 @@ static void OnAllocateFailed(void)
 
 static otbrLogLevel GetDefaultLogLevel(void)
 {
-    otbrLogLevel level = OTBR_LOG_INFO;
+    otbrLogLevel level = OTBR_LOG_DEBUG;
 
 #if __ANDROID__ && OTBR_CONFIG_ANDROID_PROPERTY_ENABLE
     char value[PROPERTY_VALUE_MAX];
