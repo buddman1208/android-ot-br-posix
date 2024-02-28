@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb6bbef5_7e5150ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-02-28T14:15:34Z",
+      "side": 1,
+      "message": "b/327370365",
+      "parentUuid": "77c3b108_1a98d989",
+      "revId": "d41c1ff7e17f83eb6eae04268392d1069dc88d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "672235f5_19a28b68",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10a053be_3f21023d",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-02-28T14:15:34Z",
+      "side": 1,
+      "message": "Follow up in b/327370365",
+      "parentUuid": "672235f5_19a28b68",
+      "range": {
+        "startLine": 267,
+        "startChar": 0,
+        "endLine": 267,
+        "endChar": 99
+      },
+      "revId": "d41c1ff7e17f83eb6eae04268392d1069dc88d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a34df230_00881d52",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-02-28T13:07:50Z",
       "side": 1,
       "message": "Why checking `mCallback` here?",
+      "range": {
+        "startLine": 272,
+        "startChar": 0,
+        "endLine": 276,
+        "endChar": 5
+      },
+      "revId": "d41c1ff7e17f83eb6eae04268392d1069dc88d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ad7de8d_22c753eb",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-02-28T14:15:34Z",
+      "side": 1,
+      "message": "Follow up in b/327370365",
+      "parentUuid": "a34df230_00881d52",
       "range": {
         "startLine": 272,
         "startChar": 0,
