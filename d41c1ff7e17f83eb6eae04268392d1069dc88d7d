@@ -83,6 +83,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b7937a1_04ea7228",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-02-28T14:55:07Z",
+      "side": 1,
+      "message": "Note that this will crash the ot-daemon fuzzer test, better fix ASAP",
+      "parentUuid": "10a053be_3f21023d",
+      "range": {
+        "startLine": 267,
+        "startChar": 0,
+        "endLine": 267,
+        "endChar": 99
+      },
+      "revId": "d41c1ff7e17f83eb6eae04268392d1069dc88d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a34df230_00881d52",
