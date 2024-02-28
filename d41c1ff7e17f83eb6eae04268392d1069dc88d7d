@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "77c3b108_1a98d989",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-02-28T13:08:24Z",
+      "side": 1,
+      "message": "You can address the comments in a separate CL.",
+      "revId": "d41c1ff7e17f83eb6eae04268392d1069dc88d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "672235f5_19a28b68",
         "filename": "src/android/otdaemon_server.cpp",
         "patchSetId": 9
