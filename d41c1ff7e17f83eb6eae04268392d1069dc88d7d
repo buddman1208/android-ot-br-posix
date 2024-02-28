@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "672235f5_19a28b68",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-02-28T13:07:50Z",
+      "side": 1,
+      "message": "You need to check nullability before using `GetOtInstance()`",
+      "range": {
+        "startLine": 267,
+        "startChar": 0,
+        "endLine": 267,
+        "endChar": 99
+      },
+      "revId": "d41c1ff7e17f83eb6eae04268392d1069dc88d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a34df230_00881d52",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-02-28T13:07:50Z",
+      "side": 1,
+      "message": "Why checking `mCallback` here?",
+      "range": {
+        "startLine": 272,
+        "startChar": 0,
+        "endLine": 276,
+        "endChar": 5
+      },
+      "revId": "d41c1ff7e17f83eb6eae04268392d1069dc88d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
