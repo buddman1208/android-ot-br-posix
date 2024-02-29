@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "004e7948_e60865b9",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-02-29T06:51:10Z",
+      "side": 1,
+      "message": "At this point `state` is not fully filled in with values. Is it acceptable?",
+      "revId": "d4667a39d2ff040ce9849ce9f313fce22006f764",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5e8938a4_6c93de1d",
         "filename": "src/android/otdaemon_server.cpp",
         "patchSetId": 2
@@ -43,6 +60,29 @@
         "startChar": 8,
         "endLine": 321,
         "endChar": 15
+      },
+      "revId": "d4667a39d2ff040ce9849ce9f313fce22006f764",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "addbc3de_96beaded",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-02-29T06:51:10Z",
+      "side": 1,
+      "message": "You can also use `VerifyOrExit`",
+      "range": {
+        "startLine": 318,
+        "startChar": 4,
+        "endLine": 322,
+        "endChar": 5
       },
       "revId": "d4667a39d2ff040ce9849ce9f313fce22006f764",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
