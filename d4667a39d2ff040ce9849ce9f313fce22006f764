@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7834283_441b8ff2",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-02-29T07:09:00Z",
+      "side": 1,
+      "message": "I\u0027d recommend explicitly setting `multicastForwardingEnabled` to false. Not necessarily in this CL though.",
+      "parentUuid": "8560b773_0751cc98",
+      "revId": "d4667a39d2ff040ce9849ce9f313fce22006f764",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e8938a4_6c93de1d",
