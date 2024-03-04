@@ -604,6 +604,7 @@ otError RetrieveTelemetryAtom(otInstance                         *otInstance,
 
     deviceInfoReported.set_thread_version(otThreadGetVersion());
     deviceInfoReported.set_ot_rcp_version(otGetRadioVersionString(otInstance));
+    otbrLogInfo("@tonyzhou otGetRadioVersionString=%s", otGetRadioVersionString(otInstance));
     // TODO: populate ot_host_version, thread_daemon_version.
 
     return error;
