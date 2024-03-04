@@ -603,7 +603,7 @@ otError RetrieveTelemetryAtom(otInstance                         *otInstance,
     }
 
     deviceInfoReported.set_thread_version(otThreadGetVersion());
-    deviceInfoReported.set_ot_rcp_version(otGetRadioVersionString(otInstance));
+    deviceInfoReported.set_ot_rcp_version(otPlatRadioGetVersionString(otInstance));
     // TODO: populate ot_host_version, thread_daemon_version.
 
     return error;
