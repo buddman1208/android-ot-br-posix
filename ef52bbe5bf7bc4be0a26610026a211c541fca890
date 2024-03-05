@@ -22,6 +22,30 @@
       },
       "revId": "ef52bbe5bf7bc4be0a26610026a211c541fca890",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65b2e9ea_d200b805",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2024-03-05T05:53:16Z",
+      "side": 1,
+      "message": "This API is what used in the CLI. This is to align with CLI API as suggested by zhanglongxia@; the other API is not implemented (intended behavior as suggested by zhanglongxia@).",
+      "parentUuid": "b47c4e0f_00abc3ee",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 61
+      },
+      "revId": "ef52bbe5bf7bc4be0a26610026a211c541fca890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
