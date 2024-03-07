@@ -36,6 +36,7 @@ import com.android.server.thread.openthread.Ipv6AddressInfo;
 import com.android.server.thread.openthread.IOtStatusReceiver;
 import com.android.server.thread.openthread.IOtDaemonCallback;
 import com.android.server.thread.openthread.INsdPublisher;
+import com.android.server.thread.openthread.MeshcopTxtAttributes;
 
 /**
  * The OpenThread daemon service which provides access to the core Thread stack for
@@ -86,9 +87,14 @@ oneway interface IOtDaemon {
      * @param enabled the Thead enabled state from Persistent Settings
      * @param nsdPublisher the INsdPublisher which can be used for mDNS advertisement/discovery
      *                    on AIL by {@link NsdManager}
+     * @param vendorName the vendor name which will be truncated to 24 utf-8 bytes
+     * @param modelName the model name which will be truncated to 24 utf-8 bytes
      */
-    void initialize(in ParcelFileDescriptor tunFd, in boolean enabled,
-                    in INsdPublisher nsdPublisher);
+    void initialize(
+            in ParcelFileDescriptor tunFd,
+            in boolean enabled,
+            in INsdPublisher nsdPublisher,
+            in MeshcopTxtAttributes meshcopTxts);
 
     /**
      * Enables/disables Thread.
