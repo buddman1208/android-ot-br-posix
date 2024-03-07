@@ -116,7 +116,8 @@ static const char *ThreadEnabledStateToString(int enabledState)
 }
 
 OtDaemonServer::OtDaemonServer(Application &aApplication)
-    : mNcp(aApplication.GetNcp())
+    : mApplication(aApplication)
+    , mNcp(aApplication.GetNcp())
     , mBorderAgent(aApplication.GetBorderAgent())
     , mMdnsPublisher(static_cast<MdnsPublisher &>(aApplication.GetPublisher()))
     , mBorderRouterConfiguration()
@@ -373,7 +374,8 @@ void OtDaemonServer::Process(const MainloopContext &aMainloop)
 
 Status OtDaemonServer::initialize(const ScopedFileDescriptor           &aTunFd,
                                   const bool                            enabled,
-                                  const std::shared_ptr<INsdPublisher> &aINsdPublisher)
+                                  const std::shared_ptr<INsdPublisher> &aINsdPublisher,
+                                  const MeshcopTxtAttributes           &aMeshcopTxts)
 {
     otbrLogInfo("OT daemon is initialized by system server (tunFd=%d, enabled=%s)", aTunFd.get(),
                 enabled ? "true" : "false");
@@ -382,14 +384,19 @@ Status OtDaemonServer::initialize(const ScopedFileDescriptor           &aTunFd,
     // we can process `aTunFd` directly in front of the task.
     mTunFd = aTunFd.dup();
 
-    mTaskRunner.Post([enabled, aINsdPublisher, this]() { initializeInternal(enabled, aINsdPublisher); });
+    mTaskRunner.Post(
+        [enabled, aINsdPublisher, aMeshcopTxts, this]() { initializeInternal(enabled, aINsdPublisher, aMeshcopTxts); });
 
     return Status::ok();
 }
 
-void OtDaemonServer::initializeInternal(const bool enabled, const std::shared_ptr<INsdPublisher> &aINsdPublisher)
+void OtDaemonServer::initializeInternal(const bool                            enabled,
+                                        const std::shared_ptr<INsdPublisher> &aINsdPublisher,
+                                        const MeshcopTxtAttributes           &aMeshcopTxts)
 {
-    mINsdPublisher = aINsdPublisher;
+    mMdnsPublisher.SetINsdPublisher(aINsdPublisher);
+    mBorderAgent.SetMeshcopServiceValues(aMeshcopTxts.vendorName + " " + aMeshcopTxts.modelName, aMeshcopTxts.modelName,
+                                         aMeshcopTxts.vendorName, aMeshcopTxts.vendorOui);
 
     if (enabled)
     {
@@ -415,16 +422,11 @@ void OtDaemonServer::updateThreadEnabledState(const int enabled, const std::shar
         aReceiver->onSuccess();
     }
 
-    switch (enabled)
+    // Enables the BorderAgent module only when Thread is enabled because it always
+    // publishes the MeshCoP service even when no Thread network is provisioned.
+    if (enabled == OT_STATE_ENABLED)
     {
-    case OT_STATE_ENABLED:
-        mMdnsPublisher.SetINsdPublisher(mINsdPublisher);
-        break;
-    case OT_STATE_DISABLED:
-        mMdnsPublisher.SetINsdPublisher(nullptr);
-        break;
-    default:
-        break;
+        mBorderAgent.SetEnabled(true);
     }
 
     if (mCallback != nullptr)
