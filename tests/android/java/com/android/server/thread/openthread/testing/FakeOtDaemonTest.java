@@ -29,8 +29,8 @@
 package com.android.server.thread.openthread.testing;
 
 import static com.android.server.thread.openthread.IOtDaemon.ErrorCode.OT_ERROR_INVALID_STATE;
-import static com.android.server.thread.openthread.IOtDaemon.OT_STATE_DISABLED;
-import static com.android.server.thread.openthread.IOtDaemon.OT_STATE_ENABLED;
+import static com.android.server.thread.openthread.IOtDaemon.THREAD_STATE_DISABLED;
+import static com.android.server.thread.openthread.IOtDaemon.THREAD_STATE_ENABLED;
 
 import static com.google.common.io.BaseEncoding.base16;
 import static com.google.common.truth.Truth.assertThat;
@@ -212,7 +212,7 @@ public final class FakeOtDaemonTest {
 
     @Test
     public void setThreadEnabled_disableThread_succeed() throws Exception {
-        assertThat(mFakeOtDaemon.getEnabledState()).isEqualTo(OT_STATE_ENABLED);
+        assertThat(mFakeOtDaemon.getEnabledState()).isEqualTo(THREAD_STATE_ENABLED);
 
         final AtomicBoolean succeedRef = new AtomicBoolean(false);
         mFakeOtDaemon.setThreadEnabled(
@@ -226,7 +226,7 @@ public final class FakeOtDaemonTest {
         mTestLooper.dispatchAll();
 
         assertThat(succeedRef.get()).isTrue();
-        assertThat(mFakeOtDaemon.getEnabledState()).isEqualTo(OT_STATE_DISABLED);
+        assertThat(mFakeOtDaemon.getEnabledState()).isEqualTo(THREAD_STATE_DISABLED);
     }
 
     @Test
