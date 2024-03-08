@@ -97,6 +97,22 @@ static Ipv6AddressInfo ConvertToAddressInfo(const otIp6AddressInfo &aAddressInfo
     return addrInfo;
 }
 
+static const char *ThreadEnabledStateToString(int enabledState)
+{
+    switch (enabledState)
+    {
+    case IOtDaemon::THREAD_STATE_ENABLED:
+        return "ENABLED";
+    case IOtDaemon::THREAD_STATE_DISABLED:
+        return "DISABLED";
+    case IOtDaemon::THREAD_STATE_DISABLING:
+        return "DISABLING";
+    default:
+        assert(false);
+        return "UNKNOWN";
+    }
+}
+
 OtDaemonServer::OtDaemonServer(Application &aApplication)
     : mNcp(aApplication.GetNcp())
     , mBorderAgent(aApplication.GetBorderAgent())
@@ -245,7 +261,7 @@ void OtDaemonServer::TransmitCallback(void)
     VerifyOrExit(message != nullptr, error = OT_ERROR_NO_BUFS);
     otMessageSetOrigin(message, OT_MESSAGE_ORIGIN_HOST_UNTRUSTED);
 
-    SuccessOrExit(error = otMessageAppend(message, packet, length));
+    SuccessOrExit(error = otMessageAppend(message, packet, static_cast<uint16_t>(length)));
 
     error   = otIp6Send(GetOtInstance(), message);
     message = nullptr;
@@ -379,13 +395,19 @@ void OtDaemonServer::initializeInternal(const bool enabled, const std::shared_pt
     }
     else
     {
-        updateThreadEnabledState(enabled, nullptr /* aReceiver */);
+        updateThreadEnabledState(IOtDaemon::THREAD_STATE_DISABLED, nullptr /* aReceiver */);
     }
 }
 
 void OtDaemonServer::updateThreadEnabledState(const int enabled, const std::shared_ptr<IOtStatusReceiver> &aReceiver)
 {
-    mThreadEnabled = enabled;
+    if (mThreadEnabled != enabled)
+    {
+        otbrLogInfo("Thread enabled state changed: %s -> %s", ThreadEnabledStateToString(mThreadEnabled),
+                    ThreadEnabledStateToString(enabled));
+        mThreadEnabled = enabled;
+    }
+
     if (aReceiver != nullptr)
     {
         aReceiver->onSuccess();
@@ -393,10 +415,10 @@ void OtDaemonServer::updateThreadEnabledState(const int enabled, const std::shar
 
     switch (enabled)
     {
-    case OT_STATE_ENABLED:
+    case IOtDaemon::THREAD_STATE_ENABLED:
         mMdnsPublisher.SetINsdPublisher(mINsdPublisher);
         break;
-    case OT_STATE_DISABLED:
+    case IOtDaemon::THREAD_STATE_DISABLED:
         mMdnsPublisher.SetINsdPublisher(nullptr);
         break;
     default:
@@ -419,7 +441,7 @@ void OtDaemonServer::enableThread(const std::shared_ptr<IOtStatusReceiver> &aRec
         (void)otIp6SetEnabled(GetOtInstance(), true);
         (void)otThreadSetEnabled(GetOtInstance(), true);
     }
-    updateThreadEnabledState(IOtDaemon::OT_STATE_ENABLED, aReceiver);
+    updateThreadEnabledState(IOtDaemon::THREAD_STATE_ENABLED, aReceiver);
 }
 
 Status OtDaemonServer::setThreadEnabled(const bool enabled, const std::shared_ptr<IOtStatusReceiver> &aReceiver)
@@ -436,10 +458,10 @@ void OtDaemonServer::setThreadEnabledInternal(const bool enabled, const std::sha
 
     VerifyOrExit(GetOtInstance() != nullptr, error = OT_ERROR_INVALID_STATE, message = "OT is not initialized");
 
-    VerifyOrExit(mThreadEnabled != IOtDaemon::OT_STATE_DISABLING, error = OT_ERROR_BUSY,
+    VerifyOrExit(mThreadEnabled != IOtDaemon::THREAD_STATE_DISABLING, error = OT_ERROR_BUSY,
                  message = "Thread is disabling");
 
-    if ((mThreadEnabled == IOtDaemon::OT_STATE_ENABLED) == enabled)
+    if ((mThreadEnabled == IOtDaemon::THREAD_STATE_ENABLED) == enabled)
     {
         aReceiver->onSuccess();
         ExitNow();
@@ -451,17 +473,14 @@ void OtDaemonServer::setThreadEnabledInternal(const bool enabled, const std::sha
     }
     else
     {
-        mThreadEnabled = IOtDaemon::OT_STATE_DISABLING;
-        if (mCallback != nullptr)
-        {
-            mCallback->onThreadEnabledChanged(mThreadEnabled);
-        }
+        // `aReceiver` should not be set here because the operation isn't finished yet
+        updateThreadEnabledState(IOtDaemon::THREAD_STATE_DISABLING, nullptr /* aReceiver */);
 
         LeaveGracefully([aReceiver, this]() {
             // Ignore errors as those operations should always succeed
             (void)otThreadSetEnabled(GetOtInstance(), false);
             (void)otIp6SetEnabled(GetOtInstance(), false);
-            updateThreadEnabledState(IOtDaemon::OT_STATE_DISABLED, aReceiver);
+            updateThreadEnabledState(IOtDaemon::THREAD_STATE_DISABLED, aReceiver);
         });
     }
 
@@ -575,10 +594,10 @@ void OtDaemonServer::joinInternal(const std::vector<uint8_t>               &aAct
     std::string              message;
     otOperationalDatasetTlvs datasetTlvs;
 
-    VerifyOrExit(mThreadEnabled != IOtDaemon::OT_STATE_DISABLING, error = OT_ERROR_BUSY,
+    VerifyOrExit(mThreadEnabled != IOtDaemon::THREAD_STATE_DISABLING, error = OT_ERROR_BUSY,
                  message = "Thread is disabling");
 
-    VerifyOrExit(mThreadEnabled == IOtDaemon::OT_STATE_ENABLED,
+    VerifyOrExit(mThreadEnabled == IOtDaemon::THREAD_STATE_ENABLED,
                  error   = static_cast<int>(IOtDaemon::ErrorCode::OT_ERROR_THREAD_DISABLED),
                  message = "Thread is disabled");
 
@@ -593,7 +612,7 @@ void OtDaemonServer::joinInternal(const std::vector<uint8_t>               &aAct
     }
 
     std::copy(aActiveOpDatasetTlvs.begin(), aActiveOpDatasetTlvs.end(), datasetTlvs.mTlvs);
-    datasetTlvs.mLength = aActiveOpDatasetTlvs.size();
+    datasetTlvs.mLength = static_cast<uint8_t>(aActiveOpDatasetTlvs.size());
     SuccessOrExit(error   = otDatasetSetActiveTlvs(GetOtInstance(), &datasetTlvs),
                   message = "Failed to set Active Operational Dataset");
 
@@ -631,10 +650,10 @@ void OtDaemonServer::leaveInternal(const std::shared_ptr<IOtStatusReceiver> &aRe
 
     VerifyOrExit(GetOtInstance() != nullptr, error = OT_ERROR_INVALID_STATE, message = "OT is not initialized");
 
-    VerifyOrExit(mThreadEnabled != IOtDaemon::OT_STATE_DISABLING, error = OT_ERROR_BUSY,
+    VerifyOrExit(mThreadEnabled != IOtDaemon::THREAD_STATE_DISABLING, error = OT_ERROR_BUSY,
                  message = "Thread is disabling");
 
-    if (mThreadEnabled == IOtDaemon::OT_STATE_DISABLED)
+    if (mThreadEnabled == IOtDaemon::THREAD_STATE_DISABLED)
     {
         (void)otInstanceErasePersistentInfo(GetOtInstance());
         aReceiver->onSuccess();
@@ -713,10 +732,10 @@ void OtDaemonServer::scheduleMigrationInternal(const std::vector<uint8_t>       
     std::string          message;
     otOperationalDataset emptyDataset;
 
-    VerifyOrExit(mThreadEnabled != IOtDaemon::OT_STATE_DISABLING, error = OT_ERROR_BUSY,
+    VerifyOrExit(mThreadEnabled != IOtDaemon::THREAD_STATE_DISABLING, error = OT_ERROR_BUSY,
                  message = "Thread is disabling");
 
-    VerifyOrExit(mThreadEnabled == IOtDaemon::OT_STATE_ENABLED,
+    VerifyOrExit(mThreadEnabled == IOtDaemon::THREAD_STATE_ENABLED,
                  error   = static_cast<int>(IOtDaemon::ErrorCode::OT_ERROR_THREAD_DISABLED),
                  message = "Thread is disabled");
 
@@ -734,7 +753,7 @@ void OtDaemonServer::scheduleMigrationInternal(const std::vector<uint8_t>       
     // TODO: check supported channel mask
 
     error = otDatasetSendMgmtPendingSet(GetOtInstance(), &emptyDataset, aPendingOpDatasetTlvs.data(),
-                                        aPendingOpDatasetTlvs.size(), SendMgmtPendingSetCallback,
+                                        static_cast<uint8_t>(aPendingOpDatasetTlvs.size()), SendMgmtPendingSetCallback,
                                         /* aBinderServer= */ this);
     if (error != OT_ERROR_NONE)
     {
@@ -788,7 +807,7 @@ void OtDaemonServer::setCountryCodeInternal(const std::string                   
     otbrLogInfo("Set country code: %c%c", aCountryCode[0], aCountryCode[1]);
     VerifyOrExit(GetOtInstance() != nullptr, error = OT_ERROR_INVALID_STATE, message = "OT is not initialized");
 
-    countryCode = (static_cast<uint16_t>(aCountryCode[0]) << 8) | aCountryCode[1];
+    countryCode = static_cast<uint16_t>((aCountryCode[0] << 8) | aCountryCode[1]);
     SuccessOrExit(error = otLinkSetRegion(GetOtInstance(), countryCode), message = "Failed to set the country code");
 
 exit:
@@ -865,7 +884,7 @@ void OtDaemonServer::configureBorderRouterInternal(int                aIcmp6Sock
     {
         if (aIsBorderRoutingEnabled)
         {
-            int infraIfIndex = if_nametoindex(aInfraInterfaceName.c_str());
+            unsigned int infraIfIndex = if_nametoindex(aInfraInterfaceName.c_str());
             SuccessOrExit(error   = otBorderRoutingSetEnabled(GetOtInstance(), false /* aEnabled */),
                           message = "failed to disable border routing");
             otSysSetInfraNetif(aInfraInterfaceName.c_str(), icmp6SocketFd);

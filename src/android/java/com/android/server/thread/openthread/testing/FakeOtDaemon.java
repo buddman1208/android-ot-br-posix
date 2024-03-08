@@ -28,8 +28,8 @@
 
 package com.android.server.thread.openthread.testing;
 
-import static com.android.server.thread.openthread.IOtDaemon.OT_STATE_DISABLED;
-import static com.android.server.thread.openthread.IOtDaemon.OT_STATE_ENABLED;
+import static com.android.server.thread.openthread.IOtDaemon.THREAD_STATE_DISABLED;
+import static com.android.server.thread.openthread.IOtDaemon.THREAD_STATE_ENABLED;
 
 import android.annotation.NonNull;
 import android.annotation.Nullable;
@@ -69,7 +69,7 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
     private final Handler mHandler;
     private final OtDaemonState mState;
     private final BackboneRouterState mBbrState;
-    private int mThreadEnabled = OT_STATE_ENABLED;
+    private int mThreadEnabled = THREAD_STATE_ENABLED;
     private int mChannelMasksReceiverOtError = OT_ERROR_NONE;
     private int mSupportedChannelMask = 0x07FFF800; // from channel 11 to 26
     private int mPreferredChannelMask = 0;
@@ -126,7 +126,7 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
     public void initialize(ParcelFileDescriptor tunFd, boolean enabled, INsdPublisher nsdPublisher)
             throws RemoteException {
         mTunFd = tunFd;
-        mThreadEnabled = enabled ? OT_STATE_ENABLED : OT_STATE_DISABLED;
+        mThreadEnabled = enabled ? THREAD_STATE_ENABLED : THREAD_STATE_DISABLED;
         mNsdPublisher = nsdPublisher;
     }
 
@@ -134,7 +134,7 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
     public void setThreadEnabled(boolean enabled, IOtStatusReceiver receiver) {
         mHandler.post(
                 () -> {
-                    mThreadEnabled = enabled ? OT_STATE_ENABLED : OT_STATE_DISABLED;
+                    mThreadEnabled = enabled ? THREAD_STATE_ENABLED : THREAD_STATE_DISABLED;
                     try {
                         receiver.onSuccess();
                     } catch (RemoteException e) {
