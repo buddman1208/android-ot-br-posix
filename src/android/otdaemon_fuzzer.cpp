@@ -41,3 +41,5 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size)
     fuzzService(service->asBinder().get(), FuzzedDataProvider(data, size));
     return 0;
 }
+
+void otPlatReset(otInstance *aInstance) { }
