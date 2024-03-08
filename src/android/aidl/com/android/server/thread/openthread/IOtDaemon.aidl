@@ -48,6 +48,8 @@ oneway interface IOtDaemon {
      */
     const String TUN_IF_NAME = "thread-wpan";
 
+    // The OT_STATE_* values below must be consistent with ThreadNetworkController#STATE_*
+
     /** Thread radio is disabled. */
     const int OT_STATE_DISABLED = 0;
     /** Thread radio is enabled. */
