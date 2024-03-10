@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8a18839_404a8f07",
+        "filename": "src/android/otdaemon_fuzzer.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-03-10T09:54:16Z",
+      "side": 1,
+      "message": "Why this is needed here?",
+      "revId": "acf53374752b2807c4532266b2347a772c1b03f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
