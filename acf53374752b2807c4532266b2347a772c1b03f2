@@ -59,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7cb9028_3b31de1a",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2024-03-11T03:39:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7fbb5cb4_bbed7220",
+      "range": {
+        "startLine": 823,
+        "startChar": 11,
+        "endLine": 823,
+        "endChar": 25
+      },
+      "revId": "acf53374752b2807c4532266b2347a772c1b03f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5ffa9fc_085040c2",
@@ -76,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc233e43_ae9516c1",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2024-03-11T03:39:17Z",
+      "side": 1,
+      "message": "Done. Removed the length \u003e 0 check.",
+      "parentUuid": "e5ffa9fc_085040c2",
+      "revId": "acf53374752b2807c4532266b2347a772c1b03f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e864442e_d27b1fa9",
@@ -89,6 +131,24 @@
       "writtenOn": "2024-03-11T02:13:46Z",
       "side": 1,
       "message": "```suggestion\ninline void DumpCliCommand(const std::string \u0026aCommand, int aFd)\n```",
+      "revId": "acf53374752b2807c4532266b2347a772c1b03f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5398cee_e5f84298",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 838,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2024-03-11T03:39:17Z",
+      "side": 1,
+      "message": "Done. For const modifier, I met \"argument of type \"const char *\" is incompatible with parameter of type \"char *\"\" when passing to otCliInputLine, so I removed const here.",
+      "parentUuid": "e864442e_d27b1fa9",
       "revId": "acf53374752b2807c4532266b2347a772c1b03f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -127,6 +187,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "830c7ef8_9e68ca7a",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 840,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2024-03-11T03:39:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f961d90a_2d43d57e",
+      "revId": "acf53374752b2807c4532266b2347a772c1b03f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c44d4910_c3f7f5f5",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 840,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2024-03-11T03:39:17Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "edf71615_eb8733ed",
+      "revId": "acf53374752b2807c4532266b2347a772c1b03f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6b5df75_5e43cfe7",
@@ -140,6 +236,24 @@
       "writtenOn": "2024-03-11T02:13:46Z",
       "side": 1,
       "message": "Maybe also add `ipaddr` and `netdata show`",
+      "revId": "acf53374752b2807c4532266b2347a772c1b03f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f318b06_6924905e",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 863,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2024-03-11T03:39:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6b5df75_5e43cfe7",
       "revId": "acf53374752b2807c4532266b2347a772c1b03f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
