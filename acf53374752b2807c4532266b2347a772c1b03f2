@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ef93193e_e1a46d68",
+        "filename": "src/android/otdaemon_fuzzer.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2024-03-11T06:30:31Z",
+      "side": 1,
+      "message": "Not sure why. The presubmit error is shown here: https://android-review.git.corp.google.com/c/platform/external/ot-br-posix/+/2994531?checksPatchset\u003d1\u0026tab\u003dchecks",
+      "parentUuid": "d32cd5f3_fa16f569",
+      "revId": "acf53374752b2807c4532266b2347a772c1b03f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7fbb5cb4_bbed7220",
         "filename": "src/android/otdaemon_server.cpp",
         "patchSetId": 2
