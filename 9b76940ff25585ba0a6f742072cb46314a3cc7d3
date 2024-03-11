@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6f788c4e_220e0df6",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/INsdPublisher.aidl",
+        "patchSetId": 10
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-03-11T07:30:05Z",
+      "side": 1,
+      "message": "Today the Discovery Proxy doesn\u0027t handle the subtype queries properly. Filed b/328965889 to track this issue.\n\nOn certification side, there\u0027s no test case requiring handle unicast DNS queries with subtypes.",
+      "parentUuid": "69cb9eaa_02951397",
+      "range": {
+        "startLine": 108,
+        "startChar": 4,
+        "endLine": 108,
+        "endChar": 40
+      },
+      "revId": "9b76940ff25585ba0a6f742072cb46314a3cc7d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "182d1eb4_66845a46",
         "filename": "src/android/aidl/com/android/server/thread/openthread/INsdResolveServiceCallback.aidl",
         "patchSetId": 10
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-10T14:00:59Z",
       "side": 1,
       "message": "TTL is missing. You can get the info with [NsdServiceInfo#getExpirationTime](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Connectivity/framework-t/src/android/net/nsd/NsdServiceInfo.java;bpv\u003d1;bpt\u003d1;l\u003d525?q\u003dNsdServiceInfo\u0026gsn\u003dgetExpirationTime\u0026gs\u003dKYTHE%3A%2F%2Fkythe%3A%2F%2Fandroid.googlesource.com%2Fplatform%2Fsuperproject%2Fmain%2F%2Fmain%3Flang%3Djava%3Fpath%3Dandroid.net.nsd.NsdServiceInfo%230a1d9fe10dabae350c2476ac935d1c20e4aca5196d3c2ab15c7459b5f8c0408d)",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 57
+      },
+      "revId": "9b76940ff25585ba0a6f742072cb46314a3cc7d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ea1c497_489dbbc5",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/INsdResolveServiceCallback.aidl",
+        "patchSetId": 10
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-03-11T07:30:05Z",
+      "side": 1,
+      "message": "Resolved offline. I\u0027ve reserved the interface to get the TTL but the NsdServiceInfo#getExpirationTime doesn\u0027t seem to be correct today.",
+      "parentUuid": "182d1eb4_66845a46",
       "range": {
         "startLine": 35,
         "startChar": 0,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "032af779_e50c175d",
+        "filename": "src/android/mdns_publisher.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-03-11T07:30:05Z",
+      "side": 1,
+      "message": "I think that\u0027ll need us to implement reference counting because there may be multiple clients requesting the BR to subscribe to the same service. \nIt doesn\u0027t seem to be simpler than the current approach.",
+      "parentUuid": "d59e6c9f_f39a2d6e",
+      "range": {
+        "startLine": 309,
+        "startChar": 4,
+        "endLine": 313,
+        "endChar": 54
+      },
+      "revId": "9b76940ff25585ba0a6f742072cb46314a3cc7d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "78781e45_dd8d50bb",
         "filename": "src/android/mdns_publisher.cpp",
         "patchSetId": 10
@@ -83,6 +155,30 @@
       "writtenOn": "2024-03-10T14:00:59Z",
       "side": 1,
       "message": "Better change this to `VerifyOrExit` and log a warning/error when it happens",
+      "range": {
+        "startLine": 341,
+        "startChar": 4,
+        "endLine": 341,
+        "endChar": 44
+      },
+      "revId": "9b76940ff25585ba0a6f742072cb46314a3cc7d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a36726d6_7998cdc7",
+        "filename": "src/android/mdns_publisher.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-03-11T07:30:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78781e45_dd8d50bb",
       "range": {
         "startLine": 341,
         "startChar": 4,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c66b75e_ddb22b67",
+        "filename": "src/android/mdns_publisher.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-03-11T07:30:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8551ef66_8e178f2a",
+      "range": {
+        "startLine": 165,
+        "startChar": 8,
+        "endLine": 165,
+        "endChar": 28
+      },
+      "revId": "9b76940ff25585ba0a6f742072cb46314a3cc7d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d8909101_63e00367",
@@ -129,6 +249,30 @@
       "writtenOn": "2024-03-10T14:00:59Z",
       "side": 1,
       "message": "```suggestion\n    ServiceSubscriptionList        mServiceSubscriptions;\n```",
+      "range": {
+        "startLine": 277,
+        "startChar": 35,
+        "endLine": 277,
+        "endChar": 54
+      },
+      "revId": "9b76940ff25585ba0a6f742072cb46314a3cc7d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59c9ea48_214da998",
+        "filename": "src/android/mdns_publisher.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-03-11T07:30:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8909101_63e00367",
       "range": {
         "startLine": 277,
         "startChar": 35,
