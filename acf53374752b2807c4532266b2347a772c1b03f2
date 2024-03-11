@@ -34,6 +34,114 @@
       "parentUuid": "a8a18839_404a8f07",
       "revId": "acf53374752b2807c4532266b2347a772c1b03f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fbb5cb4_bbed7220",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-03-11T02:13:46Z",
+      "side": 1,
+      "message": "```suggestion\nstatic int OutputCallback(void *aContext, const char *aFormat, va_list aArguments)\n```",
+      "range": {
+        "startLine": 823,
+        "startChar": 11,
+        "endLine": 823,
+        "endChar": 25
+      },
+      "revId": "acf53374752b2807c4532266b2347a772c1b03f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5ffa9fc_085040c2",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-03-11T02:13:46Z",
+      "side": 1,
+      "message": "What\u0027s the purpose of setting length as 0?",
+      "revId": "acf53374752b2807c4532266b2347a772c1b03f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e864442e_d27b1fa9",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 838,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-03-11T02:13:46Z",
+      "side": 1,
+      "message": "```suggestion\ninline void DumpCliCommand(const std::string \u0026aCommand, int aFd)\n```",
+      "revId": "acf53374752b2807c4532266b2347a772c1b03f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f961d90a_2d43d57e",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 840,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-03-11T02:13:46Z",
+      "side": 1,
+      "message": "```suggestion\n    android::base::WriteStringToFd(command + \u0027\\n\u0027, aFd);\n```\nWill this be simpler?",
+      "revId": "acf53374752b2807c4532266b2347a772c1b03f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edf71615_eb8733ed",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 840,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-03-11T02:13:46Z",
+      "side": 1,
+      "message": "```suggestion\n    android::base::WriteStringToFd(android::base::StringPrintf(\"%s\\n\", command.c_str()), aFd);\n```",
+      "revId": "acf53374752b2807c4532266b2347a772c1b03f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6b5df75_5e43cfe7",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 863,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-03-11T02:13:46Z",
+      "side": 1,
+      "message": "Maybe also add `ipaddr` and `netdata show`",
+      "revId": "acf53374752b2807c4532266b2347a772c1b03f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
