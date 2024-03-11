@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d32cd5f3_fa16f569",
+        "filename": "src/android/otdaemon_fuzzer.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-03-11T06:26:54Z",
+      "side": 1,
+      "message": "Is there a reason why your change would cause the link error? (Please do not resolve the comment before we are aligned what is happening here...",
+      "parentUuid": "53bd219d_23765098",
+      "revId": "acf53374752b2807c4532266b2347a772c1b03f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7fbb5cb4_bbed7220",
         "filename": "src/android/otdaemon_server.cpp",
         "patchSetId": 2
