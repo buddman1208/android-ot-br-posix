@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c7a4311_2e62bc8f",
+        "filename": "src/android/otdaemon_fuzzer.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-03-11T06:46:20Z",
+      "side": 1,
+      "message": "```suggestion\nextern \"C\" void otPlatReset(otInstance *aInstance) { }\n```",
+      "revId": "c0caa41a151cdee1d50cdb5dd8925d0bef39f122",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
