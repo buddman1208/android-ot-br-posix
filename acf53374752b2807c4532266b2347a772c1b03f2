@@ -16,6 +16,24 @@
       "message": "Why this is needed here?",
       "revId": "acf53374752b2807c4532266b2347a772c1b03f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53bd219d_23765098",
+        "filename": "src/android/otdaemon_fuzzer.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2024-03-11T02:03:35Z",
+      "side": 1,
+      "message": "The presubmit has a link error (missing otPlatReset) and I have to fix it here.",
+      "parentUuid": "a8a18839_404a8f07",
+      "revId": "acf53374752b2807c4532266b2347a772c1b03f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
