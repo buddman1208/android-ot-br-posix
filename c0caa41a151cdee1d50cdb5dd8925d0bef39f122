@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9df4a35_749287ef",
+        "filename": "src/android/otdaemon_fuzzer.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2024-03-11T07:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c7a4311_2e62bc8f",
+      "revId": "c0caa41a151cdee1d50cdb5dd8925d0bef39f122",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0752509d_a290e9f2",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-03-11T06:51:03Z",
       "side": 1,
       "message": "I think this line is longer than 100 characters. Could you run `./script/make-pretty clang`?",
+      "revId": "c0caa41a151cdee1d50cdb5dd8925d0bef39f122",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f177a25_da7990cd",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 831,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2024-03-11T07:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0752509d_a290e9f2",
       "revId": "c0caa41a151cdee1d50cdb5dd8925d0bef39f122",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
