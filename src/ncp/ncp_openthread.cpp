@@ -295,6 +295,8 @@ void ControllerOpenThread::Deinit(void)
     assert(mInstance != nullptr);
 
     otSysDeinit();
+    mThreadStateChangedCallbacks.clear();
+    mResetHandlers.clear();
     mInstance = nullptr;
 }
 
