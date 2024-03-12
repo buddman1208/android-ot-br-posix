@@ -114,7 +114,8 @@ static const char *ThreadEnabledStateToString(int enabledState)
 }
 
 OtDaemonServer::OtDaemonServer(Application &aApplication)
-    : mNcp(aApplication.GetNcp())
+    : mApplication(aApplication)
+    , mNcp(aApplication.GetNcp())
     , mBorderAgent(aApplication.GetBorderAgent())
     , mMdnsPublisher(static_cast<MdnsPublisher &>(aApplication.GetPublisher()))
     , mBorderRouterConfiguration()
@@ -652,21 +653,26 @@ void OtDaemonServer::leaveInternal(const std::shared_ptr<IOtStatusReceiver> &aRe
 
     if (mThreadEnabled == OT_STATE_DISABLED)
     {
-        (void)otInstanceErasePersistentInfo(GetOtInstance());
-        aReceiver->onSuccess();
+        FinishLeave(aReceiver);
         ExitNow();
     }
 
-    LeaveGracefully([aReceiver, this]() {
-        (void)otInstanceErasePersistentInfo(GetOtInstance());
-        aReceiver->onSuccess();
-    });
+    LeaveGracefully([aReceiver, this]() { FinishLeave(aReceiver); });
 
 exit:
     if (error != OT_ERROR_NONE)
     {
         PropagateResult(error, message, aReceiver);
     }
+}
+
+void OtDaemonServer::FinishLeave(const std::shared_ptr<IOtStatusReceiver> &aReceiver)
+{
+    (void)otInstanceErasePersistentInfo(GetOtInstance());
+    mApplication.Deinit();
+    mApplication.Init();
+    initializeInternal(mThreadEnabled, mINsdPublisher);
+    aReceiver->onSuccess();
 }
 
 void OtDaemonServer::LeaveGracefully(const LeaveCallback &aReceiver)
