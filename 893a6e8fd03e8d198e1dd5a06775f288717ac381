@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73b7c778_b537e2e5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-03-14T12:47:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a608704f_c1b26f32",
+      "revId": "893a6e8fd03e8d198e1dd5a06775f288717ac381",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42632270_d0d270b2",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7257135b_70b53001",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IOtDaemon.aidl",
+        "patchSetId": 11
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-03-14T12:47:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42632270_d0d270b2",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 80
+      },
+      "revId": "893a6e8fd03e8d198e1dd5a06775f288717ac381",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f13b7074_4b477eae",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-03-14T08:11:46Z",
       "side": 1,
       "message": "To make it more readable, maybe create a named variable here for the instance name.",
+      "range": {
+        "startLine": 398,
+        "startChar": 41,
+        "endLine": 398,
+        "endChar": 95
+      },
+      "revId": "893a6e8fd03e8d198e1dd5a06775f288717ac381",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e235824_8e7c732e",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-03-14T12:47:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f13b7074_4b477eae",
       "range": {
         "startLine": 398,
         "startChar": 41,
