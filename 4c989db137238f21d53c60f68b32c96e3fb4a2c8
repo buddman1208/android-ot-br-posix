@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f60037cf_78430f1d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-03-14T09:36:00Z",
+      "side": 1,
+      "message": "Missing the `Test` part.",
+      "revId": "4c989db137238f21d53c60f68b32c96e3fb4a2c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
