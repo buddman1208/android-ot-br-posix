@@ -16,6 +16,24 @@
       "message": "Missing the `Test` part.",
       "revId": "4c989db137238f21d53c60f68b32c96e3fb4a2c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6546e259_fe563b77",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-03-15T01:56:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f60037cf_78430f1d",
+      "revId": "4c989db137238f21d53c60f68b32c96e3fb4a2c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
