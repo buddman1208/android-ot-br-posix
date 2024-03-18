@@ -103,17 +103,13 @@ public final class FakeOtDaemonTest {
     }
 
     @Test
-    public void initialize_succeed_tunFdIsSet() throws Exception {
+    public void initialize_succeed_argumentsAreSet() throws Exception {
         mFakeOtDaemon.initialize(mMockTunFd, true, mMockNsdPublisher);
 
         assertThat(mFakeOtDaemon.getTunFd()).isEqualTo(mMockTunFd);
-    }
-
-    @Test
-    public void initialize_succeed_NsdPublisherIsSet() throws Exception {
-        mFakeOtDaemon.initialize(mMockTunFd, true, mMockNsdPublisher);
-
+        assertThat(mFakeOtDaemon.getEnabledState()).isEqualTo(OT_STATE_ENABLED);
         assertThat(mFakeOtDaemon.getNsdPublisher()).isEqualTo(mMockNsdPublisher);
+        assertThat(mFakeOtDaemon.isInitialized()).isTrue();
     }
 
     @Test
@@ -211,12 +207,12 @@ public final class FakeOtDaemonTest {
     }
 
     @Test
-    public void setThreadEnabled_disableThread_succeed() throws Exception {
-        assertThat(mFakeOtDaemon.getEnabledState()).isEqualTo(OT_STATE_ENABLED);
+    public void setThreadEnabled_enableThread_succeed() throws Exception {
+        assertThat(mFakeOtDaemon.getEnabledState()).isEqualTo(OT_STATE_DISABLED);
 
         final AtomicBoolean succeedRef = new AtomicBoolean(false);
         mFakeOtDaemon.setThreadEnabled(
-                false,
+                true,
                 new IOtStatusReceiver.Default() {
                     @Override
                     public void onSuccess() {
@@ -226,7 +222,7 @@ public final class FakeOtDaemonTest {
         mTestLooper.dispatchAll();
 
         assertThat(succeedRef.get()).isTrue();
-        assertThat(mFakeOtDaemon.getEnabledState()).isEqualTo(OT_STATE_DISABLED);
+        assertThat(mFakeOtDaemon.getEnabledState()).isEqualTo(OT_STATE_ENABLED);
     }
 
     @Test
