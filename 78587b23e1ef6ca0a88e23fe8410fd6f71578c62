@@ -1,0 +1,118 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09380ba4_88da44dc",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/MeshcopTxtAttributes.aidl",
+        "patchSetId": 17
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-03-19T06:11:43Z",
+      "side": 1,
+      "message": "```suggestion\n     * The length must not exceed 24 UTF-8 bytes.\n```",
+      "revId": "78587b23e1ef6ca0a88e23fe8410fd6f71578c62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8bfefd4_302dcd5b",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/MeshcopTxtAttributes.aidl",
+        "patchSetId": 17
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-03-19T06:11:43Z",
+      "side": 1,
+      "message": "```suggestion\n     * The length must not exceed 24 UTF-8 bytes.\n```",
+      "revId": "78587b23e1ef6ca0a88e23fe8410fd6f71578c62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56e6d5e1_91fcce06",
+        "filename": "src/android/mdns_publisher.hpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-03-19T06:11:43Z",
+      "side": 1,
+      "message": "I think you need to lock it? (assuming using weak_ptr)",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 9
+      },
+      "revId": "78587b23e1ef6ca0a88e23fe8410fd6f71578c62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "864e95bf_51c030e4",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-03-19T06:11:43Z",
+      "side": 1,
+      "message": "```suggestion\n    otbrLogCrit(\"system_server is dead, removing configs and callbacks...\");\n```",
+      "revId": "78587b23e1ef6ca0a88e23fe8410fd6f71578c62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4c201b8_5aa20502",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-03-19T06:11:43Z",
+      "side": 1,
+      "message": "```suggestion\n    // Note that the INsdPublisher reference is held in MdnsPublisher\n```",
+      "revId": "78587b23e1ef6ca0a88e23fe8410fd6f71578c62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9aca336a_d9489736",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-03-19T06:11:43Z",
+      "side": 1,
+      "message": "```suggestion\n    std::string instanceName \u003d aMeshcopTxts.vendorName + \" \" + aMeshcopTxts.modelName;\n\n    mMdnsPublisher.SetINsdPublisher(aINsdPublisher);\n```",
+      "range": {
+        "startLine": 407,
+        "startChar": 3,
+        "endLine": 409,
+        "endChar": 86
+      },
+      "revId": "78587b23e1ef6ca0a88e23fe8410fd6f71578c62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
