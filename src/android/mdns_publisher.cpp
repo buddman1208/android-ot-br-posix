@@ -65,15 +65,15 @@ void MdnsPublisher::SetINsdPublisher(std::shared_ptr<INsdPublisher> aINsdPublish
 {
     otbrLogInfo("Set INsdPublisher %p", aINsdPublisher.get());
 
-    mNsdPublisher = std::move(aINsdPublisher);
-
-    if (mNsdPublisher != nullptr)
+    if (aINsdPublisher)
     {
+        mNsdPublisher = std::move(aINsdPublisher);
         mStateCallback(Mdns::Publisher::State::kReady);
     }
     else
     {
-        mStateCallback(Mdns::Publisher::State::kIdle);
+        Stop();
+        mNsdPublisher = std::move(aINsdPublisher);
     }
 }
 
@@ -308,9 +308,7 @@ int32_t MdnsPublisher::AllocateListenerId(void)
 
 MdnsPublisher::NsdServiceRegistration::~NsdServiceRegistration(void)
 {
-    auto nsdPublisher = mNsdPublisher.lock();
-
-    VerifyOrExit(mPublisher->IsStarted() && nsdPublisher != nullptr);
+    VerifyOrExit(mPublisher->IsStarted() && mNsdPublisher != nullptr);
 
     otbrLogInfo("Unpublishing service %s.%s listener ID = %d", mName.c_str(), mType.c_str(), mListenerId);
 
@@ -319,7 +317,7 @@ MdnsPublisher::NsdServiceRegistration::~NsdServiceRegistration(void)
         mUnregisterReceiver = CreateReceiver([](int) {});
     }
 
-    nsdPublisher->unregister(mUnregisterReceiver, mListenerId);
+    mNsdPublisher->unregister(mUnregisterReceiver, mListenerId);
 
 exit:
     return;
@@ -327,9 +325,7 @@ exit:
 
 MdnsPublisher::NsdHostRegistration::~NsdHostRegistration(void)
 {
-    auto nsdPublisher = mNsdPublisher.lock();
-
-    VerifyOrExit(mPublisher->IsStarted() && nsdPublisher != nullptr);
+    VerifyOrExit(mPublisher->IsStarted() && mNsdPublisher != nullptr);
 
     otbrLogInfo("Unpublishing host %s listener ID = %d", mName.c_str(), mListenerId);
 
@@ -338,7 +334,7 @@ MdnsPublisher::NsdHostRegistration::~NsdHostRegistration(void)
         mUnregisterReceiver = CreateReceiver([](int) {});
     }
 
-    nsdPublisher->unregister(mUnregisterReceiver, mListenerId);
+    mNsdPublisher->unregister(mUnregisterReceiver, mListenerId);
 
 exit:
     return;
