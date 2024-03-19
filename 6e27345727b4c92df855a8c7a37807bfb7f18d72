@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ba6ac5a_07df749d",
+        "filename": "tests/android/java/com/android/server/thread/openthread/testing/FakeOtDaemonTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-03-19T10:15:48Z",
+      "side": 1,
+      "message": "what about adding a test case that disables Thread?",
+      "range": {
+        "startLine": 210,
+        "startChar": 16,
+        "endLine": 210,
+        "endChar": 53
+      },
+      "revId": "6e27345727b4c92df855a8c7a37807bfb7f18d72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
