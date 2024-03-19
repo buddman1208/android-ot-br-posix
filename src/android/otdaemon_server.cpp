@@ -402,6 +402,13 @@ void OtDaemonServer::initializeInternal(const bool enabled, const std::shared_pt
     }
 }
 
+Status OtDaemonServer::terminate()
+{
+    otbrLogWarning("Terminating ot-daemon process...");
+
+    exit(0);
+}
+
 void OtDaemonServer::updateThreadEnabledState(const int enabled, const std::shared_ptr<IOtStatusReceiver> &aReceiver)
 {
     if (mThreadEnabled != enabled)

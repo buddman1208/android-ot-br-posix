@@ -90,6 +90,9 @@ oneway interface IOtDaemon {
     void initialize(in ParcelFileDescriptor tunFd, in boolean enabled,
                     in INsdPublisher nsdPublisher);
 
+    /** Terminates the ot-daemon process. */
+    void terminate();
+
     /**
      * Enables/disables Thread.
      *
