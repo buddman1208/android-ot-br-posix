@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd3e801d_f80ede40",
+        "filename": "Android.bp",
+        "patchSetId": 17
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-03-19T07:30:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb261253_9a01f9b0",
+      "revId": "78587b23e1ef6ca0a88e23fe8410fd6f71578c62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09380ba4_88da44dc",
@@ -125,6 +143,30 @@
       "side": 1,
       "message": "mNsdPublisher is still a shared_ptr to simplify the code",
       "parentUuid": "56e6d5e1_91fcce06",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 9
+      },
+      "revId": "78587b23e1ef6ca0a88e23fe8410fd6f71578c62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0061d4f9_aaf9aeca",
+        "filename": "src/android/mdns_publisher.hpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-03-19T07:30:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e52ff78e_7254effd",
       "range": {
         "startLine": 64,
         "startChar": 0,
