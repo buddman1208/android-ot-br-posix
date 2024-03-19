@@ -95,6 +95,7 @@ private:
                       const bool                            enabled,
                       const std::shared_ptr<INsdPublisher> &aNsdPublisher) override;
     void   initializeInternal(const bool enabled, const std::shared_ptr<INsdPublisher> &aINsdPublisher);
+    Status terminate() override;
     Status setThreadEnabled(const bool enabled, const std::shared_ptr<IOtStatusReceiver> &aReceiver) override;
     void   setThreadEnabledInternal(const bool enabled, const std::shared_ptr<IOtStatusReceiver> &aReceiver);
     Status registerStateCallback(const std::shared_ptr<IOtDaemonCallback> &aCallback, int64_t listenerId) override;
