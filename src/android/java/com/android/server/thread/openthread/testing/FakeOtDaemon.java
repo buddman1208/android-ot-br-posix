@@ -68,8 +68,8 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
     private static final long PROACTIVE_LISTENER_ID = -1;
 
     private final Handler mHandler;
-    private final OtDaemonState mState;
-    private final BackboneRouterState mBbrState;
+    private OtDaemonState mState;
+    private BackboneRouterState mBbrState;
     private boolean mIsInitialized = false;
     private int mThreadEnabled = OT_STATE_DISABLED;
     private int mChannelMasksReceiverOtError = OT_ERROR_NONE;
@@ -86,6 +86,10 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
 
     public FakeOtDaemon(Handler handler) {
         mHandler = handler;
+        resetStates();
+    }
+
+    private void resetStates() {
         mState = new OtDaemonState();
         mState.isInterfaceUp = false;
         mState.deviceRole = OT_DEVICE_ROLE_DISABLED;
@@ -94,6 +98,10 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
         mBbrState = new BackboneRouterState();
         mBbrState.multicastForwardingEnabled = false;
         mBbrState.listeningAddresses = new ArrayList<>();
+
+        mTunFd = null;
+        mThreadEnabled = OT_STATE_DISABLED;
+        mNsdPublisher = null;
     }
 
     @Override
@@ -141,6 +149,24 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
     /** Returns {@code true} if {@link initialize} has been called to initialize this object. */
     public boolean isInitialized() {
         return mIsInitialized;
+    }
+
+    @Override
+    public void terminate() throws RemoteException {
+        resetStates();
+    }
+
+    @Override
+    public void setThreadEnabled(boolean enabled, IOtStatusReceiver receiver) {
+        mHandler.post(
+                () -> {
+                    mThreadEnabled = enabled ? OT_STATE_ENABLED : OT_STATE_DISABLED;
+                    try {
+                        receiver.onSuccess();
+                    } catch (RemoteException e) {
+                        throw new AssertionError(e);
+                    }
+                });
     }
 
     public int getEnabledState() {
