@@ -22,6 +22,30 @@
       },
       "revId": "6e27345727b4c92df855a8c7a37807bfb7f18d72",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfc1c812_8e38e3d4",
+        "filename": "tests/android/java/com/android/server/thread/openthread/testing/FakeOtDaemonTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-03-19T11:50:18Z",
+      "side": 1,
+      "message": "FakeOtDaemon#setThreadEnabled() simply sets the enabled state, doesn\u0027t seem very useful to add two tests for a single line of code (secondly, it\u0027s out scope of this CL).",
+      "parentUuid": "8ba6ac5a_07df749d",
+      "range": {
+        "startLine": 210,
+        "startChar": 16,
+        "endLine": 210,
+        "endChar": 53
+      },
+      "revId": "6e27345727b4c92df855a8c7a37807bfb7f18d72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
