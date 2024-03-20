@@ -694,9 +694,6 @@ exit:
 void OtDaemonServer::FinishLeave(const std::shared_ptr<IOtStatusReceiver> &aReceiver)
 {
     (void)otInstanceErasePersistentInfo(GetOtInstance());
-    mApplication.Deinit();
-    mApplication.Init();
-    initializeInternal(mThreadEnabled == OT_STATE_ENABLED, mINsdPublisher, mMeshcopTxts);
     if (aReceiver != nullptr)
     {
         aReceiver->onSuccess();
