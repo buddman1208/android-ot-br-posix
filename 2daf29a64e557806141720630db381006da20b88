@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6398767f_72775021",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-03-20T11:28:36Z",
+      "side": 1,
+      "message": "https://android-review.git.corp.google.com/c/platform/external/ot-br-posix/+/3007248 should fix this issue now",
+      "revId": "2daf29a64e557806141720630db381006da20b88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
