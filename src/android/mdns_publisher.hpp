@@ -52,7 +52,8 @@ public:
 
     ~MdnsPublisher(void) { Stop(); }
 
-    /** Sets the INsdPublisher which forwards the mDNS API requests to the NsdManager in system_server. */
+    // In this Publisher implementation, SetINsdPublisher() does the job to start/stop the Publisher. That's because we
+    // want to ensure ot-daemon won't do any mDNS operations when Thread is disabled.
     void SetINsdPublisher(std::shared_ptr<INsdPublisher> aINsdPublisher);
 
     otbrError Start(void) override { return OTBR_ERROR_NONE; }
@@ -61,7 +62,8 @@ public:
     {
         mServiceRegistrations.clear();
         mHostRegistrations.clear();
-        if (mNsdPublisher != nullptr)
+        mStateCallback(Mdns::Publisher::State::kIdle);
+        if (mNsdPublisher)
         {
             mNsdPublisher->reset();
         }
@@ -122,16 +124,16 @@ private:
     class NsdServiceRegistration : public ServiceRegistration
     {
     public:
-        NsdServiceRegistration(const std::string           &aHostName,
-                               const std::string           &aName,
-                               const std::string           &aType,
-                               const SubTypeList           &aSubTypeList,
-                               uint16_t                     aPort,
-                               const TxtData               &aTxtData,
-                               ResultCallback             &&aCallback,
-                               MdnsPublisher               *aPublisher,
-                               int32_t                      aListenerId,
-                               std::weak_ptr<INsdPublisher> aINsdPublisher)
+        NsdServiceRegistration(const std::string             &aHostName,
+                               const std::string             &aName,
+                               const std::string             &aType,
+                               const SubTypeList             &aSubTypeList,
+                               uint16_t                       aPort,
+                               const TxtData                 &aTxtData,
+                               ResultCallback               &&aCallback,
+                               MdnsPublisher                 *aPublisher,
+                               int32_t                        aListenerId,
+                               std::shared_ptr<INsdPublisher> aINsdPublisher)
             : ServiceRegistration(aHostName,
                                   aName,
                                   aType,
@@ -152,18 +154,18 @@ private:
         std::shared_ptr<NsdStatusReceiver> mUnregisterReceiver;
 
     private:
-        std::weak_ptr<INsdPublisher> mNsdPublisher;
+        std::shared_ptr<INsdPublisher> mNsdPublisher;
     };
 
     class NsdHostRegistration : public HostRegistration
     {
     public:
-        NsdHostRegistration(const std::string           &aName,
-                            const AddressList           &aAddresses,
-                            ResultCallback             &&aCallback,
-                            MdnsPublisher               *aPublisher,
-                            int32_t                      aListenerId,
-                            std::weak_ptr<INsdPublisher> aINsdPublisher)
+        NsdHostRegistration(const std::string             &aName,
+                            const AddressList             &aAddresses,
+                            ResultCallback               &&aCallback,
+                            MdnsPublisher                 *aPublisher,
+                            int32_t                        aListenerId,
+                            std::shared_ptr<INsdPublisher> aINsdPublisher)
             : HostRegistration(aName, aAddresses, std::move(aCallback), aPublisher)
             , mListenerId(aListenerId)
             , mNsdPublisher(aINsdPublisher)
@@ -176,7 +178,7 @@ private:
         std::shared_ptr<NsdStatusReceiver> mUnregisterReceiver;
 
     private:
-        std::weak_ptr<INsdPublisher> mNsdPublisher;
+        std::shared_ptr<INsdPublisher> mNsdPublisher;
     };
 
     int32_t AllocateListenerId(void);
