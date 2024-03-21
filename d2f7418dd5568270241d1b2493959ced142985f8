@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "760f2374_64586fe4",
+        "filename": "src/android/java/com/android/server/thread/openthread/testing/FakeOtDaemon.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-03-21T03:29:09Z",
+      "side": 1,
+      "message": "makeCopy",
+      "range": {
+        "startLine": 179,
+        "startChar": 15,
+        "endLine": 179,
+        "endChar": 24
+      },
+      "revId": "d2f7418dd5568270241d1b2493959ced142985f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "256ab83c_59b12678",
+        "filename": "src/android/otdaemon_server.hpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-03-21T03:29:09Z",
+      "side": 1,
+      "message": "nit:\n```suggestion\n    Status terminate(void) override;\n```",
+      "revId": "d2f7418dd5568270241d1b2493959ced142985f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
