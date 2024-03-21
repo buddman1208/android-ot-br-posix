@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14f30e05_7696d7ec",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 917,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-03-21T09:48:38Z",
+      "side": 1,
+      "message": "I think you want to remove all the 3 lines?",
+      "range": {
+        "startLine": 915,
+        "startChar": 0,
+        "endLine": 917,
+        "endChar": 51
+      },
+      "revId": "b2e0aaae2c99027c4a071585112eb536640c16f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
