@@ -104,6 +104,9 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
         mThreadEnabled = OT_STATE_DISABLED;
         mNsdPublisher = null;
         mIsInitialized = false;
+
+        mCallback = null;
+        mCallbackListenerId = null;
     }
 
     @Override
@@ -140,7 +143,8 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
             ParcelFileDescriptor tunFd,
             boolean enabled,
             INsdPublisher nsdPublisher,
-            MeshcopTxtAttributes overriddenMeshcopTxts)
+            MeshcopTxtAttributes overriddenMeshcopTxts,
+            IOtDaemonCallback callback)
             throws RemoteException {
         mIsInitialized = true;
         mTunFd = tunFd;
@@ -151,6 +155,8 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
         mOverriddenMeshcopTxts.vendorOui = overriddenMeshcopTxts.vendorOui.clone();
         mOverriddenMeshcopTxts.vendorName = overriddenMeshcopTxts.vendorName;
         mOverriddenMeshcopTxts.modelName = overriddenMeshcopTxts.modelName;
+
+        registerStateCallback(callback, PROACTIVE_LISTENER_ID);
     }
 
     /** Returns {@code true} if {@link initialize} has been called to initialize this object. */
@@ -206,10 +212,18 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
         return mOverriddenMeshcopTxts;
     }
 
+    @Nullable
+    public IOtDaemonCallback getCallback() {
+        return mCallback;
+    }
+
     @Override
     public void setThreadEnabled(boolean enabled, IOtStatusReceiver receiver) {
         mHandler.post(
                 () -> {
+                    if (!mIsInitialized) {
+                        return;
+                    }
                     mThreadEnabled = enabled ? OT_STATE_ENABLED : OT_STATE_DISABLED;
                     try {
                         receiver.onSuccess();
@@ -225,8 +239,20 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
         mCallback = callback;
         mCallbackListenerId = listenerId;
 
-        mHandler.post(() -> onStateChanged(mState, mCallbackListenerId));
-        mHandler.post(() -> onBackboneRouterStateChanged(mBbrState));
+        mHandler.post(
+                () -> {
+                    if (!mIsInitialized) {
+                        return;
+                    }
+                    onStateChanged(mState, mCallbackListenerId);
+                });
+        mHandler.post(
+                () -> {
+                    if (!mIsInitialized) {
+                        return;
+                    }
+                    onBackboneRouterStateChanged(mBbrState);
+                });
     }
 
     @Nullable
@@ -242,6 +268,9 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
 
         mHandler.post(
                 () -> {
+                    if (!mIsInitialized) {
+                        return;
+                    }
                     mState.isInterfaceUp = true;
                     mState.deviceRole = OT_DEVICE_ROLE_DETACHED;
                     onStateChanged(mState, PROACTIVE_LISTENER_ID);
@@ -249,6 +278,9 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
 
         mHandler.postDelayed(
                 () -> {
+                    if (!mIsInitialized) {
+                        return;
+                    }
                     mState.deviceRole = OT_DEVICE_ROLE_LEADER;
                     mState.activeDatasetTlvs = activeDataset.clone();
                     mBbrState.multicastForwardingEnabled = true;
@@ -338,6 +370,9 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
     public void getChannelMasks(IChannelMasksReceiver receiver) throws RemoteException {
         mHandler.post(
                 () -> {
+                    if (!mIsInitialized) {
+                        return;
+                    }
                     try {
                         if (mChannelMasksReceiverOtError == OT_ERROR_NONE) {
                             receiver.onSuccess(mSupportedChannelMask, mPreferredChannelMask);
