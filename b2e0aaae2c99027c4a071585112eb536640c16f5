@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5510660a_380a8dea",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 905,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-03-21T09:50:43Z",
+      "side": 1,
+      "message": "If this fails in the middle, it will apply half of the configuration. Better that we do all the checks before calling the first otPlatRadioSetChannelTargetPower",
+      "range": {
+        "startLine": 901,
+        "startChar": 0,
+        "endLine": 905,
+        "endChar": 90
+      },
+      "revId": "b2e0aaae2c99027c4a071585112eb536640c16f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "14f30e05_7696d7ec",
         "filename": "src/android/otdaemon_server.cpp",
         "patchSetId": 7
