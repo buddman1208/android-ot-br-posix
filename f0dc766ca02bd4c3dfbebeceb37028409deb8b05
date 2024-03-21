@@ -16,6 +16,24 @@
       "message": "Remove this file. See https://android-review.git.corp.google.com/c/platform/packages/modules/Connectivity/+/2916468/comment/d0f88810_4b7cd183/",
       "revId": "f0dc766ca02bd4c3dfbebeceb37028409deb8b05",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc627d99_ad5d2d0b",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/ChannelMaxPowerParcel.aidl",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1837411
+      },
+      "writtenOn": "2024-03-21T14:20:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "756de335_d573aacf",
+      "revId": "f0dc766ca02bd4c3dfbebeceb37028409deb8b05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
