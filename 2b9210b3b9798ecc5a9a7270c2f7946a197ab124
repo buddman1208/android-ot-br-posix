@@ -93,6 +93,30 @@
       },
       "revId": "2b9210b3b9798ecc5a9a7270c2f7946a197ab124",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4c48ce6_dbde835d",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-03-22T06:31:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a5535b5_dd308204",
+      "range": {
+        "startLine": 431,
+        "startChar": 4,
+        "endLine": 434,
+        "endChar": 7
+      },
+      "revId": "2b9210b3b9798ecc5a9a7270c2f7946a197ab124",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
