@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f04c56c9_88abfc27",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/INsdPublisher.aidl",
+        "patchSetId": 10
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-03-22T03:20:19Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6f788c4e_220e0df6",
+      "range": {
+        "startLine": 108,
+        "startChar": 4,
+        "endLine": 108,
+        "endChar": 40
+      },
+      "revId": "9b76940ff25585ba0a6f742072cb46314a3cc7d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "182d1eb4_66845a46",
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "I think that\u0027ll need us to implement reference counting because there may be multiple clients requesting the BR to subscribe to the same service. \nIt doesn\u0027t seem to be simpler than the current approach.",
       "parentUuid": "d59e6c9f_f39a2d6e",
+      "range": {
+        "startLine": 309,
+        "startChar": 4,
+        "endLine": 313,
+        "endChar": 54
+      },
+      "revId": "9b76940ff25585ba0a6f742072cb46314a3cc7d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d847fe6_95d8e22f",
+        "filename": "src/android/mdns_publisher.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-03-22T03:20:19Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "032af779_e50c175d",
       "range": {
         "startLine": 309,
         "startChar": 4,
