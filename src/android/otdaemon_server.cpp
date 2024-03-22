@@ -382,7 +382,8 @@ void OtDaemonServer::Process(const MainloopContext &aMainloop)
 Status OtDaemonServer::initialize(const ScopedFileDescriptor           &aTunFd,
                                   const bool                            enabled,
                                   const std::shared_ptr<INsdPublisher> &aINsdPublisher,
-                                  const MeshcopTxtAttributes           &aMeshcopTxts)
+                                  const MeshcopTxtAttributes           &aMeshcopTxts,
+                                  const std::string                    &aCountryCode)
 {
     otbrLogInfo("OT daemon is initialized by system server (tunFd=%d, enabled=%s)", aTunFd.get(),
                 enabled ? "true" : "false");
@@ -394,17 +395,21 @@ Status OtDaemonServer::initialize(const ScopedFileDescriptor           &aTunFd,
     mINsdPublisher = aINsdPublisher;
     mMeshcopTxts   = aMeshcopTxts;
 
-    mTaskRunner.Post(
-        [enabled, aINsdPublisher, aMeshcopTxts, this]() { initializeInternal(enabled, mINsdPublisher, mMeshcopTxts); });
+    mTaskRunner.Post([enabled, aINsdPublisher, aMeshcopTxts, aCountryCode, this]() {
+        initializeInternal(enabled, mINsdPublisher, mMeshcopTxts, aCountryCode);
+    });
 
     return Status::ok();
 }
 
 void OtDaemonServer::initializeInternal(const bool                            enabled,
                                         const std::shared_ptr<INsdPublisher> &aINsdPublisher,
-                                        const MeshcopTxtAttributes           &aMeshcopTxts)
+                                        const MeshcopTxtAttributes           &aMeshcopTxts,
+                                        const std::string                    &aCountryCode)
 {
     std::string instanceName = aMeshcopTxts.vendorName + " " + aMeshcopTxts.modelName;
+
+    setCountryCodeInternal(aCountryCode, nullptr);
 
     mMdnsPublisher.SetINsdPublisher(aINsdPublisher);
     mBorderAgent.SetMeshCopServiceValues(instanceName, aMeshcopTxts.modelName, aMeshcopTxts.vendorName,

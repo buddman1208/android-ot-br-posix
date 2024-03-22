@@ -89,12 +89,14 @@ oneway interface IOtDaemon {
      *                     on AIL by {@link NsdManager}
      * @param meshcopTxts the MeshCoP TXT values set by the system_server to override the default
      *                    ones
+     * @param countryCode 2 byte country code (as defined in ISO 3166) to set.
      */
     void initialize(
             in ParcelFileDescriptor tunFd,
             in boolean enabled,
             in INsdPublisher nsdPublisher,
-            in MeshcopTxtAttributes meshcopTxts);
+            in MeshcopTxtAttributes meshcopTxts,
+            in String countryCode);
 
     /** Terminates the ot-daemon process. */
     void terminate();

@@ -95,10 +95,12 @@ private:
     Status initialize(const ScopedFileDescriptor           &aTunFd,
                       const bool                            enabled,
                       const std::shared_ptr<INsdPublisher> &aNsdPublisher,
-                      const MeshcopTxtAttributes           &aMeshcopTxts) override;
+                      const MeshcopTxtAttributes           &aMeshcopTxts,
+                      const std::string                    &aCountryCode) override;
     void   initializeInternal(const bool                            enabled,
                               const std::shared_ptr<INsdPublisher> &aINsdPublisher,
-                              const MeshcopTxtAttributes           &aMeshcopTxts);
+                              const MeshcopTxtAttributes           &aMeshcopTxts,
+                              const std::string                    &aCountryCode);
     Status terminate(void) override;
     Status setThreadEnabled(const bool enabled, const std::shared_ptr<IOtStatusReceiver> &aReceiver) override;
     void   setThreadEnabledInternal(const bool enabled, const std::shared_ptr<IOtStatusReceiver> &aReceiver);

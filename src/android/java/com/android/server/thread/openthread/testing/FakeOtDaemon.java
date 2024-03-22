@@ -140,7 +140,8 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
             ParcelFileDescriptor tunFd,
             boolean enabled,
             INsdPublisher nsdPublisher,
-            MeshcopTxtAttributes overriddenMeshcopTxts)
+            MeshcopTxtAttributes overriddenMeshcopTxts,
+            String countryCode)
             throws RemoteException {
         mIsInitialized = true;
         mTunFd = tunFd;
