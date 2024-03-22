@@ -145,7 +145,8 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
             boolean enabled,
             INsdPublisher nsdPublisher,
             MeshcopTxtAttributes overriddenMeshcopTxts,
-            IOtDaemonCallback callback)
+            IOtDaemonCallback callback,
+            String countryCode)
             throws RemoteException {
         mIsInitialized = true;
         mTunFd = tunFd;
