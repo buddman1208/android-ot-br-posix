@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baed62cf_030411c8",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IOtDaemon.aidl",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-03-26T09:03:35Z",
+      "side": 1,
+      "message": "```suggestion\n     * @param countryCode 2 bytes country code (as defined in ISO 3166) to set\n```",
+      "range": {
+        "startLine": 97,
+        "startChar": 28,
+        "endLine": 97,
+        "endChar": 32
+      },
+      "revId": "a7a89f05c7257de6a46a646e16fa31cc479abb0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e759389a_de6c09cf",
+        "filename": "src/android/java/com/android/server/thread/openthread/testing/FakeOtDaemon.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-03-26T09:03:35Z",
+      "side": 1,
+      "message": "You need to record the countryCode set to FakeOtDaemon and provide getter to check that the countryCode is set in FakeOtDaemonTest",
+      "range": {
+        "startLine": 149,
+        "startChar": 19,
+        "endLine": 149,
+        "endChar": 30
+      },
+      "revId": "a7a89f05c7257de6a46a646e16fa31cc479abb0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e69d387f_0771f0b8",
+        "filename": "tests/android/java/com/android/server/thread/openthread/testing/FakeOtDaemonTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-03-26T09:03:35Z",
+      "side": 1,
+      "message": "You should check countryCode in this test case",
+      "range": {
+        "startLine": 125,
+        "startChar": 4,
+        "endLine": 125,
+        "endChar": 70
+      },
+      "revId": "a7a89f05c7257de6a46a646e16fa31cc479abb0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
