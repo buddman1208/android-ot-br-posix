@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9afa91ae_db22305b",
+        "filename": "src/android/java/com/android/server/thread/openthread/testing/FakeOtDaemon.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-03-28T08:19:58Z",
+      "side": 1,
+      "message": "```suggestion\n     * Returns the country code sent to OT daemon or {@code null} if {@link #initialize} or {@link #setCountryCode} is never\n     * called.\n```",
+      "range": {
+        "startLine": 256,
+        "startChar": 7,
+        "endLine": 257,
+        "endChar": 14
+      },
+      "revId": "a8a016225b5ecd1135b784544d126672dcc48fd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00572cee_edb0596f",
+        "filename": "tests/android/java/com/android/server/thread/openthread/testing/FakeOtDaemonTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-03-28T08:19:58Z",
+      "side": 1,
+      "message": "make-java-pretty?",
+      "range": {
+        "startLine": 321,
+        "startChar": 0,
+        "endLine": 321,
+        "endChar": 119
+      },
+      "revId": "a8a016225b5ecd1135b784544d126672dcc48fd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
