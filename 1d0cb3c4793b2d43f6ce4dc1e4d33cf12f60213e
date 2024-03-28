@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44917094_81467941",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1501262
+      },
+      "writtenOn": "2024-03-28T02:38:05Z",
+      "side": 1,
+      "message": "I think we should stop telemetry collection on FCT build.",
+      "revId": "1d0cb3c4793b2d43f6ce4dc1e4d33cf12f60213e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
