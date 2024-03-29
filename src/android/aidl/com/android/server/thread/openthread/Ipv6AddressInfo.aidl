@@ -38,4 +38,5 @@ parcelable Ipv6AddressInfo {
     int     scope; // The scope of the address
     int     prefixLength; // Valid for only unicast addresses
     boolean isPreferred; // Valid for only unicast addresses
+    boolean isMeshLocal; // Valid for only unicast addresses
 }

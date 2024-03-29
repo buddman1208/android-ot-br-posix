@@ -97,6 +97,7 @@ static Ipv6AddressInfo ConvertToAddressInfo(const otIp6AddressInfo &aAddressInfo
     addrInfo.prefixLength = aAddressInfo.mPrefixLength;
     addrInfo.scope        = aAddressInfo.mScope;
     addrInfo.isPreferred  = aAddressInfo.mPreferred;
+    addrInfo.isMeshLocal  = aAddressInfo.mMeshLocal;
     return addrInfo;
 }
 
