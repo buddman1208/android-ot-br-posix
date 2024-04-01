@@ -39,4 +39,5 @@ parcelable Ipv6AddressInfo {
     int     prefixLength; // Valid for only unicast addresses
     boolean isPreferred; // Valid for only unicast addresses
     boolean isMeshLocal; // Valid for only unicast addresses
+    boolean isOmr; // Valid for only unicast addresses
 }

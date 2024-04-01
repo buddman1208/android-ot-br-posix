@@ -89,18 +89,6 @@ static void PropagateResult(int                                       aError,
     }
 }
 
-static Ipv6AddressInfo ConvertToAddressInfo(const otIp6AddressInfo &aAddressInfo)
-{
-    Ipv6AddressInfo addrInfo;
-
-    addrInfo.address.assign(aAddressInfo.mAddress->mFields.m8, BYTE_ARR_END(aAddressInfo.mAddress->mFields.m8));
-    addrInfo.prefixLength = aAddressInfo.mPrefixLength;
-    addrInfo.scope        = aAddressInfo.mScope;
-    addrInfo.isPreferred  = aAddressInfo.mPreferred;
-    addrInfo.isMeshLocal  = aAddressInfo.mMeshLocal;
-    return addrInfo;
-}
-
 static const char *ThreadEnabledStateToString(int enabledState)
 {
     switch (enabledState)
@@ -192,13 +180,35 @@ void OtDaemonServer::StateCallback(otChangedFlags aFlags)
     }
 }
 
+Ipv6AddressInfo OtDaemonServer::ConvertToAddressInfo(const otNetifAddress &aAddress)
+{
+    Ipv6AddressInfo addrInfo;
+    otIp6Prefix     addressPrefix{aAddress.mAddress, aAddress.mPrefixLength};
+
+    addrInfo.address.assign(aAddress.mAddress.mFields.m8, BYTE_ARR_END(aAddress.mAddress.mFields.m8));
+    addrInfo.prefixLength = aAddress.mPrefixLength;
+    addrInfo.isPreferred  = aAddress.mPreferred;
+    addrInfo.isMeshLocal  = aAddress.mMeshLocal;
+    addrInfo.isOmr        = otNetDataContainsOmrPrefix(GetOtInstance(), &addressPrefix);
+    return addrInfo;
+}
+
 void OtDaemonServer::AddressCallback(const otIp6AddressInfo *aAddressInfo, bool aIsAdded, void *aBinderServer)
 {
     OtDaemonServer *thisServer = static_cast<OtDaemonServer *>(aBinderServer);
 
+    std::vector<Ipv6AddressInfo> addrInfoList = std::vector<Ipv6AddressInfo>();
+
+    const otNetifAddress *unicastAddrs = otIp6GetUnicastAddresses(thisServer->GetOtInstance());
+
+    for (const otNetifAddress *addr = unicastAddrs; addr; addr = addr->mNext)
+    {
+        addrInfoList.push_back(thisServer->ConvertToAddressInfo(*addr));
+    }
+
     if (thisServer->mCallback != nullptr)
     {
-        thisServer->mCallback->onAddressChanged(ConvertToAddressInfo(*aAddressInfo), aIsAdded);
+        thisServer->mCallback->onAddressChanged(addrInfoList);
     }
     else
     {
