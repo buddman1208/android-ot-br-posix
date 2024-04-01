@@ -16,6 +16,24 @@
       "message": "Note that the below feature also \u0027dynamically select infra link\u0027. \n\nMaybe just say something like \u0027this feature doesn\u0027t apply to Android\u0027",
       "revId": "8a33365085716e321b627fdb7d0adfc060a9bd50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f64f9be_d36cc0eb",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-04-01T10:54:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "515602d4_47a46d5e",
+      "revId": "8a33365085716e321b627fdb7d0adfc060a9bd50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
