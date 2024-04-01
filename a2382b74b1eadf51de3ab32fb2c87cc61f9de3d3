@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e9dff63_444002a3",
+        "filename": "Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-04-01T10:58:03Z",
+      "side": 1,
+      "message": "```suggestion\n        // The platform specific rules for selecting infrastructure link do not apply to Android\n```\nnit",
+      "revId": "a2382b74b1eadf51de3ab32fb2c87cc61f9de3d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
