@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7fb464d_9735b2be",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-04-03T10:19:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38985b72_c4c11ba9",
+      "range": {
+        "startLine": 188,
+        "startChar": 58,
+        "endLine": 188,
+        "endChar": 100
+      },
+      "revId": "a45db3bb2822ba60b46c1770b4fdd521963d0dcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "979c0e35_d979479f",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b91e488_5fa3b94f",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-04-03T10:19:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "979c0e35_d979479f",
+      "revId": "a45db3bb2822ba60b46c1770b4fdd521963d0dcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c7f578d_2098109d",
@@ -54,6 +96,24 @@
       "writtenOn": "2024-04-03T06:15:35Z",
       "side": 1,
       "message": "```suggestion\n    for (const otNetifAddress *addr \u003d unicastAddrs; addr !\u003d nullptr; addr \u003d addr-\u003emNext)\n```",
+      "revId": "a45db3bb2822ba60b46c1770b4fdd521963d0dcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "892ea160_ee50834d",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-04-03T10:19:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c7f578d_2098109d",
       "revId": "a45db3bb2822ba60b46c1770b4fdd521963d0dcd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
