@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38985b72_c4c11ba9",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-04-03T06:15:35Z",
+      "side": 1,
+      "message": "I think you can use `std::end` instead.",
+      "range": {
+        "startLine": 188,
+        "startChar": 58,
+        "endLine": 188,
+        "endChar": 100
+      },
+      "revId": "a45db3bb2822ba60b46c1770b4fdd521963d0dcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "979c0e35_d979479f",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-04-03T06:15:35Z",
+      "side": 1,
+      "message": "```suggestion\n    std::vector\u003cIpv6AddressInfo\u003e addrInfoList;\n```",
+      "revId": "a45db3bb2822ba60b46c1770b4fdd521963d0dcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c7f578d_2098109d",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-04-03T06:15:35Z",
+      "side": 1,
+      "message": "```suggestion\n    for (const otNetifAddress *addr \u003d unicastAddrs; addr !\u003d nullptr; addr \u003d addr-\u003emNext)\n```",
+      "revId": "a45db3bb2822ba60b46c1770b4fdd521963d0dcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
