@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c69d76b_07ab1b47",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/IOtDaemonCallback.aidl",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-04-04T12:14:54Z",
+      "side": 1,
+      "message": "```suggestion\n     * @param addressInfoList the list of unicast and multicast IPv6 addresses.\n```",
+      "range": {
+        "startLine": 50,
+        "startChar": 42,
+        "endLine": 50,
+        "endChar": 49
+      },
+      "revId": "fd657fa69917cb843068772aa6e173761edcb1eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65888777_6b1e1b44",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-04-04T12:14:54Z",
+      "side": 1,
+      "message": "It\u0027s a bit weird that `std::end` is used without `std::begin`\n```suggestion\n    addrInfo.address.assign(std::begin(aAddress.mAddress.mFields.m8), std::end(aAddress.mAddress.mFields.m8));\n```",
+      "range": {
+        "startLine": 96,
+        "startChar": 4,
+        "endLine": 96,
+        "endChar": 98
+      },
+      "revId": "fd657fa69917cb843068772aa6e173761edcb1eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
