@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cc6a914_84247bd5",
+        "filename": "src/android/java/com/android/server/thread/openthread/testing/FakeOtDaemon.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-04-08T06:05:54Z",
+      "side": 1,
+      "message": "nit: better not moving this because it\u0027s irrelevant to the purpose of this CL.",
+      "range": {
+        "startLine": 178,
+        "startChar": 4,
+        "endLine": 189,
+        "endChar": 0
+      },
+      "revId": "efa0c753d159f27bd80563ca343f5741ea0b811a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
