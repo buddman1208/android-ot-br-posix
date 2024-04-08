@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44a261e6_cb6fc696",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-04-08T12:50:48Z",
+      "side": 1,
+      "message": "nit:\n1. put this close to `ConvertToAddressInfo()`\n2. unify the name of this two similar helper methods. E.g. remove \"MultlcastAddress\" from the name or add \"UnicastAddress\", i prefer shorter name given the parameter type is already clear",
+      "range": {
+        "startLine": 92,
+        "startChar": 23,
+        "endLine": 92,
+        "endChar": 59
+      },
+      "revId": "9e041597278375caad32d8d369965788fe5e6a5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
