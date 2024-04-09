@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cd12ebb_818f077a",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-04-09T09:27:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0c31df3_b5be9b32",
+      "revId": "c075876f93bde321976e45776fc6fda90ddebbb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3292981e_d6966fb2",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-04-09T07:39:58Z",
       "side": 1,
       "message": "Are these lines formatted?",
+      "range": {
+        "startLine": 156,
+        "startChar": 2,
+        "endLine": 160,
+        "endChar": 0
+      },
+      "revId": "c075876f93bde321976e45776fc6fda90ddebbb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48107c4c_174fe2f4",
+        "filename": "src/android/otdaemon_server.hpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-04-09T09:27:39Z",
+      "side": 1,
+      "message": "Yes they are, possibly because of the initial letter is small case they are not aligned with previous functions.",
+      "parentUuid": "3292981e_d6966fb2",
       "range": {
         "startLine": 156,
         "startChar": 2,
