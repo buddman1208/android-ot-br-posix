@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0c31df3_b5be9b32",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-04-09T07:39:58Z",
+      "side": 1,
+      "message": "nit: Make this also a member method for better understandability and reusability.",
+      "revId": "c075876f93bde321976e45776fc6fda90ddebbb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3292981e_d6966fb2",
+        "filename": "src/android/otdaemon_server.hpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-04-09T07:39:58Z",
+      "side": 1,
+      "message": "Are these lines formatted?",
+      "range": {
+        "startLine": 156,
+        "startChar": 2,
+        "endLine": 160,
+        "endChar": 0
+      },
+      "revId": "c075876f93bde321976e45776fc6fda90ddebbb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
