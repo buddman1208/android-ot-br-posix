@@ -475,14 +475,6 @@ exit:
 
 void OtDaemonServer::enableThread(const std::shared_ptr<IOtStatusReceiver> &aReceiver)
 {
-    otOperationalDatasetTlvs datasetTlvs;
-
-    if (otDatasetGetActiveTlvs(GetOtInstance(), &datasetTlvs) != OT_ERROR_NOT_FOUND && datasetTlvs.mLength > 0 &&
-        !isAttached())
-    {
-        (void)otIp6SetEnabled(GetOtInstance(), true);
-        (void)otThreadSetEnabled(GetOtInstance(), true);
-    }
     updateThreadEnabledState(OT_STATE_ENABLED, aReceiver);
 }
 
