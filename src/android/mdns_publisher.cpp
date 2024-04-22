@@ -151,11 +151,6 @@ std::shared_ptr<MdnsPublisher::NsdResolveServiceCallback> CreateNsdResolveServic
     return ndk::SharedRefBase::make<MdnsPublisher::NsdResolveServiceCallback>(aServiceSubscription);
 }
 
-void DieForNotImplemented(const char *aFuncName)
-{
-    VerifyOrDie(false, (std::string(aFuncName) + " is not implemented").c_str());
-}
-
 otbrError MdnsPublisher::PublishServiceImpl(const std::string &aHostName,
                                             const std::string &aName,
                                             const std::string &aType,
@@ -275,7 +270,7 @@ otbrError MdnsPublisher::PublishKeyImpl(const std::string &aName, const KeyData 
     OTBR_UNUSED_VARIABLE(aKeyData);
     OTBR_UNUSED_VARIABLE(aCallback);
 
-    DieForNotImplemented(__func__);
+    // TODO: b/317946010 - support registering KEY RR
 
     return OTBR_ERROR_MDNS;
 }
@@ -304,7 +299,7 @@ void MdnsPublisher::UnpublishKey(const std::string &aName, ResultCallback &&aCal
     OTBR_UNUSED_VARIABLE(aName);
     OTBR_UNUSED_VARIABLE(aCallback);
 
-    DieForNotImplemented(__func__);
+    // TODO: b/317946010 - support registering KEY RR
 }
 
 void MdnsPublisher::SubscribeService(const std::string &aType, const std::string &aInstanceName)
@@ -360,22 +355,22 @@ exit:
 void MdnsPublisher::SubscribeHost(const std::string &aHostName)
 {
     OTBR_UNUSED_VARIABLE(aHostName);
+
+    // TODO: b/336194801 - support resolving a host.
 }
 
 void MdnsPublisher::UnsubscribeHost(const std::string &aHostName)
 {
     OTBR_UNUSED_VARIABLE(aHostName);
+
+    // TODO: b/336194801 - support resolving a host.
 }
 
 void MdnsPublisher::OnServiceResolveFailedImpl(const std::string &aType,
                                                const std::string &aInstanceName,
                                                int32_t            aErrorCode)
 {
-    OTBR_UNUSED_VARIABLE(aType);
-    OTBR_UNUSED_VARIABLE(aInstanceName);
-    OTBR_UNUSED_VARIABLE(aErrorCode);
-
-    DieForNotImplemented(__func__);
+    otbrLogInfo("Failed to resolve service %s.%s: %d", aInstanceName.c_str(), aType.c_str(), aErrorCode);
 }
 
 void MdnsPublisher::OnHostResolveFailedImpl(const std::string &aHostName, int32_t aErrorCode)
@@ -383,7 +378,7 @@ void MdnsPublisher::OnHostResolveFailedImpl(const std::string &aHostName, int32_
     OTBR_UNUSED_VARIABLE(aHostName);
     OTBR_UNUSED_VARIABLE(aErrorCode);
 
-    DieForNotImplemented(__func__);
+    // TODO: b/336194801 - support resolving a host.
 }
 
 int32_t MdnsPublisher::AllocateListenerId(void)
