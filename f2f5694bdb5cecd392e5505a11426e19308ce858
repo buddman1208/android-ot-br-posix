@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e508ca9_cb2b13fc",
+        "filename": "src/android/mdns_publisher.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-04-23T02:44:47Z",
+      "side": 1,
+      "message": "should it be warning instead? to align with avahi and mdns_responder?\n```suggestion\n    otbrLogWarning(\"Failed to resolve service %s.%s: %d\", aInstanceName.c_str(), aType.c_str(), aErrorCode);\n```",
+      "range": {
+        "startLine": 373,
+        "startChar": 11,
+        "endLine": 373,
+        "endChar": 15
+      },
+      "revId": "f2f5694bdb5cecd392e5505a11426e19308ce858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
