@@ -71,7 +71,9 @@ void BackboneAgent::Init(void)
     mNdProxyManager.Init();
 #endif
 
+#if OTBR_ENABLE_BBR_ON_START
     otBackboneRouterSetEnabled(mNcp.GetInstance(), /* aEnabled */ true);
+#endif
 }
 
 void BackboneAgent::HandleThreadStateChanged(otChangedFlags aFlags)
