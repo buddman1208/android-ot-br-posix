@@ -42,6 +42,7 @@
 #include <openthread/icmp6.h>
 #include <openthread/ip6.h>
 #include <openthread/link.h>
+#include <openthread/nat64.h>
 #include <openthread/openthread-system.h>
 #include <openthread/platform/infra_if.h>
 #include <openthread/platform/radio.h>
@@ -132,6 +133,7 @@ void OtDaemonServer::Init(void)
     otBackboneRouterSetMulticastListenerCallback(GetOtInstance(), OtDaemonServer::HandleBackboneMulticastListenerEvent,
                                                  this);
     otIcmp6SetEchoMode(GetOtInstance(), OT_ICMP6_ECHO_HANDLER_DISABLED);
+    otNat64SetReceiveIp4Callback(GetOtInstance(), &OtDaemonServer::ReceiveCallback, this);
 
     mTaskRunner.Post(kTelemetryCheckInterval, [this]() { PushTelemetryIfConditionMatch(); });
 }
@@ -258,6 +260,20 @@ exit:
     otMessageFree(aMessage);
 }
 
+static constexpr uint8_t kIpVersion4 = 4;
+static constexpr uint8_t kIpVersion6 = 6;
+
+static uint8_t getIpVersion(const uint8_t *data)
+{
+    assert(data != nullptr);
+
+    // Mute compiler warnings.
+    OT_UNUSED_VARIABLE(kIpVersion4);
+    OT_UNUSED_VARIABLE(kIpVersion6);
+
+    return (static_cast<uint8_t>(data[0]) >> 4) & 0x0F;
+}
+
 // FIXME(wgtdkp): this doesn't support NAT64, we should use a shared library with ot-posix
 // to handle packet translations between the tunnel interface and Thread.
 void OtDaemonServer::TransmitCallback(void)
@@ -268,6 +284,8 @@ void OtDaemonServer::TransmitCallback(void)
     otError           error   = OT_ERROR_NONE;
     otMessageSettings settings;
     int               fd = mTunFd.get();
+    bool isIp4 = false;
+    int offset = 0;
 
     assert(GetOtInstance() != nullptr);
 
@@ -291,13 +309,21 @@ void OtDaemonServer::TransmitCallback(void)
     settings.mLinkSecurityEnabled = (otThreadGetDeviceRole(GetOtInstance()) != OT_DEVICE_ROLE_DISABLED);
     settings.mPriority            = OT_MESSAGE_PRIORITY_LOW;
 
-    message = otIp6NewMessage(GetOtInstance(), &settings);
+    isIp4   = (getIpVersion(reinterpret_cast<uint8_t *>(&packet[offset])) == kIpVersion4);
+    message = isIp4 ? otIp4NewMessage(GetOtInstance(), &settings) : otIp6NewMessage(GetOtInstance(), &settings);
+//    message = otIp6NewMessage(GetOtInstance(), &settings);
     VerifyOrExit(message != nullptr, error = OT_ERROR_NO_BUFS);
     otMessageSetOrigin(message, OT_MESSAGE_ORIGIN_HOST_UNTRUSTED);
 
     SuccessOrExit(error = otMessageAppend(message, packet, static_cast<uint16_t>(length)));
 
-    error   = otIp6Send(GetOtInstance(), message);
+
+//#if OPENTHREAD_CONFIG_NAT64_TRANSLATOR_ENABLE
+        error = isIp4 ? otNat64Send(GetOtInstance(), message) : otIp6Send(GetOtInstance(), message);
+//#else
+//        error = otIp6Send(GetOtInstance(), message);
+//#endif
+
     message = nullptr;
 
 exit:

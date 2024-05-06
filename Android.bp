@@ -151,7 +151,7 @@ cc_defaults {
         "-DOTBR_ENABLE_VENDOR_INFRA_LINK_SELECT=0",
 
         // Disable 1.4 features, they are not supported on Android yet.
-        "-DOTBR_ENABLE_NAT64=0",
+        "-DOTBR_ENABLE_NAT64=1",
         "-DOTBR_ENABLE_DNS_UPSTREAM_QUERY=0",
         "-DOTBR_ENABLE_DHCP6_PD=0",
         "-DOTBR_ENABLE_TREL=0",
