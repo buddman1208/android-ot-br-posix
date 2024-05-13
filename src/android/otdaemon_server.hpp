@@ -54,6 +54,7 @@ using Status               = ::ndk::ScopedAStatus;
 using aidl::android::net::thread::ChannelMaxPower;
 using aidl::com::android::server::thread::openthread::BackboneRouterState;
 using aidl::com::android::server::thread::openthread::BnOtDaemon;
+using aidl::com::android::server::thread::openthread::BorderRouterConfig;
 using aidl::com::android::server::thread::openthread::BorderRouterConfigurationParcel;
 using aidl::com::android::server::thread::openthread::IChannelMasksReceiver;
 using aidl::com::android::server::thread::openthread::INsdPublisher;
@@ -158,6 +159,7 @@ private:
     void            enableThread(const std::shared_ptr<IOtStatusReceiver> &aReceiver);
     Ipv6AddressInfo ConvertToAddressInfo(const otNetifAddress &aAddress);
     Ipv6AddressInfo ConvertToAddressInfo(const otNetifMulticastAddress &aAddress);
+    std::vector<BorderRouterConfig> GetOnMeshPrefixes();
 
     int                                mThreadEnabled = OT_STATE_DISABLED;
     otbr::Application                 &mApplication;
