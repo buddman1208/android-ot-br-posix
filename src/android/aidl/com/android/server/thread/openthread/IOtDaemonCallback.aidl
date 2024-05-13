@@ -66,4 +66,11 @@ oneway interface IOtDaemonCallback {
      * @param enabled {@code true} if Thread is enabled, {@code false} if Thread is disabled.
      */
     void onThreadEnabledChanged(in int enabled);
+
+    /**
+     * Called when Thread on-mesh prefixes have changed.
+     *
+     * @param addressInfoList the list of IPv6 prefixes.
+     */
+    void onPrefixChanged(in List<Ipv6AddressInfo> addressInfoList);
 }

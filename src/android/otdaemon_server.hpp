@@ -158,6 +158,7 @@ private:
     void            enableThread(const std::shared_ptr<IOtStatusReceiver> &aReceiver);
     Ipv6AddressInfo ConvertToAddressInfo(const otNetifAddress &aAddress);
     Ipv6AddressInfo ConvertToAddressInfo(const otNetifMulticastAddress &aAddress);
+    std::vector<Ipv6AddressInfo> GetOnMeshPrefixes();
 
     int                                mThreadEnabled = OT_STATE_DISABLED;
     otbr::Application                 &mApplication;
