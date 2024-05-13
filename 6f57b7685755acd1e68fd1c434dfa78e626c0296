@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da935b6e_2cefe8ef",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/BorderRouterConfig.aidl",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-05-13T13:27:55Z",
+      "side": 1,
+      "message": "```suggestion\nparcelable OnMeshPrefixConfig {\n```\n\nThere is already a BorderRouterConfigurationParcel.aidl, so to avoid confusion",
+      "range": {
+        "startLine": 36,
+        "startChar": 11,
+        "endLine": 36,
+        "endChar": 29
+      },
+      "revId": "6f57b7685755acd1e68fd1c434dfa78e626c0296",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
