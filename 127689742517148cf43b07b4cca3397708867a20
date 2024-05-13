@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0836da2_f0cc7f84",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-05-13T09:16:17Z",
+      "side": 1,
+      "message": "```suggestion\n        Ipv6AddressInfo addrInfo;\n\n```\nnit",
+      "revId": "127689742517148cf43b07b4cca3397708867a20",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e4139d8_1767b371",
+        "filename": "src/android/otdaemon_server.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-05-13T09:16:17Z",
+      "side": 1,
+      "message": "Seems this piece of code needs `script/make-pretty`",
+      "range": {
+        "startLine": 156,
+        "startChar": 3,
+        "endLine": 161,
+        "endChar": 53
+      },
+      "revId": "127689742517148cf43b07b4cca3397708867a20",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
