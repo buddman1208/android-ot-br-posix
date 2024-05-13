@@ -178,6 +178,39 @@ void OtDaemonServer::StateCallback(otChangedFlags aFlags)
             mCallback->onBackboneRouterStateChanged(GetBackboneRouterState());
         }
     }
+    if (aFlags & OT_CHANGED_THREAD_NETDATA)
+    {
+        if (mCallback == nullptr)
+        {
+            otbrLogWarning("Ignoring OT netdata changes: callback is not set");
+        }
+        else
+        {
+            mCallback->onPrefixChanged(GetOnMeshPrefixes());
+        }
+    }
+}
+
+std::vector<OnMeshPrefixConfig> OtDaemonServer::GetOnMeshPrefixes()
+{
+    std::vector<OnMeshPrefixConfig> onMeshPrefixConfigList;
+    otNetworkDataIterator           iterator = OT_NETWORK_DATA_ITERATOR_INIT;
+    otBorderRouterConfig            config;
+
+    VerifyOrExit(GetOtInstance() != nullptr, otbrLogWarning("Can't get on mesh prefixes: OT is not initialized"));
+
+    while (otNetDataGetNextOnMeshPrefix(GetOtInstance(), &iterator, &config) == OT_ERROR_NONE)
+    {
+        OnMeshPrefixConfig onMeshPrefixConfig;
+
+        onMeshPrefixConfig.prefix.assign(std::begin(config.mPrefix.mPrefix.mFields.m8),
+                                         std::end(config.mPrefix.mPrefix.mFields.m8));
+        onMeshPrefixConfig.prefixLength = config.mPrefix.mLength;
+        onMeshPrefixConfigList.push_back(onMeshPrefixConfig);
+    }
+
+exit:
+    return onMeshPrefixConfigList;
 }
 
 Ipv6AddressInfo OtDaemonServer::ConvertToAddressInfo(const otNetifAddress &aAddress)

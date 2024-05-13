@@ -62,6 +62,7 @@ using aidl::com::android::server::thread::openthread::IOtDaemonCallback;
 using aidl::com::android::server::thread::openthread::IOtStatusReceiver;
 using aidl::com::android::server::thread::openthread::Ipv6AddressInfo;
 using aidl::com::android::server::thread::openthread::MeshcopTxtAttributes;
+using aidl::com::android::server::thread::openthread::OnMeshPrefixConfig;
 using aidl::com::android::server::thread::openthread::OtDaemonState;
 
 class OtDaemonServer : public BnOtDaemon, public MainloopProcessor, public vendor::VendorServer
@@ -154,10 +155,11 @@ private:
                                                              otBackboneRouterMulticastListenerEvent aEvent,
                                                              const otIp6Address                    *aAddress);
     void                PushTelemetryIfConditionMatch();
-    void            updateThreadEnabledState(const int aEnabled, const std::shared_ptr<IOtStatusReceiver> &aReceiver);
-    void            enableThread(const std::shared_ptr<IOtStatusReceiver> &aReceiver);
-    Ipv6AddressInfo ConvertToAddressInfo(const otNetifAddress &aAddress);
-    Ipv6AddressInfo ConvertToAddressInfo(const otNetifMulticastAddress &aAddress);
+    std::vector<OnMeshPrefixConfig> GetOnMeshPrefixes();
+    Ipv6AddressInfo                 ConvertToAddressInfo(const otNetifAddress &aAddress);
+    Ipv6AddressInfo                 ConvertToAddressInfo(const otNetifMulticastAddress &aAddress);
+    void updateThreadEnabledState(const int aEnabled, const std::shared_ptr<IOtStatusReceiver> &aReceiver);
+    void enableThread(const std::shared_ptr<IOtStatusReceiver> &aReceiver);
 
     int                                mThreadEnabled = OT_STATE_DISABLED;
     otbr::Application                 &mApplication;
