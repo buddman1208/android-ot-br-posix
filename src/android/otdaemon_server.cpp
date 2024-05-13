@@ -154,6 +154,8 @@ void OtDaemonServer::BinderDeathCallback(void *aBinderServer)
 
 void OtDaemonServer::StateCallback(otChangedFlags aFlags)
 {
+    std::vector<OnMeshPrefixConfig> onMeshPrefixes;
+
     assert(GetOtInstance() != nullptr);
 
     if (RefreshOtDaemonState(aFlags))
@@ -178,6 +180,49 @@ void OtDaemonServer::StateCallback(otChangedFlags aFlags)
             mCallback->onBackboneRouterStateChanged(GetBackboneRouterState());
         }
     }
+    if ((aFlags & OT_CHANGED_THREAD_NETDATA) && RefreshOnMeshPrefixes())
+    {
+        if (mCallback == nullptr)
+        {
+            otbrLogWarning("Ignoring OT netdata changes: callback is not set");
+        }
+        else
+        {
+            onMeshPrefixes.assign(mOnMeshPrefixes.begin(), mOnMeshPrefixes.end());
+            mCallback->onPrefixChanged(onMeshPrefixes);
+        }
+    }
+}
+
+bool OtDaemonServer::RefreshOnMeshPrefixes()
+{
+    std::set<OnMeshPrefixConfig> onMeshPrefixConfigs;
+    otNetworkDataIterator        iterator = OT_NETWORK_DATA_ITERATOR_INIT;
+    otBorderRouterConfig         config;
+
+    VerifyOrExit(GetOtInstance() != nullptr, otbrLogWarning("Can't get on mesh prefixes: OT is not initialized"));
+
+    while (otNetDataGetNextOnMeshPrefix(GetOtInstance(), &iterator, &config) == OT_ERROR_NONE)
+    {
+        OnMeshPrefixConfig onMeshPrefixConfig;
+
+        onMeshPrefixConfig.prefix.assign(std::begin(config.mPrefix.mPrefix.mFields.m8),
+                                         std::end(config.mPrefix.mPrefix.mFields.m8));
+        onMeshPrefixConfig.prefixLength = config.mPrefix.mLength;
+        onMeshPrefixConfigs.insert(onMeshPrefixConfig);
+    }
+
+    if (mOnMeshPrefixes == onMeshPrefixConfigs)
+    {
+        return false;
+    }
+    else
+    {
+        mOnMeshPrefixes.swap(onMeshPrefixConfigs);
+        return true;
+    }
+exit:
+    return false;
 }
 
 Ipv6AddressInfo OtDaemonServer::ConvertToAddressInfo(const otNetifAddress &aAddress)
