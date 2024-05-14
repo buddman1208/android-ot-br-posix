@@ -29,3 +29,5 @@
 #ifdef OTBR_CONFIG_ANDROID_VERSION_HEADER_ENABLE
 #include <otbr-config-android-version.h>
 #endif
+
+#define OTBR_ENABLE_EPSKC 0
