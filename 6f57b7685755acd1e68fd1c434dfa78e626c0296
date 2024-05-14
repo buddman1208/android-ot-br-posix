@@ -22,6 +22,30 @@
       },
       "revId": "6f57b7685755acd1e68fd1c434dfa78e626c0296",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4e75256_1d856592",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/BorderRouterConfig.aidl",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-05-14T07:17:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da935b6e_2cefe8ef",
+      "range": {
+        "startLine": 36,
+        "startChar": 11,
+        "endLine": 36,
+        "endChar": 29
+      },
+      "revId": "6f57b7685755acd1e68fd1c434dfa78e626c0296",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

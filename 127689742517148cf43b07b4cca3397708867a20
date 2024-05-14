@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a61b1fcf_9441b6a3",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-05-14T07:17:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0836da2_f0cc7f84",
+      "revId": "127689742517148cf43b07b4cca3397708867a20",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e4139d8_1767b371",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-05-13T09:16:17Z",
       "side": 1,
       "message": "Seems this piece of code needs `script/make-pretty`",
+      "range": {
+        "startLine": 156,
+        "startChar": 3,
+        "endLine": 161,
+        "endChar": 53
+      },
+      "revId": "127689742517148cf43b07b4cca3397708867a20",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb2a7b6a_db5862db",
+        "filename": "src/android/otdaemon_server.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-05-14T07:17:40Z",
+      "side": 1,
+      "message": "I did run make-pretty however the indentation is still not aligned. Will add another CL to rename the functions that doesn\u0027t start with capital letter.",
+      "parentUuid": "1e4139d8_1767b371",
       "range": {
         "startLine": 156,
         "startChar": 3,
