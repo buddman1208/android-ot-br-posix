@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "147d41d8_b3b4a4c8",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-05-15T11:17:25Z",
+      "side": 1,
+      "message": "nit: std::move()",
+      "revId": "8ac110a2a398f5f0dc5905775b700b94ca6d7dde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
