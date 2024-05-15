@@ -16,6 +16,24 @@
       "message": "nit: std::move()",
       "revId": "8ac110a2a398f5f0dc5905775b700b94ca6d7dde",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b858fc7d_b0fae0f5",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-05-15T11:43:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "147d41d8_b3b4a4c8",
+      "revId": "8ac110a2a398f5f0dc5905775b700b94ca6d7dde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
