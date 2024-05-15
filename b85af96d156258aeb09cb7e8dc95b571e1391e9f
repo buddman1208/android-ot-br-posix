@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7702dd8f_a0528043",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-05-15T11:12:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fbf34d5_5e19f684",
+      "range": {
+        "startLine": 183,
+        "startChar": 4,
+        "endLine": 183,
+        "endChar": 72
+      },
+      "revId": "b85af96d156258aeb09cb7e8dc95b571e1391e9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1d7fc9c_e0d53b93",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-05-15T11:04:08Z",
       "side": 1,
       "message": "multiple `return` is not allowed in OT code",
+      "range": {
+        "startLine": 217,
+        "startChar": 8,
+        "endLine": 222,
+        "endChar": 20
+      },
+      "revId": "b85af96d156258aeb09cb7e8dc95b571e1391e9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96f2b1d5_8347263f",
+        "filename": "src/android/otdaemon_server.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-05-15T11:12:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1d7fc9c_e0d53b93",
       "range": {
         "startLine": 217,
         "startChar": 8,
