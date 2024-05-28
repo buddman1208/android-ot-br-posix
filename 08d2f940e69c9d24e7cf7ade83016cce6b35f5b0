@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09f01083_25b978fb",
+        "filename": "src/android/aidl/com/android/server/thread/openthread/INsdPublisher.aidl",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-05-28T09:27:21Z",
+      "side": 1,
+      "message": "```suggestion\n     * \u003cp\u003eTo stop resolving a host, use `stopHostResolution`\n```",
+      "range": {
+        "startLine": 158,
+        "startChar": 7,
+        "endLine": 159,
+        "endChar": 40
+      },
+      "revId": "08d2f940e69c9d24e7cf7ade83016cce6b35f5b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
