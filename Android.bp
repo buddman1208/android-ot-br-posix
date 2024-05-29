@@ -155,7 +155,7 @@ cc_defaults {
         "-DOTBR_ENABLE_NAT64=0",
         "-DOTBR_ENABLE_DNS_UPSTREAM_QUERY=0",
         "-DOTBR_ENABLE_DHCP6_PD=0",
-        "-DOTBR_ENABLE_TREL=0",
+        "-DOTBR_ENABLE_TREL=1",
     ],
 
     srcs: [
