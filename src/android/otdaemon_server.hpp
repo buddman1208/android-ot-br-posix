@@ -154,8 +154,8 @@ private:
                                                              otBackboneRouterMulticastListenerEvent aEvent,
                                                              const otIp6Address                    *aAddress);
     void                PushTelemetryIfConditionMatch();
-    void            updateThreadEnabledState(const int aEnabled, const std::shared_ptr<IOtStatusReceiver> &aReceiver);
-    void            enableThread(const std::shared_ptr<IOtStatusReceiver> &aReceiver);
+    void            UpdateThreadEnabledState(const int aEnabled, const std::shared_ptr<IOtStatusReceiver> &aReceiver);
+    void            EnableThread(const std::shared_ptr<IOtStatusReceiver> &aReceiver);
     Ipv6AddressInfo ConvertToAddressInfo(const otNetifAddress &aAddress);
     Ipv6AddressInfo ConvertToAddressInfo(const otNetifMulticastAddress &aAddress);
 

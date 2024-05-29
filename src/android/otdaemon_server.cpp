@@ -445,11 +445,11 @@ void OtDaemonServer::initializeInternal(const bool                              
 
     if (enabled)
     {
-        enableThread(nullptr /* aReceiver */);
+        EnableThread(nullptr /* aReceiver */);
     }
     else
     {
-        updateThreadEnabledState(OT_STATE_DISABLED, nullptr /* aReceiver */);
+        UpdateThreadEnabledState(OT_STATE_DISABLED, nullptr /* aReceiver */);
     }
 }
 
@@ -462,7 +462,7 @@ Status OtDaemonServer::terminate(void)
     return Status::ok();
 }
 
-void OtDaemonServer::updateThreadEnabledState(const int enabled, const std::shared_ptr<IOtStatusReceiver> &aReceiver)
+void OtDaemonServer::UpdateThreadEnabledState(const int enabled, const std::shared_ptr<IOtStatusReceiver> &aReceiver)
 {
     VerifyOrExit(enabled != mThreadEnabled);
 
@@ -496,7 +496,7 @@ exit:
     return;
 }
 
-void OtDaemonServer::enableThread(const std::shared_ptr<IOtStatusReceiver> &aReceiver)
+void OtDaemonServer::EnableThread(const std::shared_ptr<IOtStatusReceiver> &aReceiver)
 {
     otOperationalDatasetTlvs datasetTlvs;
 
@@ -506,7 +506,7 @@ void OtDaemonServer::enableThread(const std::shared_ptr<IOtStatusReceiver> &aRec
         (void)otIp6SetEnabled(GetOtInstance(), true);
         (void)otThreadSetEnabled(GetOtInstance(), true);
     }
-    updateThreadEnabledState(OT_STATE_ENABLED, aReceiver);
+    UpdateThreadEnabledState(OT_STATE_ENABLED, aReceiver);
 }
 
 Status OtDaemonServer::setThreadEnabled(const bool enabled, const std::shared_ptr<IOtStatusReceiver> &aReceiver)
@@ -533,18 +533,18 @@ void OtDaemonServer::setThreadEnabledInternal(const bool enabled, const std::sha
 
     if (enabled)
     {
-        enableThread(aReceiver);
+        EnableThread(aReceiver);
     }
     else
     {
         // `aReceiver` should not be set here because the operation isn't finished yet
-        updateThreadEnabledState(OT_STATE_DISABLING, nullptr /* aReceiver */);
+        UpdateThreadEnabledState(OT_STATE_DISABLING, nullptr /* aReceiver */);
 
         LeaveGracefully([aReceiver, this]() {
             // Ignore errors as those operations should always succeed
             (void)otThreadSetEnabled(GetOtInstance(), false);
             (void)otIp6SetEnabled(GetOtInstance(), false);
-            updateThreadEnabledState(OT_STATE_DISABLED, aReceiver);
+            UpdateThreadEnabledState(OT_STATE_DISABLED, aReceiver);
         });
     }
 
