@@ -48,7 +48,4 @@ parcelable OtDaemonState {
     // Active Oprational Dataset encoded as Thread TLVs. Empty array means the dataset doesn't
     // exist
     byte[] pendingDatasetTlvs;
-
-    // The Thread enabled state OT_STATE_DISABLED, OT_STATE_ENABLED and OT_STATE_DISABLING.
-    int threadEnabled;
 }

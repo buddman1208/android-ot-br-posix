@@ -385,6 +385,7 @@ BackboneRouterState OtDaemonServer::GetBackboneRouterState()
         state.multicastForwardingEnabled = true;
         break;
     }
+    otbrLogInfo("Updating backbone router state (bbr state = %d)", bbrState);
 
     while (otBackboneRouterMulticastListenerGetNext(GetOtInstance(), &iter, &info) == OT_ERROR_NONE)
     {
@@ -508,11 +509,11 @@ Status OtDaemonServer::terminate(void)
 
 void OtDaemonServer::updateThreadEnabledState(const int enabled, const std::shared_ptr<IOtStatusReceiver> &aReceiver)
 {
-    VerifyOrExit(enabled != mState.threadEnabled);
+    VerifyOrExit(enabled != mThreadEnabled);
 
-    otbrLogInfo("Thread enabled state changed: %s -> %s", ThreadEnabledStateToString(mState.threadEnabled),
+    otbrLogInfo("Thread enabled state changed: %s -> %s", ThreadEnabledStateToString(mThreadEnabled),
                 ThreadEnabledStateToString(enabled));
-    mState.threadEnabled = enabled;
+    mThreadEnabled = enabled;
 
     if (aReceiver != nullptr)
     {
@@ -533,7 +534,7 @@ void OtDaemonServer::updateThreadEnabledState(const int enabled, const std::shar
 
     if (mCallback != nullptr)
     {
-        mCallback->onStateChanged(mState, -1);
+        mCallback->onThreadEnabledChanged(mThreadEnabled);
     }
 
 exit:
@@ -567,9 +568,9 @@ void OtDaemonServer::setThreadEnabledInternal(const bool enabled, const std::sha
 
     VerifyOrExit(GetOtInstance() != nullptr, error = OT_ERROR_INVALID_STATE, message = "OT is not initialized");
 
-    VerifyOrExit(mState.threadEnabled != OT_STATE_DISABLING, error = OT_ERROR_BUSY, message = "Thread is disabling");
+    VerifyOrExit(mThreadEnabled != OT_STATE_DISABLING, error = OT_ERROR_BUSY, message = "Thread is disabling");
 
-    if ((mState.threadEnabled == OT_STATE_ENABLED) == enabled)
+    if ((mThreadEnabled == OT_STATE_ENABLED) == enabled)
     {
         aReceiver->onSuccess();
         ExitNow();
@@ -621,6 +622,7 @@ void OtDaemonServer::registerStateCallbackInternal(const std::shared_ptr<IOtDaem
     // state callback, here needs to invoke the callback
     RefreshOtDaemonState(/* aFlags */ 0xffffffff);
     mCallback->onStateChanged(mState, listenerId);
+    mCallback->onThreadEnabledChanged(mThreadEnabled);
     mCallback->onBackboneRouterStateChanged(GetBackboneRouterState());
 
 exit:
@@ -702,9 +704,9 @@ void OtDaemonServer::joinInternal(const std::vector<uint8_t>               &aAct
     std::string              message;
     otOperationalDatasetTlvs datasetTlvs;
 
-    VerifyOrExit(mState.threadEnabled != OT_STATE_DISABLING, error = OT_ERROR_BUSY, message = "Thread is disabling");
+    VerifyOrExit(mThreadEnabled != OT_STATE_DISABLING, error = OT_ERROR_BUSY, message = "Thread is disabling");
 
-    VerifyOrExit(mState.threadEnabled == OT_STATE_ENABLED,
+    VerifyOrExit(mThreadEnabled == OT_STATE_ENABLED,
                  error   = static_cast<int>(IOtDaemon::ErrorCode::OT_ERROR_THREAD_DISABLED),
                  message = "Thread is disabled");
 
@@ -760,9 +762,9 @@ void OtDaemonServer::leaveInternal(const std::shared_ptr<IOtStatusReceiver> &aRe
 
     VerifyOrExit(GetOtInstance() != nullptr, error = OT_ERROR_INVALID_STATE, message = "OT is not initialized");
 
-    VerifyOrExit(mState.threadEnabled != OT_STATE_DISABLING, error = OT_ERROR_BUSY, message = "Thread is disabling");
+    VerifyOrExit(mThreadEnabled != OT_STATE_DISABLING, error = OT_ERROR_BUSY, message = "Thread is disabling");
 
-    if (mState.threadEnabled == OT_STATE_DISABLED)
+    if (mThreadEnabled == OT_STATE_DISABLED)
     {
         FinishLeave(aReceiver);
         ExitNow();
@@ -848,9 +850,9 @@ void OtDaemonServer::scheduleMigrationInternal(const std::vector<uint8_t>       
     std::string          message;
     otOperationalDataset emptyDataset;
 
-    VerifyOrExit(mState.threadEnabled != OT_STATE_DISABLING, error = OT_ERROR_BUSY, message = "Thread is disabling");
+    VerifyOrExit(mThreadEnabled != OT_STATE_DISABLING, error = OT_ERROR_BUSY, message = "Thread is disabling");
 
-    VerifyOrExit(mState.threadEnabled == OT_STATE_ENABLED,
+    VerifyOrExit(mThreadEnabled == OT_STATE_ENABLED,
                  error   = static_cast<int>(IOtDaemon::ErrorCode::OT_ERROR_THREAD_DISABLED),
                  message = "Thread is disabled");
 
