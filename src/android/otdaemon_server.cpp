@@ -477,14 +477,20 @@ void OtDaemonServer::initializeInternal(const bool                              
                                         const std::shared_ptr<IOtDaemonCallback> &aCallback,
                                         const std::string                        &aCountryCode)
 {
-    std::string instanceName = aMeshcopTxts.vendorName + " " + aMeshcopTxts.modelName;
+    std::string              instanceName = aMeshcopTxts.vendorName + " " + aMeshcopTxts.modelName;
+    Mdns::Publisher::TxtList nonStandardTxts;
 
     setCountryCodeInternal(aCountryCode, nullptr /* aReceiver */);
     registerStateCallbackInternal(aCallback, -1 /* listenerId */);
 
     mMdnsPublisher.SetINsdPublisher(aINsdPublisher);
+
+    for (const auto &txtAttr : aMeshcopTxts.nonStandardTxtEntries)
+    {
+        nonStandardTxts.emplace_back(txtAttr.name.c_str(), txtAttr.value.data(), txtAttr.value.size());
+    }
     mBorderAgent.SetMeshCopServiceValues(instanceName, aMeshcopTxts.modelName, aMeshcopTxts.vendorName,
-                                         aMeshcopTxts.vendorOui);
+                                         aMeshcopTxts.vendorOui, nonStandardTxts);
     mBorderAgent.SetEnabled(enabled);
 
     if (enabled)
