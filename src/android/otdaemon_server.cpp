@@ -477,15 +477,23 @@ void OtDaemonServer::initializeInternal(const bool                              
                                         const std::shared_ptr<IOtDaemonCallback> &aCallback,
                                         const std::string                        &aCountryCode)
 {
-    std::string instanceName = aMeshcopTxts.vendorName + " " + aMeshcopTxts.modelName;
+    std::string              instanceName = aMeshcopTxts.vendorName + " " + aMeshcopTxts.modelName;
+    Mdns::Publisher::TxtList nonStandardTxts;
+    otError                  error;
 
     setCountryCodeInternal(aCountryCode, nullptr /* aReceiver */);
     registerStateCallbackInternal(aCallback, -1 /* listenerId */);
 
     mMdnsPublisher.SetINsdPublisher(aINsdPublisher);
-    mBorderAgent.SetMeshCopServiceValues(instanceName, aMeshcopTxts.modelName, aMeshcopTxts.vendorName,
-                                         aMeshcopTxts.vendorOui);
-    mBorderAgent.SetEnabled(enabled);
+
+    for (const auto &txtAttr : aMeshcopTxts.nonStandardTxtEntries)
+    {
+        nonStandardTxts.emplace_back(txtAttr.name.c_str(), txtAttr.value.data(), txtAttr.value.size());
+    }
+    SuccessOrExit(error = mBorderAgent.SetMeshCopServiceValues(instanceName, aMeshcopTxts.modelName,
+                                                               aMeshcopTxts.vendorName, aMeshcopTxts.vendorOui,
+                                                               nonStandardTxts));
+    SuccessOrExit(error = mBorderAgent.SetEnabled(enabled));
 
     if (enabled)
     {
@@ -494,6 +502,12 @@ void OtDaemonServer::initializeInternal(const bool                              
     else
     {
         UpdateThreadEnabledState(OT_STATE_DISABLED, nullptr /* aReceiver */);
+    }
+
+exit:
+    if (error != OT_ERROR_NONE)
+    {
+        otbrLogCrit("Failed to initialize: %s", otThreadErrorToString(error));
     }
 }
 
