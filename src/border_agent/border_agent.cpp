@@ -146,20 +146,26 @@ BorderAgent::BorderAgent(otbr::Ncp::ControllerOpenThread &aNcp, Mdns::Publisher 
     mNcp.AddThreadStateChangedCallback([this](otChangedFlags aFlags) { HandleThreadStateChanged(aFlags); });
 }
 
-otbrError BorderAgent::SetMeshCopServiceValues(const std::string          &aServiceInstanceName,
-                                               const std::string          &aProductName,
-                                               const std::string          &aVendorName,
-                                               const std::vector<uint8_t> &aVendorOui)
+otbrError BorderAgent::SetMeshCopServiceValues(const std::string              &aServiceInstanceName,
+                                               const std::string              &aProductName,
+                                               const std::string              &aVendorName,
+                                               const std::vector<uint8_t>     &aVendorOui,
+                                               const Mdns::Publisher::TxtList &aNonStandardTxtEntries)
 {
     otbrError error = OTBR_ERROR_NONE;
 
     VerifyOrExit(aProductName.size() <= kMaxProductNameLength, error = OTBR_ERROR_INVALID_ARGS);
     VerifyOrExit(aVendorName.size() <= kMaxVendorNameLength, error = OTBR_ERROR_INVALID_ARGS);
     VerifyOrExit(aVendorOui.empty() || aVendorOui.size() == kVendorOuiLength, error = OTBR_ERROR_INVALID_ARGS);
+    for (const auto &txtEntry : aNonStandardTxtEntries)
+    {
+        VerifyOrExit(!txtEntry.mKey.empty() && txtEntry.mKey.front() == 'v', error = OTBR_ERROR_INVALID_ARGS);
+    }
 
-    mProductName = aProductName;
-    mVendorName  = aVendorName;
-    mVendorOui   = aVendorOui;
+    mProductName           = aProductName;
+    mVendorName            = aVendorName;
+    mVendorOui             = aVendorOui;
+    mNonStandardTxtEntries = aNonStandardTxtEntries;
 
     mBaseServiceInstanceName = aServiceInstanceName;
 
@@ -378,6 +384,8 @@ void BorderAgent::PublishMeshCopService(void)
         }
     }
 #endif
+
+    txtList.insert(txtList.end(), mNonStandardTxtEntries.begin(), mNonStandardTxtEntries.end());
 
     if (!mVendorOui.empty())
     {
