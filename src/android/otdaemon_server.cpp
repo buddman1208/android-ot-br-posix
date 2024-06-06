@@ -1127,7 +1127,7 @@ void OtDaemonServer::PushTelemetryIfConditionMatch()
 
     // TODO: Push telemetry per kTelemetryUploadIntervalThreshold instead of on startup.
     // TODO: Save unpushed telemetries in local cache to avoid data loss.
-    RetrieveAndPushAtoms(GetOtInstance());
+    RetrieveAndPushAtoms(GetOtInstance(), &mMdnsPublisher);
     mTaskRunner.Post(kTelemetryUploadIntervalThreshold, [this]() { PushTelemetryIfConditionMatch(); });
 
 exit:
