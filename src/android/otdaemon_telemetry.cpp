@@ -41,7 +41,6 @@
 
 #include "statslog_threadnetwork.h"
 #include "common/code_utils.hpp"
-#include "mdns/mdns.hpp"
 #include "proto/threadnetwork_atoms.pb.h"
 
 namespace otbr {
@@ -643,14 +642,14 @@ int PushAtom(const ThreadnetworkDeviceInfoReported &deviceInfoReported)
                                       otRcpVersion.c_str(), threadVersion, threadDaemonVersion.c_str());
 }
 
-void RetrieveAndPushAtoms(otInstance *otInstance)
+void RetrieveAndPushAtoms(otInstance *otInstance, Mdns::Publisher *aPublisher)
 {
     ThreadnetworkTelemetryDataReported telemetryDataReported;
     ThreadnetworkTopoEntryRepeated     topoEntryRepeated;
     ThreadnetworkDeviceInfoReported    deviceInfoReported;
 
     otbrLogInfo("Try to push threadnetwork ATOMs.");
-    if (RetrieveTelemetryAtom(otInstance, nullptr, telemetryDataReported, topoEntryRepeated, deviceInfoReported) !=
+    if (RetrieveTelemetryAtom(otInstance, aPublisher, telemetryDataReported, topoEntryRepeated, deviceInfoReported) !=
         OTBR_ERROR_NONE)
     {
         otbrLogWarning("Some telemetries are not populated");
