@@ -31,9 +31,11 @@
 
 #include <openthread/instance.h>
 
+#include "mdns/mdns.hpp"
+
 namespace otbr {
 namespace Android {
-void RetrieveAndPushAtoms(otInstance *otInstance);
+void RetrieveAndPushAtoms(otInstance *otInstance, Mdns::Publisher *aPublisher);
 } // namespace Android
 } // namespace otbr
 #endif // OTDAEMON_TELEMETRY_HPP_
