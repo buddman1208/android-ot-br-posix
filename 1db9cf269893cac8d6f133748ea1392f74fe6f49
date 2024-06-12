@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6c9eddd_a2996e80",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2016993
+      },
+      "writtenOn": "2024-06-12T11:03:01Z",
+      "side": 1,
+      "message": "This CL looks good to me regarding putting mDNS data into telemetry data.\n\nHowever, I found that `MdnsPublisher` didn\u0027t go through the code path to update the counters. I may need some time for the fix.",
+      "revId": "1db9cf269893cac8d6f133748ea1392f74fe6f49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
