@@ -36,6 +36,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cc2de56_70159d27",
+        "filename": "tests/android/java/com/android/server/thread/openthread/testing/FakeOtDaemonTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-06-12T09:20:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b38eb8c_7ab8fe62",
+      "revId": "37cbd74dc79753f62660ae3318b1b47acb453785",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae4879bd_66534ecd",
+        "filename": "tests/android/java/com/android/server/thread/openthread/testing/FakeOtDaemonTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-06-12T09:20:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b38eb8c_7ab8fe62",
+      "revId": "37cbd74dc79753f62660ae3318b1b47acb453785",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e78e6b1_2f4f03f5",
@@ -101,6 +137,30 @@
       "side": 1,
       "message": "Please ignore the AI-suggested fix.",
       "parentUuid": "8e78e6b1_2f4f03f5",
+      "range": {
+        "startLine": 134,
+        "startChar": 45,
+        "endLine": 134,
+        "endChar": 48
+      },
+      "revId": "37cbd74dc79753f62660ae3318b1b47acb453785",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79f70b80_aa8872da",
+        "filename": "tests/android/java/com/android/server/thread/openthread/testing/FakeOtDaemonTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-06-12T09:20:25Z",
+      "side": 1,
+      "message": "Offline chatted that this is not very useful and it\u0027s okay if E2E tests are added in aosp/3109107",
+      "parentUuid": "e11f6362_c7108253",
       "range": {
         "startLine": 134,
         "startChar": 45,
