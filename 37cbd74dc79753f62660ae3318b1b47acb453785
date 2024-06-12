@@ -85,6 +85,30 @@
       ],
       "revId": "37cbd74dc79753f62660ae3318b1b47acb453785",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e11f6362_c7108253",
+        "filename": "tests/android/java/com/android/server/thread/openthread/testing/FakeOtDaemonTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 2024816
+      },
+      "writtenOn": "2024-06-12T06:52:53Z",
+      "side": 1,
+      "message": "Please ignore the AI-suggested fix.",
+      "parentUuid": "8e78e6b1_2f4f03f5",
+      "range": {
+        "startLine": 134,
+        "startChar": 45,
+        "endLine": 134,
+        "endChar": 48
+      },
+      "revId": "37cbd74dc79753f62660ae3318b1b47acb453785",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
