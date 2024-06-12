@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72c745da_b4133773",
+        "filename": "src/android/otdaemon_server.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2024-06-12T08:44:06Z",
+      "side": 1,
+      "message": "Changed to 30. I didn\u0027t set it too small so that the Thread status (e.g., role, counters) are showing more suitable value.",
+      "parentUuid": "ac63e019_a84d5d9d",
+      "revId": "c9e4bda20cfaf913b168f61741193012de98ccd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
