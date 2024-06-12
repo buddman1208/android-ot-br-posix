@@ -43,6 +43,7 @@
 #include "common/code_utils.hpp"
 #include "mdns/mdns.hpp"
 #include "proto/threadnetwork_atoms.pb.h"
+#include "utils/hex.hpp"
 
 namespace otbr {
 namespace Android {
@@ -643,6 +644,12 @@ int PushAtom(const ThreadnetworkDeviceInfoReported &deviceInfoReported)
                                       otRcpVersion.c_str(), threadVersion, threadDaemonVersion.c_str());
 }
 
+std::string proto2Hex(const ::google::protobuf::MessageLite &message)
+{
+    const std::string &str = message.SerializeAsString();
+    return Utils::Bytes2Hex(reinterpret_cast<const uint8_t*>(str.c_str()), str.size());
+}
+
 void RetrieveAndPushAtoms(otInstance *otInstance)
 {
     ThreadnetworkTelemetryDataReported telemetryDataReported;
@@ -655,14 +662,17 @@ void RetrieveAndPushAtoms(otInstance *otInstance)
     {
         otbrLogWarning("Some telemetries are not populated");
     }
+    otbrLogInfo("Pushing TelemetryDataReported ATOM: %s", proto2Hex(telemetryDataReported).c_str());
     if (PushAtom(telemetryDataReported) <= 0)
     {
         otbrLogWarning("Failed to push ThreadnetworkTelemetryDataReported");
     }
+    otbrLogInfo("Pushing TopoEntryRepeated ATOM: %s", proto2Hex(topoEntryRepeated).c_str());
     if (PushAtom(topoEntryRepeated) <= 0)
     {
         otbrLogWarning("Failed to push ThreadnetworkTopoEntryRepeated");
     }
+    otbrLogInfo("Pushing DeviceInfoReported ATOM: %s", proto2Hex(deviceInfoReported).c_str());
     if (PushAtom(deviceInfoReported) <= 0)
     {
         otbrLogWarning("Failed to push ThreadnetworkDeviceInfoReported");
