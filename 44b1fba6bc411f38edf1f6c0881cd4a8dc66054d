@@ -16,6 +16,24 @@
       "message": "Could this value be smaller?",
       "revId": "44b1fba6bc411f38edf1f6c0881cd4a8dc66054d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c202fad1_e5938795",
+        "filename": "src/android/otdaemon_server.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 2044021
+      },
+      "writtenOn": "2024-06-12T08:44:57Z",
+      "side": 1,
+      "message": "Changed to 30. I didn\u0027t set it too small so that the Thread status (e.g., role, counters) are showing more suitable value.",
+      "parentUuid": "ac63e019_a84d5d9d",
+      "revId": "44b1fba6bc411f38edf1f6c0881cd4a8dc66054d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
