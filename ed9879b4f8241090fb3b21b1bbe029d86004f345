@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d2ad873_ef043411",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1693933
+      },
+      "writtenOn": "2024-06-18T03:16:43Z",
+      "side": 1,
+      "message": "@sadiqsada@google.com I think this can resolve your issue in https://b.corp.google.com/issues/332765270#comment12",
+      "revId": "ed9879b4f8241090fb3b21b1bbe029d86004f345",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
