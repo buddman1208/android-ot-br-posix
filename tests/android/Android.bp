@@ -33,6 +33,7 @@ package {
 
 android_test {
     name: "OtDaemonUnitTests",
+    min_sdk_version: "34",
     manifest: "AndroidManifest.xml",
     srcs: ["java/**/*.java"],
     test_suites: [
