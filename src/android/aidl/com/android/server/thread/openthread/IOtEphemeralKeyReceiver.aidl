@@ -1,5 +1,5 @@
 /*
- *    Copyright (c) 2023, The OpenThread Authors.
+ *    Copyright (c) 2024, The OpenThread Authors.
  *    All rights reserved.
  *
  *    Redistribution and use in source and binary forms, with or without
@@ -28,36 +28,8 @@
 
 package com.android.server.thread.openthread;
 
-/**
- * Contains all OpenThread daemon states which the system_server and/or client apps care about.
- */
-parcelable OtDaemonState {
-    boolean isInterfaceUp;
-
-    // Valid values are DEVICE_ROLE_* defined in {@link ThreadNetworkController}.
-    // Those are also OT_DEVICE_ROLE_* defined in external/openthread/include/openthread/thread.h
-    // TODO: add unit tests to make sure those are equal to each other
-    int deviceRole;
-
-    long partitionId;
-
-    // Active Oprational Dataset encoded as Thread TLVs. Empty array means the dataset doesn't
-    // exist
-    byte[] activeDatasetTlvs;
-
-    // Active Oprational Dataset encoded as Thread TLVs. Empty array means the dataset doesn't
-    // exist
-    byte[] pendingDatasetTlvs;
-
-    // The Thread enabled state OT_STATE_DISABLED, OT_STATE_ENABLED and OT_STATE_DISABLING.
-    int threadEnabled;
-
-    // Whether ephemeral key mode is active.
-    boolean isEphemeralKeyModeActive;
-
-    // The ephemeral key passcode string, valid when isEphemeralKeyModeActive is true.
-    String ephemeralKeyPasscode;
-
-    // The ephemeral key lifetime, valid when isEphemeralKeyModeActive is true.
-    long ephemeralKeyLifetimeMillis;
+/** Receives an ephemeral key or fails with an {@code otError} code. */
+oneway interface IOtEphemeralKeyReceiver {
+    void onSuccess(String passcode);
+    void onError(int errorCode, String errorMessage);
 }

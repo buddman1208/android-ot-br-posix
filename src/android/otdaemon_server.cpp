@@ -31,6 +31,7 @@
 #include "android/otdaemon_server.hpp"
 
 #include <net/if.h>
+#include <random>
 #include <string.h>
 
 #include <android-base/file.h>
@@ -45,6 +46,7 @@
 #include <openthread/openthread-system.h>
 #include <openthread/platform/infra_if.h>
 #include <openthread/platform/radio.h>
+#include "openthread/border_agent.h"
 
 #include "agent/vendor.hpp"
 #include "android/otdaemon_telemetry.hpp"
@@ -131,6 +133,7 @@ void OtDaemonServer::Init(void)
     otIp6SetReceiveCallback(GetOtInstance(), OtDaemonServer::ReceiveCallback, this);
     otBackboneRouterSetMulticastListenerCallback(GetOtInstance(), OtDaemonServer::HandleBackboneMulticastListenerEvent,
                                                  this);
+    otBorderAgentSetEphemeralKeyCallback(GetOtInstance(), OtDaemonServer::HandleEpskcStateChanged, this);
     otIcmp6SetEchoMode(GetOtInstance(), OT_ICMP6_ECHO_HANDLER_DISABLED);
     otIp6SetReceiveFilterEnabled(GetOtInstance(), true);
 
@@ -362,6 +365,42 @@ exit:
             otbrLogWarning("Failed to transmit tunnel packet: %s", otThreadErrorToString(error));
         }
     }
+}
+
+void OtDaemonServer::HandleEpskcStateChanged(void *aBinderServer)
+{
+    static_cast<OtDaemonServer *>(aBinderServer)->HandleEpskcStateChanged();
+}
+
+void OtDaemonServer::HandleEpskcStateChanged()
+{
+    if (otBorderAgentIsEphemeralKeyActive(GetOtInstance()))
+    {
+        mState.isEphemeralKeyModeActive = true;
+    }
+    else
+    {
+        mState.isEphemeralKeyModeActive = false;
+    }
+
+    if (mCallback != nullptr)
+    {
+        mCallback->onStateChanged(mState, -1);
+    }
+}
+
+std::string OtDaemonServer::CreateEphemeralPasscode(uint32_t length)
+{
+    std::random_device                 rd;
+    std::default_random_engine         engine(rd());
+    std::uniform_int_distribution<int> distribution(0, 9);
+    std::string                        passcode = "";
+
+    for (uint32_t i = 0; i < length; ++i)
+    {
+        passcode += std::to_string(distribution(engine));
+    }
+    return passcode;
 }
 
 BackboneRouterState OtDaemonServer::GetBackboneRouterState()
@@ -609,6 +648,69 @@ exit:
     {
         PropagateResult(error, message, aReceiver);
     }
+}
+
+Status OtDaemonServer::startEphemeralKeyMode(const int64_t                                   lifetimeMillis,
+                                             const std::shared_ptr<IOtEphemeralKeyReceiver> &aReceiver)
+{
+    mTaskRunner.Post([lifetimeMillis, aReceiver, this]() { startEphemeralKeyModeInternal(lifetimeMillis, aReceiver); });
+
+    return Status::ok();
+}
+
+void OtDaemonServer::startEphemeralKeyModeInternal(const int64_t                                   lifetimeMillis,
+                                                   const std::shared_ptr<IOtEphemeralKeyReceiver> &aReceiver)
+{
+    int         error = OT_ERROR_NONE;
+    std::string message;
+    std::string passcode = CreateEphemeralPasscode(9); // TO DO: add check bit.
+
+    otbrLogInfo("startEphemeralKeyModeInternal");
+
+    VerifyOrExit(GetOtInstance() != nullptr, error = OT_ERROR_INVALID_STATE, message = "OT is not initialized");
+
+    SuccessOrExit(error = otBorderAgentSetEphemeralKey(GetOtInstance(), passcode.c_str(), (uint32_t)lifetimeMillis, 0),
+                  message = "Failed to set ephemeral key");
+
+exit:
+    otbrLogInfo("startEphemeralKeyModeInternal exit, error = %d", error);
+
+    if (aReceiver != nullptr)
+    {
+        if (error == OT_ERROR_NONE)
+        {
+            mState.ephemeralKeyPasscode       = passcode;
+            mState.ephemeralKeyLifetimeMillis = lifetimeMillis;
+            aReceiver->onSuccess(passcode);
+        }
+        else
+        {
+            aReceiver->onError(error, message);
+        }
+    }
+}
+
+Status OtDaemonServer::stopEphemeralKeyMode(const std::shared_ptr<IOtStatusReceiver> &aReceiver)
+{
+    mTaskRunner.Post([aReceiver, this]() { stopEphemeralKeyModeInternal(aReceiver); });
+
+    return Status::ok();
+}
+
+void OtDaemonServer::stopEphemeralKeyModeInternal(const std::shared_ptr<IOtStatusReceiver> &aReceiver)
+{
+    int         error = OT_ERROR_NONE;
+    std::string message;
+
+    VerifyOrExit(GetOtInstance() != nullptr, error = OT_ERROR_INVALID_STATE, message = "OT is not initialized");
+    otbrLogInfo("stopEphemeralKeyModeInternal");
+
+    VerifyOrExit(otBorderAgentIsEphemeralKeyActive(GetOtInstance()), error = OT_ERROR_NONE);
+
+    otBorderAgentClearEphemeralKey(GetOtInstance());
+
+exit:
+    PropagateResult(error, message, aReceiver);
 }
 
 Status OtDaemonServer::registerStateCallback(const std::shared_ptr<IOtDaemonCallback> &aCallback, int64_t listenerId)

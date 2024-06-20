@@ -36,6 +36,7 @@
 #include <aidl/com/android/server/thread/openthread/BnOtDaemon.h>
 #include <aidl/com/android/server/thread/openthread/INsdPublisher.h>
 #include <aidl/com/android/server/thread/openthread/IOtDaemon.h>
+#include <aidl/com/android/server/thread/openthread/IOtEphemeralKeyReceiver.h>
 #include <openthread/instance.h>
 #include <openthread/ip6.h>
 
@@ -59,6 +60,7 @@ using aidl::com::android::server::thread::openthread::IChannelMasksReceiver;
 using aidl::com::android::server::thread::openthread::INsdPublisher;
 using aidl::com::android::server::thread::openthread::IOtDaemon;
 using aidl::com::android::server::thread::openthread::IOtDaemonCallback;
+using aidl::com::android::server::thread::openthread::IOtEphemeralKeyReceiver;
 using aidl::com::android::server::thread::openthread::IOtStatusReceiver;
 using aidl::com::android::server::thread::openthread::Ipv6AddressInfo;
 using aidl::com::android::server::thread::openthread::MeshcopTxtAttributes;
@@ -136,6 +138,12 @@ private:
                                          const std::shared_ptr<IOtStatusReceiver> &aReceiver);
     Status getChannelMasks(const std::shared_ptr<IChannelMasksReceiver> &aReceiver) override;
     void   getChannelMasksInternal(const std::shared_ptr<IChannelMasksReceiver> &aReceiver);
+    Status startEphemeralKeyMode(const int64_t                                   lifetimeMillis,
+                                 const std::shared_ptr<IOtEphemeralKeyReceiver> &aReceiver) override;
+    void   startEphemeralKeyModeInternal(const int64_t                                   lifetimeMillis,
+                                         const std::shared_ptr<IOtEphemeralKeyReceiver> &aReceiver);
+    Status stopEphemeralKeyMode(const std::shared_ptr<IOtStatusReceiver> &aReceiver) override;
+    void   stopEphemeralKeyModeInternal(const std::shared_ptr<IOtStatusReceiver> &aReceiver);
 
     bool        RefreshOtDaemonState(otChangedFlags aFlags);
     void        LeaveGracefully(const LeaveCallback &aReceiver);
@@ -158,8 +166,11 @@ private:
     bool                RefreshOnMeshPrefixes();
     Ipv6AddressInfo     ConvertToAddressInfo(const otNetifAddress &aAddress);
     Ipv6AddressInfo     ConvertToAddressInfo(const otNetifMulticastAddress &aAddress);
-    void UpdateThreadEnabledState(const int aEnabled, const std::shared_ptr<IOtStatusReceiver> &aReceiver);
-    void EnableThread(const std::shared_ptr<IOtStatusReceiver> &aReceiver);
+    void        UpdateThreadEnabledState(const int aEnabled, const std::shared_ptr<IOtStatusReceiver> &aReceiver);
+    void        EnableThread(const std::shared_ptr<IOtStatusReceiver> &aReceiver);
+    static void HandleEpskcStateChanged(void *aBinderServer);
+    void        HandleEpskcStateChanged(void);
+    static std::string CreateEphemeralPasscode(uint32_t length);
 
     otbr::Application                 &mApplication;
     otbr::Ncp::ControllerOpenThread   &mNcp;
