@@ -46,6 +46,7 @@ import com.android.server.thread.openthread.IChannelMasksReceiver;
 import com.android.server.thread.openthread.INsdPublisher;
 import com.android.server.thread.openthread.IOtDaemon;
 import com.android.server.thread.openthread.IOtDaemonCallback;
+import com.android.server.thread.openthread.IOtEphemeralKeyReceiver;
 import com.android.server.thread.openthread.IOtStatusReceiver;
 import com.android.server.thread.openthread.MeshcopTxtAttributes;
 import com.android.server.thread.openthread.OtDaemonState;
@@ -99,6 +100,9 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
         mState.activeDatasetTlvs = new byte[0];
         mState.pendingDatasetTlvs = new byte[0];
         mState.threadEnabled = OT_STATE_DISABLED;
+        mState.isEphemeralKeyModeActive = false;
+        mState.ephemeralKeyPasscode = "";
+        mState.ephemeralKeyLifetimeMillis = 0;
         mBbrState = new BackboneRouterState();
         mBbrState.multicastForwardingEnabled = false;
         mBbrState.listeningAddresses = new ArrayList<>();
@@ -291,6 +295,37 @@ public final class FakeOtDaemon extends IOtDaemon.Stub {
                     }
                 },
                 JOIN_DELAY.toMillis());
+    }
+
+    @Override
+    public void startEphemeralKeyMode(long lifetimeMillis, IOtEphemeralKeyReceiver receiver) {
+        mHandler.post(
+                () -> {
+                    mState.isEphemeralKeyModeActive = true;
+                    mState.ephemeralKeyPasscode = "123456789";
+                    mState.ephemeralKeyLifetimeMillis = lifetimeMillis;
+                    try {
+                        receiver.onSuccess(
+                                mState.ephemeralKeyPasscode, mState.ephemeralKeyLifetimeMillis);
+                    } catch (RemoteException e) {
+                        throw new AssertionError(e);
+                    }
+                });
+    }
+
+    @Override
+    public void stopEphemeralKeyMode(IOtStatusReceiver receiver) {
+        mHandler.post(
+                () -> {
+                    mState.isEphemeralKeyModeActive = false;
+                    mState.ephemeralKeyPasscode = "";
+                    mState.ephemeralKeyLifetimeMillis = 0;
+                    try {
+                        receiver.onSuccess();
+                    } catch (RemoteException e) {
+                        throw new AssertionError(e);
+                    }
+                });
     }
 
     private OtDaemonState makeCopy(OtDaemonState state) {
