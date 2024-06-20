@@ -34,6 +34,7 @@ import android.net.thread.ChannelMaxPower;
 import com.android.server.thread.openthread.BorderRouterConfigurationParcel;
 import com.android.server.thread.openthread.IChannelMasksReceiver;
 import com.android.server.thread.openthread.Ipv6AddressInfo;
+import com.android.server.thread.openthread.IOtEphemeralKeyReceiver;
 import com.android.server.thread.openthread.IOtStatusReceiver;
 import com.android.server.thread.openthread.IOtDaemonCallback;
 import com.android.server.thread.openthread.INsdPublisher;
@@ -189,6 +190,16 @@ oneway interface IOtDaemon {
     * @param receiver the receiver to the receive result of this operation.
     */
     void setChannelMaxPowers(in ChannelMaxPower[] channelMaxPowers, in IOtStatusReceiver receiver);
+
+    /**
+     * Starts the ephemeral key mode.
+     */
+    void startEphemeralKeyMode(in long lifetimeMillis, in IOtEphemeralKeyReceiver receiver);
+
+    /**
+     * Stops the ephemeral key mode.
+     */
+    void stopEphemeralKeyMode(in IOtStatusReceiver receiver);
 
     // TODO: add Border Router APIs
 }
